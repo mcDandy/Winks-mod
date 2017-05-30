@@ -20,7 +20,7 @@ public class BlockBaseFalling extends BlockFalling{
 		setHardness(hardness);
 		setResistance(resistence);
 	}
-
+ 
 	public BlockBaseFalling(String unlocalizedName, Material mat, CreativeTabs tab) {
 				super(mat);
 		setUnlocalizedName(unlocalizedName);
