@@ -1,5 +1,11 @@
 {
     "variants": {
-        "normal": {"model": "winksmod:fp_block"}
+        
+        "normal": [
+            { "model": "winksmod:fp_block" },
+            { "model": "winksmod:fp_block", "y": 90 },
+            { "model": "winksmod:fp_block", "y": 180 },
+            { "model": "winksmod:fp_block", "y": 270 }
+        ]
     }
 }

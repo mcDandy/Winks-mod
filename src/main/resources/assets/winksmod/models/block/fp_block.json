@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "winksmod:blocks/sand"
+        "all": "winksmod:blocks/fp_block"
     }
 }
