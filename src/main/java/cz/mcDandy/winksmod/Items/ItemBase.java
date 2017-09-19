@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.Blocks;
+package cz.mcDandy.winksmod.Items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

@@ -1,6 +1,5 @@
 package cz.mcDandy.winksmod.Items;
 
-import cz.mcDandy.winksmod.Blocks.ItemBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 

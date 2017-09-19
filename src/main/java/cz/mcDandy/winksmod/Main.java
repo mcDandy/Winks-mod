@@ -1,7 +1,7 @@
 package cz.mcDandy.winksmod;
-
 import cz.mcDandy.winksmod.register.Register;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -21,6 +21,7 @@ public class Main
     @EventHandler
     public void init(FMLInitializationEvent event)
     {Crafting.Register(event);
+    MinecraftForge.EVENT_BUS.register(new Events());
         // some example code
         System.out.println("DIRT BLOCK >> "+Blocks.DIRT.getUnlocalizedName());
     }
