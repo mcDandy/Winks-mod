@@ -8,6 +8,8 @@ import net.minecraft.creativetab.CreativeTabs;
 public class fp_Block extends BlockBaseFalling {
 	public fp_Block(String unlocalizedName, Material mat, CreativeTabs tab) {
 		super(unlocalizedName, mat, tab);
-		//TileEntityBeaconRenderer.renderBeamSegment(x, y, z, partialTicks, textureScale, totalWorldTime, yOffset, height, colors, beamRadius, glowRadius);
+		// TileEntityBeaconRenderer.renderBeamSegment(x, y, z, partialTicks,
+		// textureScale, totalWorldTime, yOffset, height, colors, beamRadius,
+		// glowRadius);
 	}
 }

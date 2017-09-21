@@ -14,7 +14,8 @@ import net.minecraftforge.fml.relauncher.Side;
 public class Register {
 	public static void registerAll(FMLPreInitializationEvent pre) {
 		registerBlocks(pre, Blocks.fp_block);
-		registerItems(pre,ModItems.fpowder);
+		registerItems(pre, ModItems.fpowder, ModItems.solWand);
+
 	}
 
 	public static void registerBlocks(FMLPreInitializationEvent pre, Block... blocks) {
@@ -39,6 +40,6 @@ public class Register {
 						new ModelResourceLocation(item.getRegistryName(), "inventory"));
 			}
 		}
-		
+
 	}
 }
