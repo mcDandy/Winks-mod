@@ -30,10 +30,9 @@ public class solWand extends ItemBase {
     ItemStack itemstack = playerIn.getHeldItem(handIn);
         //boolean flag = !this.findAmmo(playerIn).isEmpty();
 
-	
-	fireball.posX = playerIn.posX;
     EntityLargeFireball fireball= new EntityLargeFireball(worldIn,playerIn, 10, 10, 10);
     
+	fireball.posX = playerIn.posX; // Null pointer exception
 	fireball.posY = playerIn.posY + playerIn.eyeHeight;
 	fireball.posZ = playerIn.posZ;
 	fireball.accelerationX = playerIn.getLookVec().xCoord;
@@ -45,19 +44,7 @@ public class solWand extends ItemBase {
         }
     
 
-	//@Override 
-	public solWand onItemRightClick(ItemStack itemstack, World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-	
-				System.out.println("click");
-				fireball.posX = playerIn.posX;
-				fireball.posY = playerIn.posY + playerIn.eyeHeight;
-				fireball.posZ = playerIn.posZ;
-				fireball.accelerationX = playerIn.getLookVec().xCoord;
-				fireball.accelerationY = playerIn.getLookVec().yCoord;
-				fireball.accelerationZ = playerIn.getLookVec().zCoord;
-				worldIn.spawnEntity(fireball);
-			    return onItemRightClick(itemstack, worldIn, playerIn, handIn);		}
-		
+
 	}
 
 
