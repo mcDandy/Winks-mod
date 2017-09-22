@@ -16,36 +16,30 @@ public class solWand extends ItemBase {
 		super(unlocalizedName, tab, stack);
 		// TODO Auto-generated constructor stub
 	}
-	
-	public EnumAction getItemUseAction(ItemStack stack)
-    {
-        return EnumAction.BOW;
-    }
 
-    /**
-     * Called when the equipped item is right clicked.
-     */
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
-    {System.out.println("Sucess");
-    ItemStack itemstack = playerIn.getHeldItem(handIn);
-        //boolean flag = !this.findAmmo(playerIn).isEmpty();
-
-    EntityLargeFireball fireball= new EntityLargeFireball(worldIn,playerIn, 10, 10, 10);
-    
-	fireball.posX = playerIn.posX; // Null pointer exception
-	fireball.posY = playerIn.posY + playerIn.eyeHeight;
-	fireball.posZ = playerIn.posZ;
-	fireball.accelerationX = playerIn.getLookVec().xCoord;
-	fireball.accelerationY = playerIn.getLookVec().yCoord;
-	fireball.accelerationZ = playerIn.getLookVec().zCoord;
-	worldIn.spawnEntity(fireball);
-            playerIn.setActiveHand(handIn);
-            return new ActionResult(EnumActionResult.SUCCESS, itemstack);
-        }
-    
-
-
+	public EnumAction getItemUseAction(ItemStack stack) {
+		return EnumAction.BOW;
 	}
 
+	/**
+	 * Called when the equipped item is right clicked.
+	 */
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		System.out.println("Sucess");
+		ItemStack itemstack = playerIn.getHeldItem(handIn);
+		// boolean flag = !this.findAmmo(playerIn).isEmpty();
 
+		EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
 
+		fireball.posX = playerIn.posX; // Null pointer exception
+		fireball.posY = playerIn.posY + playerIn.eyeHeight;
+		fireball.posZ = playerIn.posZ;
+		fireball.accelerationX = playerIn.getLookVec().xCoord;
+		fireball.accelerationY = playerIn.getLookVec().yCoord;
+		fireball.accelerationZ = playerIn.getLookVec().zCoord;
+		worldIn.spawnEntity(fireball);
+		playerIn.setActiveHand(handIn);
+		return new ActionResult(EnumActionResult.SUCCESS, itemstack);
+	}
+
+}
