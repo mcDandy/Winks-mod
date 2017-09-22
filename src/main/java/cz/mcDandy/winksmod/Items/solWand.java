@@ -3,6 +3,7 @@ package cz.mcDandy.winksmod.Items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -15,7 +16,7 @@ public class solWand extends ItemBase {
 		super(unlocalizedName, tab, stack);
 		// TODO Auto-generated constructor stub
 	}
-	EntityFireball fireball;
+	
 	public EnumAction getItemUseAction(ItemStack stack)
     {
         return EnumAction.BOW;
@@ -26,11 +27,13 @@ public class solWand extends ItemBase {
      */
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {System.out.println("Sucess");
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
+    ItemStack itemstack = playerIn.getHeldItem(handIn);
         //boolean flag = !this.findAmmo(playerIn).isEmpty();
 
 	
 	fireball.posX = playerIn.posX;
+    EntityLargeFireball fireball= new EntityLargeFireball(worldIn,playerIn, 10, 10, 10);
+    
 	fireball.posY = playerIn.posY + playerIn.eyeHeight;
 	fireball.posZ = playerIn.posZ;
 	fireball.accelerationX = playerIn.getLookVec().xCoord;
