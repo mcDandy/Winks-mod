@@ -11,5 +11,6 @@ public class fp_Block extends BlockBaseFalling {
 		// TileEntityBeaconRenderer.renderBeamSegment(x, y, z, partialTicks,
 		// textureScale, totalWorldTime, yOffset, height, colors, beamRadius,
 		// glowRadius);
+		this.lightValue=8;
 	}
 }

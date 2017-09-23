@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 public class Register {
 	public static void registerAll(FMLPreInitializationEvent pre) {
 		registerBlocks(pre, Blocks.fp_block);
-		registerItems(pre, ModItems.fpowder, ModItems.solWand);
+		registerItems(pre, ModItems.fpowder, ModItems.solWand, ModItems.wings);
 
 	}
 

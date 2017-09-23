@@ -22,7 +22,7 @@ public class Main {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		Crafting.Register(event);
-		// MinecraftForge.EVENT_BUS.register(new Events());
+		 MinecraftForge.EVENT_BUS.register(new Event());
 		// some example code
 		System.out.println("DIRT BLOCK >> " + Blocks.DIRT.getUnlocalizedName());
 	}

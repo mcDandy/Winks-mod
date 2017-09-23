@@ -11,33 +11,31 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class solWand extends ItemBase {
-	public solWand(String unlocalizedName, CreativeTabs tab, int stack) {
+public class wings extends ItemBase {
+	public wings(String unlocalizedName, CreativeTabs tab, int stack) {
 		super(unlocalizedName, tab, stack);
 		// TODO Auto-generated constructor stub
 	}
+
+
 
 	public EnumAction getItemUseAction(ItemStack stack) {
 		return EnumAction.BOW;
 	}
 
+
 	/**
 	 * Called when the equipped item is right clicked.
 	 */
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-
+		
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		// boolean flag = !this.findAmmo(playerIn).isEmpty();
+		
 
-		EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
 
-		fireball.posX = playerIn.posX; // Null pointer exception
-		fireball.posY = playerIn.posY + playerIn.eyeHeight;
-		fireball.posZ = playerIn.posZ;
-		fireball.accelerationX = playerIn.getLookVec().xCoord;
-		fireball.accelerationY = playerIn.getLookVec().yCoord;
-		fireball.accelerationZ = playerIn.getLookVec().zCoord;
-		worldIn.spawnEntity(fireball);
+		playerIn.motionX=playerIn.getLookVec().xCoord;
+		playerIn.motionY=playerIn.getLookVec().yCoord;
+		playerIn.motionZ=playerIn.getLookVec().zCoord;
 		playerIn.setActiveHand(handIn);
 		return new ActionResult(EnumActionResult.SUCCESS, itemstack);
 	}
