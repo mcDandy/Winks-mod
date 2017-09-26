@@ -4,8 +4,10 @@ import cz.mcDandy.winksmod.register.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraft.nbt.*;
 
 public class Event {
 	EntityPlayer player;
@@ -42,5 +44,17 @@ public class Event {
 
 	}
 
+	@SubscribeEvent
+	public void onPlayerJoin(PlayerEvent.LoadFromFile event) {
+		if (nbt.hasKey("Fiary Level", 99)) {
+			FiaryLevel = nbt.getInteger("Fiary Level");
+		} else {
+			nbt.setInteger("Fiary Level", 0);
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerLeave(PlayerEvent.SaveToFile event) {
+		nbt.setInteger("Fiary Level", FiaryLevel + 1);
 	}
 }
