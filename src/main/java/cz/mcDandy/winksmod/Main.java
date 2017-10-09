@@ -16,8 +16,10 @@ public class Main {
 
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
+	
 		Register.registerAll(event);
 	}
+	
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
