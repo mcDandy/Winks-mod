@@ -1,6 +1,7 @@
-package cz.mcDandy.winksmod.register;
+package cz.mcDandy.winksmod.Items;
 
 
+import cz.mcDandy.winksmod.register.ModPotions;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemPotion;

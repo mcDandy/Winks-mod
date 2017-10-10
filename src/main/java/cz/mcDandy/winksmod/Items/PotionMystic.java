@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.register;
+package cz.mcDandy.winksmod.Items;
 
 import net.minecraft.potion.Potion;
 
