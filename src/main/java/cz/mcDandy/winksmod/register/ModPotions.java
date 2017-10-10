@@ -1,7 +1,9 @@
 package cz.mcDandy.winksmod.register;
 
+import cz.mcDandy.winksmod.Items.PotionMystic;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionHelper;
@@ -13,11 +15,12 @@ public class ModPotions extends PotionHelper {
 	public static PotionEffect MisticPot;
 	//public static PotionType MysticPot;
 	// = new MysticP(false, 0);
+	private NBTTagCompound nbt;
 			public ModPotions() 
-{		Mystic = new PotionMystic(32, false, 0).setIconIndex(0, 0).setPotionName("potion.MysticPotion").setRegistryName("MystPotion");
+{		Mystic = new PotionMystic(32, false, 0).setIconIndex(0, 0).setPotionName("potion.MysticPotioQn").setRegistryName("MystPotion");
 	MisticPot =  new PotionEffect(Mystic,200);
 		
-		//		MysticPot.setRegistryName("MysticPot");
+				MisticPot.writeCustomPotionEffectToNBT(nbt);
 			
 }
 }

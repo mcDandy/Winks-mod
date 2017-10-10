@@ -20,8 +20,6 @@ public class ItemBase extends Item {
 		setMaxStackSize(stackSize);
 	}
 
-	public solWand onItemRightClick(ItemStack itemstack, World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+	
 }
