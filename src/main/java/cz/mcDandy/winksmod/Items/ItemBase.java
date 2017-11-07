@@ -12,7 +12,8 @@ public class ItemBase extends Item {
 		this(unlocalizedName, tab, 64);
 	}
 
-	public ItemBase(String unlocalizedName, CreativeTabs tab, int stackSize) {
+	public ItemBase(String unlocalizedName, CreativeTabs tab, int stackSize) 
+	{
 		// TODO Auto-generated constructor stub
 		setUnlocalizedName(unlocalizedName);
 		setRegistryName(unlocalizedName);

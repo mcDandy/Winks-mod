@@ -55,7 +55,7 @@ this.setMaxDamage(100);
 
 	        if (worldIn.isRemote)
 	        {
-	            return new ActionResult(EnumActionResult.PASS, itemstack);
+	            return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
 	        }
 	        else
 	        {
@@ -75,12 +75,12 @@ this.setMaxDamage(100);
 	        			worldIn.spawnEntity(fireball);
 	                    
 
-	                    return new ActionResult(EnumActionResult.SUCCESS, itemstack);
+	                    return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 	                }
 	           
 
 	          
-	            return new ActionResult(EnumActionResult.PASS, itemstack);
+	            return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
 	            }
 	        }
 
