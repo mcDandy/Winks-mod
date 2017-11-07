@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 public class Register {
 	public static void registerAll(FMLPreInitializationEvent pre) {
 		registerBlocks(pre, Blocks.fp_block);
-		registerItems(pre, ModItems.fpowder, ModItems.solwand, ModItems.wings, ModItems.MysticPotion, ModItems.magicdiamond);
+		registerItems(pre, ModItems.fpowder, ModItems.solwand, ModItems.wings, ModItems.magicdiamond);
         
 		registerPotions(pre, ModPotions.Mystic);
 	}
