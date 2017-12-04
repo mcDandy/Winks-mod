@@ -26,8 +26,8 @@ public class Main {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		RenderManager rm = Minecraft.getMinecraft().getRenderManager();
-		RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
+	//	RenderManager rm = Minecraft.getMinecraft().getRenderManager();
+	//	RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
 		Crafting.Register(event);
 		MinecraftForge.EVENT_BUS.register(new Event());
 		// some example code
