@@ -11,6 +11,7 @@ super(par2, par3);
 	public Potion setIconIndex(int par1, int par2) {
 	super.setIconIndex(par1, par2);
 	this.setPotionName("PotionMystic");
+
 	return this;
 }
 }
