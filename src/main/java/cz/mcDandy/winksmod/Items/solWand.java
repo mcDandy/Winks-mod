@@ -15,10 +15,10 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class solwand extends Item {
+public class solWand extends Item {
 //	ItemStack itemstack = new ItemStack(ModItems.solwand);
 
-	public solwand(String unlocalizedName, CreativeTabs tab, int stack) {
+	public solWand(String unlocalizedName, CreativeTabs tab, int stack) {
 		super();
 this.setRegistryName(Main.MODID,unlocalizedName);
 this.setUnlocalizedName(unlocalizedName);
