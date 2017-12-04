@@ -15,13 +15,10 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-<<<<<<< HEAD
+
 public class solWand extends Item {
 //	ItemStack itemstack = new ItemStack(ModItems.solwand);
-=======
-public class solwand extends Item {
-	//ItemStack itemstack = new ItemStack(ModItems.solwand);
->>>>>>> Entities
+
 
 	public solWand(String unlocalizedName, CreativeTabs tab, int stack) {
 		super();
