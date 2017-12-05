@@ -2,6 +2,7 @@ package cz.mcDandy.winksmod.Items;
 
 import cz.mcDandy.winksmod.Main;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.item.EnumAction;
@@ -37,37 +38,39 @@ public class solWand extends Item {
 	public boolean showDurabilityBar(ItemStack stack) {
 		return true;
 	}
-
+	@Override
+	public int getMaxItemUseDuration(ItemStack stack) {
+		return 72000;
+		}
+	
+	@Override
 	public EnumAction getItemUseAction(ItemStack stack) {
-		return EnumAction.BLOCK;
+		return EnumAction.BOW;
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		// super.onItemRightClick(worldIn, playerIn, playerIn.getActiveHand());
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
+	public ItemStack onItemUseFinish(ItemStack itemstack,World worldIn, EntityLivingBase playerIn) {
+		
+		
 
-		if (worldIn.isRemote) {
-			// return ActionResult<ItemStack>();
-		} else {
+
 			if (itemstack.getMaxDamage() - itemstack.getMetadata() > 10) {
 				itemstack.damageItem(10, playerIn);
 				EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
 
 				fireball.posX = playerIn.posX;
-				fireball.posY = playerIn.posY + playerIn.eyeHeight;
+				fireball.posY = playerIn.posY + playerIn.getEyeHeight();
 				fireball.posZ = playerIn.posZ;
 				fireball.accelerationX = playerIn.getLookVec().xCoord;
 				fireball.accelerationY = playerIn.getLookVec().yCoord;
 				fireball.accelerationZ = playerIn.getLookVec().zCoord;
 				worldIn.spawnEntity(fireball);
 
-				return new ActionResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+				return itemstack;
 			}
 
-			return new ActionResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
-		}
-		return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+
+		return itemstack;
 	}
 
 }
