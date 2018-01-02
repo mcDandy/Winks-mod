@@ -61,9 +61,9 @@ public class solWand extends Item {
 				fireball.posX = playerIn.posX;
 				fireball.posY = playerIn.posY + playerIn.getEyeHeight();
 				fireball.posZ = playerIn.posZ;
-				fireball.accelerationX = playerIn.getLookVec().xCoord;
-				fireball.accelerationY = playerIn.getLookVec().yCoord;
-				fireball.accelerationZ = playerIn.getLookVec().zCoord;
+				fireball.accelerationX = playerIn.getLookVec().x;
+				fireball.accelerationY = playerIn.getLookVec().y;
+				fireball.accelerationZ = playerIn.getLookVec().z;
 				worldIn.spawnEntity(fireball);
 
 				return itemstack;

@@ -1,0 +1,26 @@
+  {
+  "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+
+        {
+
+            "item": "minecraft:redstone"
+
+        },
+                {
+
+            "item": "minecraft:dye"
+            "data":5
+
+        },
+        {
+
+            "item": "minecraft:ender_eye"
+
+        }                    ],
+            "result": {
+        "item": "winksmod:fpowder"
+        "count": 1
+    } 
+    }
+        

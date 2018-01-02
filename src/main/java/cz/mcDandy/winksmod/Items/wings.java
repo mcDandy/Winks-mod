@@ -33,11 +33,11 @@ public class wings extends ItemBase {
 		
 
 
-		playerIn.motionX=playerIn.getLookVec().xCoord;
-		playerIn.motionY=playerIn.getLookVec().yCoord;
-		playerIn.motionZ=playerIn.getLookVec().zCoord;
+		playerIn.motionX=playerIn.getLookVec().x;
+		playerIn.motionY=playerIn.getLookVec().y;
+		playerIn.motionZ=playerIn.getLookVec().z;
 		playerIn.setActiveHand(handIn);
-		return new ActionResult(EnumActionResult.SUCCESS, itemstack);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 	}
 
 }

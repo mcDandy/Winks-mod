@@ -1,9 +1,13 @@
 package cz.mcDandy.winksmod;
 
+import cz.mcDandy.winksmod.register.Blocks;
 import cz.mcDandy.winksmod.register.ModItems;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -65,5 +69,14 @@ public class Event {
 		NBTTagCompound nbt = player.getEntityData();
 		nbt.setInteger("Fiary Level", FiaryLevel + 1);
 	}
-	
+@SubscribeEvent
+public void registerBlocks(RegistryEvent.Register<Block> event) {
+    event.getRegistry().registerAll(Blocks.fp_block);
+}
+
+
+@SubscribeEvent
+public void registerItems(RegistryEvent.Register<Item> event) {
+    event.getRegistry().registerAll(ModItems.fpowder, ModItems.solwand, ModItems.wings, ModItems.magicdiamond);
+}
 }
