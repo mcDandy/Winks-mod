@@ -21,9 +21,9 @@ public class solWand extends Item {
 		this.setRegistryName(Main.MODID, unlocalizedName);
 		this.setUnlocalizedName(unlocalizedName);
 		this.setCreativeTab(tab);
-		this.maxStackSize = 1;
+		this.setMaxStackSize(1);
 		this.setMaxDamage(100);
-		showDurabilityBar(null);
+		
 		isDamageable();
 		// getDurabilityForDisplay();
 		// TODO Auto-generated constructor stub
@@ -49,15 +49,17 @@ public class solWand extends Item {
 	}
 
 	@Override
-	public ItemStack onItemUseFinish(ItemStack itemstack,World worldIn, EntityLivingBase playerIn) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn,EnumHand handIn) {
 		
 		
+ItemStack itemstack = playerIn.getHeldItem(handIn);
+Item item = itemstack.getItem();
+//(10, playerIn);
 
-
-			if (itemstack.getMaxDamage() - itemstack.getMetadata() > 10) {
-				itemstack.damageItem(10, playerIn);
+			if (itemstack.getMaxDamage() - itemstack.getItemDamage() > 10) {
 				EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
-
+				item.setDamage(itemstack, item.getDamage(itemstack)-10); 
+				//item.getDamage(itemstack);
 				fireball.posX = playerIn.posX;
 				fireball.posY = playerIn.posY + playerIn.getEyeHeight();
 				fireball.posZ = playerIn.posZ;
@@ -66,11 +68,11 @@ public class solWand extends Item {
 				fireball.accelerationZ = playerIn.getLookVec().z;
 				worldIn.spawnEntity(fireball);
 
-				return itemstack;
+				return new ActionResult<ItemStack>( EnumActionResult.SUCCESS, new ItemStack(item));
 			}
 
 
-		return itemstack;
+			return new ActionResult<ItemStack>( EnumActionResult.PASS, itemstack);
 	}
 
 }
