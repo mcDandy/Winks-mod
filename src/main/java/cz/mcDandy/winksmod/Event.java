@@ -3,12 +3,15 @@ package cz.mcDandy.winksmod;
 import cz.mcDandy.winksmod.register.Blocks;
 import cz.mcDandy.winksmod.register.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -84,5 +87,18 @@ public class Event {
 		event.getRegistry().register(new ItemBlock(Blocks.fp_block).setRegistryName(Blocks.fp_block.getRegistryName()));
 		event.getRegistry().registerAll(ModItems.fpowder, ModItems.solwand, ModItems.wings, ModItems.magicdiamond);
 
+	}
+
+	@SubscribeEvent
+	public static void registerModels(ModelRegistryEvent event) {
+
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void initModels(Item... items) {
+		for (Item item : items) {
+			ModelLoader.setCustomModelResourceLocation(item, 0,
+					new ModelResourceLocation(item.getRegistryName(), "inventory"));
+		}
 	}
 }
