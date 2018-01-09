@@ -1,8 +1,6 @@
 package cz.mcDandy.winksmod.Blocks;
 
-import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.tileentity.TileEntityBeaconRenderer;
 import net.minecraft.creativetab.CreativeTabs;
 
 public class fp_Block extends BlockBaseFalling {
@@ -11,6 +9,6 @@ public class fp_Block extends BlockBaseFalling {
 		// TileEntityBeaconRenderer.renderBeamSegment(x, y, z, partialTicks,
 		// textureScale, totalWorldTime, yOffset, height, colors, beamRadius,
 		// glowRadius);
-		this.lightValue=8;
+		this.lightValue = 8;
 	}
 }

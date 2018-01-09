@@ -1,6 +1,5 @@
 package cz.mcDandy.winksmod.Blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
