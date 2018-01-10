@@ -21,9 +21,30 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Event {
+	@SideOnly(Side.CLIENT)
+	public static void initModels(Item... items) {
+		for (Item item : items) {
+			ModelLoader.setCustomModelResourceLocation(item, 0,
+					new ModelResourceLocation(item.getRegistryName(), "inventory"));
+		}
+	}
+
+	@SubscribeEvent
+	public static void registerModels(ModelRegistryEvent event) {
+		initModels(ModItems.fpowder, ModItems.solwand, ModItems.wings, ModItems.magicdiamond);
+	}
+
 	EntityPlayer player;
+
 	EnumHand hand;
+
 	int FiaryLevel;
+
+	// Called when the client ticks.
+	@SubscribeEvent
+	public void onClientTick(TickEvent.ClientTickEvent event) {
+
+	}
 
 	@SubscribeEvent
 	public void onLivingEvent(LivingUpdateEvent event) {
@@ -32,30 +53,6 @@ public class Event {
 			if (itemstack.getItem() == ModItems.wings) {
 			}
 		}
-	}
-
-	// Called when the client ticks.
-	@SubscribeEvent
-	public void onClientTick(TickEvent.ClientTickEvent event) {
-
-	}
-
-	// Called when the server ticks. Usually 20 ticks a second.
-	@SubscribeEvent
-	public void onServerTick(TickEvent.ServerTickEvent event) {
-
-	}
-
-	// Called when a new frame is displayed (See fps)
-	@SubscribeEvent
-	public void onRenderTick(TickEvent.RenderTickEvent event) {
-
-	}
-
-	// Called when the world ticks
-	@SubscribeEvent
-	public void onWorldTick(TickEvent.WorldTickEvent event) {
-
 	}
 
 	@SideOnly(Side.SERVER)
@@ -77,6 +74,24 @@ public class Event {
 		nbt.setInteger("Fiary Level", FiaryLevel + 1);
 	}
 
+	// Called when a new frame is displayed (See fps)
+	@SubscribeEvent
+	public void onRenderTick(TickEvent.RenderTickEvent event) {
+
+	}
+
+	// Called when the server ticks. Usually 20 ticks a second.
+	@SubscribeEvent
+	public void onServerTick(TickEvent.ServerTickEvent event) {
+
+	}
+
+	// Called when the world ticks
+	@SubscribeEvent
+	public void onWorldTick(TickEvent.WorldTickEvent event) {
+
+	}
+
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> event) {
 		event.getRegistry().registerAll(Blocks.fp_block);
@@ -87,18 +102,5 @@ public class Event {
 		event.getRegistry().register(new ItemBlock(Blocks.fp_block).setRegistryName(Blocks.fp_block.getRegistryName()));
 		event.getRegistry().registerAll(ModItems.fpowder, ModItems.solwand, ModItems.wings, ModItems.magicdiamond);
 
-	}
-
-	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event) {
-
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void initModels(Item... items) {
-		for (Item item : items) {
-			ModelLoader.setCustomModelResourceLocation(item, 0,
-					new ModelResourceLocation(item.getRegistryName(), "inventory"));
-		}
 	}
 }
