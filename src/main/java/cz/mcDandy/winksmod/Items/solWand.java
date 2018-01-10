@@ -29,13 +29,8 @@ public class solWand extends Item {
 	}
 
 	@Override
-	public boolean isDamageable() {
-		return true;
-	}
-
-	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
-		return true;
+	public EnumAction getItemUseAction(ItemStack stack) {
+		return EnumAction.BOW;
 	}
 
 	@Override
@@ -44,8 +39,8 @@ public class solWand extends Item {
 	}
 
 	@Override
-	public EnumAction getItemUseAction(ItemStack stack) {
-		return EnumAction.BOW;
+	public boolean isDamageable() {
+		return true;
 	}
 
 	@Override
@@ -71,6 +66,11 @@ public class solWand extends Item {
 		}
 
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
+	}
+
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return true;
 	}
 
 }
