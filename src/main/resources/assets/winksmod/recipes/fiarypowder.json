@@ -10,7 +10,7 @@
                 {
 
             "item": "minecraft:dye"
-            "data":5
+            "data":"5"
 
         },
         {
@@ -20,7 +20,7 @@
         }                    ],
             "result": {
         "item": "winksmod:fpowder"
-        "count": 1
+        "count": "1"
     } 
     }
         
