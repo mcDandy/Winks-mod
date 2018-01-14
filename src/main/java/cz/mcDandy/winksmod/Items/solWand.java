@@ -52,7 +52,7 @@ public class solWand extends Item {
 
 		if (itemstack.getMaxDamage() - itemstack.getItemDamage() > 10) {
 			EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
-			item.setDamage(itemstack, item.getDamage(itemstack) - 10);
+		itemstack.damageItem(10, playerIn);
 			// item.getDamage(itemstack);
 			fireball.posX = playerIn.posX;
 			fireball.posY = playerIn.posY + playerIn.getEyeHeight();

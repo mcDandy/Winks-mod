@@ -45,4 +45,3 @@ public class EntityGenericFiary extends EntityMob {
         return 5;
     }
 }
-}
