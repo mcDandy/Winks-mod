@@ -47,13 +47,12 @@ public class solWand extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		Item item = itemstack.getItem();
-		// (10, playerIn);
+
+
 
 		if (itemstack.getMaxDamage() - itemstack.getItemDamage() > 10) {
 			EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
 		itemstack.damageItem(10, playerIn);
-			// item.getDamage(itemstack);
 			fireball.posX = playerIn.posX;
 			fireball.posY = playerIn.posY + playerIn.getEyeHeight();
 			fireball.posZ = playerIn.posZ;
@@ -62,7 +61,7 @@ public class solWand extends Item {
 			fireball.accelerationZ = playerIn.getLookVec().z;
 			worldIn.spawnEntity(fireball);
 
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, new ItemStack(item));
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 		}
 
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
