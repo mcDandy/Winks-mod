@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class EntityGenericFiary extends EntityMob {
 
-	public static final ResourceLocation LOOT = new ResourceLocation(Main.MODID,"loot_tables/fiary_generic");
+	public static final ResourceLocation LOOT = new ResourceLocation(Main.MODID, "loot_tables/fiary_generic");
 
 	public EntityGenericFiary(World worldIn) {
 		super(worldIn);
@@ -25,23 +25,23 @@ public class EntityGenericFiary extends EntityMob {
 		tasks.addTask(5, new EntityAILookIdle(this));
 		tasks.addTask(0, new EntityAISwimming(this));
 		tasks.addTask(6, new EntityAIWander(this, interpTargetPitch, 10));
-		  this.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
+		this.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
 		// tasks.addTask(0, new EntityAIDoorInteract(this));
 	}
 
-    @Override
-    @Nullable
-    protected ResourceLocation getLootTable() {
-        return LOOT;
-    }
+	@Override
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LOOT;
+	}
 
-    @Override
-    protected boolean isValidLightLevel() {
-        return true;
-    }
+	@Override
+	protected boolean isValidLightLevel() {
+		return true;
+	}
 
-    @Override
-    public int getMaxSpawnedInChunk() {
-        return 5;
-    }
+	@Override
+	public int getMaxSpawnedInChunk() {
+		return 5;
+	}
 }
