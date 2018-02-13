@@ -21,17 +21,21 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Event {
+
 	@SideOnly(Side.CLIENT)
-	public static void initModels(Item... items) {
-		for (Item item : items) {
+	@SubscribeEvent
+	public static void registerModels(ModelRegistryEvent event) {
+		System.out.println("registring");
+		for (Block block : Blocks.BLOCKS) {
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
+					new ModelResourceLocation(block.getRegistryName(), "inventory"));
+		}
+
+		for (Item item : ModItems.ITEMS) {
 			ModelLoader.setCustomModelResourceLocation(item, 0,
 					new ModelResourceLocation(item.getRegistryName(), "inventory"));
 		}
-	}
 
-	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event) {
-		initModels(ModItems.fpowder, ModItems.solwand, ModItems.wings, ModItems.magicdiamond);
 	}
 
 	EntityPlayer player;
