@@ -22,21 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Event {
 
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event) {
-		System.out.println("registring");
-		for (Block block : Blocks.BLOCKS) {
-			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
-					new ModelResourceLocation(block.getRegistryName(), "inventory"));
-		}
 
-		for (Item item : ModItems.ITEMS) {
-			ModelLoader.setCustomModelResourceLocation(item, 0,
-					new ModelResourceLocation(item.getRegistryName(), "inventory"));
-		}
-
-	}
 
 	EntityPlayer player;
 
@@ -98,13 +84,13 @@ public class Event {
 
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> event) {
-		event.getRegistry().registerAll(Blocks.fp_block);
+		event.getRegistry().registerAll(Blocks.BLOCKS);
 	}
 
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(new ItemBlock(Blocks.fp_block).setRegistryName(Blocks.fp_block.getRegistryName()));
-		event.getRegistry().registerAll(ModItems.fpowder, ModItems.solwand, ModItems.wings, ModItems.magicdiamond);
+		event.getRegistry().registerAll(ModItems.ITEMS);
 
 	}
 }

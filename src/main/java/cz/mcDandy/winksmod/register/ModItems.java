@@ -1,6 +1,7 @@
 package cz.mcDandy.winksmod.register;
 
 import cz.mcDandy.winksmod.Items.fpowder;
+import cz.mcDandy.winksmod.Items.magicdiamond;
 import cz.mcDandy.winksmod.Items.SolWand;
 import cz.mcDandy.winksmod.Items.wings;
 import net.minecraft.creativetab.CreativeTabs;

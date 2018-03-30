@@ -7,11 +7,10 @@
             "item": "minecraft:redstone"
 
         },
-                {
+               {
 
             "item": "minecraft:dye"
-            "data":"5"
-
+            "data": 5
         },
         {
 
