@@ -1,6 +1,6 @@
 package cz.mcDandy.winksmod;
 
-import cz.mcDandy.winksmod.register.Blocks;
+import cz.mcDandy.winksmod.register.ModBlocks;
 import cz.mcDandy.winksmod.register.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -82,15 +82,4 @@ public class Event {
 
 	}
 
-	@SubscribeEvent
-	public void registerBlocks(RegistryEvent.Register<Block> event) {
-		event.getRegistry().registerAll(Blocks.BLOCKS);
-	}
-
-	@SubscribeEvent
-	public void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(new ItemBlock(Blocks.fp_block).setRegistryName(Blocks.fp_block.getRegistryName()));
-		event.getRegistry().registerAll(ModItems.ITEMS);
-
-	}
 }

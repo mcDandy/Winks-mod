@@ -12,8 +12,6 @@ public class ModItems {
 	public static Item fpowder = new fpowder("fpowder", CreativeTabs.MATERIALS);
 	public static Item solwand = new SolWand("solwand", CreativeTabs.COMBAT, 1);
 	public static Item wings = new wings("wings", CreativeTabs.TRANSPORTATION, 1);
-	// public static Item MysticPotion = new
-	// mPotion("MysticPotion",CreativeTabs.BREWING,1);
 	public static Item magicdiamond = new magicdiamond("magicdiamond", CreativeTabs.MISC, 1);
 	public static Item[] ITEMS = new Item[] { fpowder, solwand, wings, magicdiamond };
 }
