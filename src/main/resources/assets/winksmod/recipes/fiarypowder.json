@@ -5,6 +5,9 @@
 			"item": "minecraft:redstone"
 		},
 		{
+			"item": "minecraft:glowstone_dust"
+		},
+		{
 			"item": "minecraft:dye",
 			"data": 5
 		},
@@ -14,6 +17,6 @@
 	],
 	"result": {
 		"item": "winksmod:fpowder",
-		"count": 1
+		"count": 16
 	}
 }
