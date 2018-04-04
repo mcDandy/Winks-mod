@@ -2,6 +2,7 @@ package cz.mcDandy.winksmod.register;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class RegistryEventHandler
 {
+
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event)
 	{	
