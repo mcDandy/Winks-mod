@@ -8,11 +8,10 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preinit(FMLPreInitializationEvent event) {
 
-
 	}
+
 	@Override
 	public void postinit(FMLPostInitializationEvent event) {
 		ModEntities.initModels();
 	}
-	}
-
+}

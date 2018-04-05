@@ -14,8 +14,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Event {
 
-
-
 	EntityPlayer player;
 
 	EnumHand hand;

@@ -12,7 +12,7 @@ public class ItemBase extends Item {
 	public ItemBase(String unlocalizedName, CreativeTabs tab, int stackSize) {
 		// TODO Auto-generated constructor stub
 		setUnlocalizedName(unlocalizedName);
-		setRegistryName(Main.MODID+":"+unlocalizedName);
+		setRegistryName(Main.MODID + ":" + unlocalizedName);
 		setCreativeTab(tab);
 		setMaxStackSize(stackSize);
 	}

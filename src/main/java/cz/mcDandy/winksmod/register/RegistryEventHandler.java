@@ -12,42 +12,35 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class RegistryEventHandler
-{
+public class RegistryEventHandler {
 
 	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event)
-	{	
+	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		event.getRegistry().registerAll(ModBlocks.BLOCKS);
 
 	}
-	
+
 	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event)
-	{	
+	public static void registerItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().registerAll(ModItems.ITEMS);
-		
-		for (Block block : ModBlocks.BLOCKS)
-		{
+
+		for (Block block : ModBlocks.BLOCKS) {
 			event.getRegistry().register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 		}
-		
-		
+
 	}
-	
+
 	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event)
-	{
-		for (Block block: ModBlocks.BLOCKS)
-		{
-			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+	public static void registerModels(ModelRegistryEvent event) {
+		for (Block block : ModBlocks.BLOCKS) {
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
+					new ModelResourceLocation(block.getRegistryName(), "inventory"));
 		}
-		
-		for (Item item: ModItems.ITEMS)
-		{
-			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+
+		for (Item item : ModItems.ITEMS) {
+			ModelLoader.setCustomModelResourceLocation(item, 0,
+					new ModelResourceLocation(item.getRegistryName(), "inventory"));
 		}
-		
-	
+
 	}
 }
