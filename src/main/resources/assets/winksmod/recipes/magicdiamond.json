@@ -10,8 +10,8 @@
 			"item": "winksmod:fpowder"
 		},
 		"D": {
-		    "item":"minecraft:diamond"
-	    }
+			"item": "minecraft:diamond"
+		}
 	},
 	"result": {
 		"item": "winksmod:magicdiamond",
