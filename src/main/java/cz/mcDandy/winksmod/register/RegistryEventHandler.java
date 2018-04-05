@@ -41,7 +41,6 @@ public class RegistryEventHandler {
 			ModelLoader.setCustomModelResourceLocation(item, 0,
 					new ModelResourceLocation(item.getRegistryName(), "inventory"));
 		}
-		
 
 	}
 }

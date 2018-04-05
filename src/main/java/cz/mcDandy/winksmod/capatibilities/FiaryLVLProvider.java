@@ -10,55 +10,50 @@ public class FiaryLVLProvider implements ICapabilitySerializable<NBTBase>
 
 {
 
- @CapabilityInject(IFiaryLVL.class)
+	@CapabilityInject(IFiaryLVL.class)
 
- public static final Capability<IFiaryLVL> FIARYLVL_CAP = null;
+	public static final Capability<IFiaryLVL> FIARYLVL_CAP = null;
 
- 
- private IFiaryLVL instance = FIARYLVL_CAP.getDefaultInstance();
+	private IFiaryLVL instance = FIARYLVL_CAP.getDefaultInstance();
 
- 
- @Override
+	@Override
 
- public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
 
- {
+	{
 
- return capability == FIARYLVL_CAP;
+		return capability == FIARYLVL_CAP;
 
- }
+	}
 
- 
- @Override
+	@Override
 
- public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
 
- {
+	{
 
- return capability == FIARYLVL_CAP ? FIARYLVL_CAP.<T> cast(this.instance) : null;
+		return capability == FIARYLVL_CAP ? FIARYLVL_CAP.<T>cast(this.instance) : null;
 
- }
+	}
 
- 
- @Override
+	@Override
 
- public NBTBase serializeNBT()
+	public NBTBase serializeNBT()
 
- {
+	{
 
- return FIARYLVL_CAP.getStorage().writeNBT(FIARYLVL_CAP, this.instance, null);
+		return FIARYLVL_CAP.getStorage().writeNBT(FIARYLVL_CAP, this.instance, null);
 
- }
+	}
 
- 
- @Override
+	@Override
 
- public void deserializeNBT(NBTBase nbt)
+	public void deserializeNBT(NBTBase nbt)
 
- {
+	{
 
- FIARYLVL_CAP.getStorage().readNBT(FIARYLVL_CAP, this.instance, null, nbt);
+		FIARYLVL_CAP.getStorage().readNBT(FIARYLVL_CAP, this.instance, null, nbt);
 
- }
+	}
 
 }

@@ -5,8 +5,6 @@ public class FiaryLVL implements IFiaryLVL
 {
 
 	private float fiaryLVL = 0.0F;
-	private boolean transformation=false;
-	
 
 	public void remove(float points)
 

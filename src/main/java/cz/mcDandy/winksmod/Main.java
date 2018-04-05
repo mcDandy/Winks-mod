@@ -26,7 +26,7 @@ public class Main {
 
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
-		//MinecraftForge.EVENT_BUS.register(new Event());
+		// MinecraftForge.EVENT_BUS.register(new Event());
 		proxy.preinit(event);
 	}
 

@@ -19,16 +19,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod.EventBusSubscriber
 public class Event {
 
-	
 	@SubscribeEvent
 	public void onPlayerJoin(PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
 
-		 IFiaryLVL fiaryLVL = player.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
+		IFiaryLVL fiaryLVL = player.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
 	}
-
-
-
 
 	@SubscribeEvent
 
@@ -36,15 +32,16 @@ public class Event {
 
 	{
 
-	 EntityPlayer player = event.getEntityPlayer();
+		EntityPlayer player = event.getEntityPlayer();
 
-	 IFiaryLVL fiaryLVL = player.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
+		IFiaryLVL fiaryLVL = player.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
 
-	 IFiaryLVL oldFiaryCapatibility = event.getOriginal().getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
-	 
-	 fiaryLVL.set(oldFiaryCapatibility.getFiaryLVL());
+		IFiaryLVL oldFiaryCapatibility = event.getOriginal().getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
+
+		fiaryLVL.set(oldFiaryCapatibility.getFiaryLVL());
 
 	}
+
 	// Called when a new frame is displayed (See fps)
 	@SubscribeEvent
 	public void onRenderTick(TickEvent.RenderTickEvent event) {

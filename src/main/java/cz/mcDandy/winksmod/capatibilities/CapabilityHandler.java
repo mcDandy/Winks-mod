@@ -23,7 +23,5 @@ public class CapabilityHandler
 			return;
 
 		event.addCapability(FIARYLVL_CAP, new FiaryLVLProvider());
-
 	}
-
 }

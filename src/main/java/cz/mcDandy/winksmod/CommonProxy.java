@@ -17,9 +17,10 @@ public class CommonProxy {
 		// TODO Auto-generated method stub
 
 	}
+
 	public void init(FMLInitializationEvent event) {
 		// TODO Auto-generated method stub
 		CapabilityManager.INSTANCE.register(IFiaryLVL.class, new FiaryLVLStorange(), FiaryLVL.class);
 	}
-	
+
 }
