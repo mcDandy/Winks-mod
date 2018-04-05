@@ -7,13 +7,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 
-public class FiaryCapatibllityStorange implements IStorage<IFiaryCapatibility>
+public class FiaryLVLStorange implements IStorage<IFiaryLVL>
 
 {
 
 	@Override
-
-	public NBTBase writeNBT(Capability<IFiaryCapatibility> capability, IFiaryCapatibility instance, EnumFacing side)
+	public NBTBase writeNBT(Capability<IFiaryLVL> capability, IFiaryLVL instance, EnumFacing side)
 
 	{
 
@@ -23,7 +22,7 @@ public class FiaryCapatibllityStorange implements IStorage<IFiaryCapatibility>
 
 	@Override
 
-	public void readNBT(Capability<IFiaryCapatibility> capability, IFiaryCapatibility instance, EnumFacing side, NBTBase nbt)
+	public void readNBT(Capability<IFiaryLVL> capability, IFiaryLVL instance, EnumFacing side, NBTBase nbt)
 
 	{
 

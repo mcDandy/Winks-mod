@@ -6,16 +6,16 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
-public class FiaryCapatibilityProvider implements ICapabilitySerializable<NBTBase>
+public class FiaryLVLProvider implements ICapabilitySerializable<NBTBase>
 
 {
 
- @CapabilityInject(IFiaryCapatibility.class)
+ @CapabilityInject(IFiaryLVL.class)
 
- public static final Capability<IFiaryCapatibility> FIARY_CAP = null;
+ public static final Capability<IFiaryLVL> FIARYLVL_CAP = null;
 
  
- private IFiaryCapatibility instance = FIARY_CAP.getDefaultInstance();
+ private IFiaryLVL instance = FIARYLVL_CAP.getDefaultInstance();
 
  
  @Override
@@ -24,7 +24,7 @@ public class FiaryCapatibilityProvider implements ICapabilitySerializable<NBTBas
 
  {
 
- return capability == FIARY_CAP;
+ return capability == FIARYLVL_CAP;
 
  }
 
@@ -35,7 +35,7 @@ public class FiaryCapatibilityProvider implements ICapabilitySerializable<NBTBas
 
  {
 
- return capability == FIARY_CAP ? FIARY_CAP.<T> cast(this.instance) : null;
+ return capability == FIARYLVL_CAP ? FIARYLVL_CAP.<T> cast(this.instance) : null;
 
  }
 
@@ -46,7 +46,7 @@ public class FiaryCapatibilityProvider implements ICapabilitySerializable<NBTBas
 
  {
 
- return FIARY_CAP.getStorage().writeNBT(FIARY_CAP, this.instance, null);
+ return FIARYLVL_CAP.getStorage().writeNBT(FIARYLVL_CAP, this.instance, null);
 
  }
 
@@ -57,7 +57,7 @@ public class FiaryCapatibilityProvider implements ICapabilitySerializable<NBTBas
 
  {
 
- FIARY_CAP.getStorage().readNBT(FIARY_CAP, this.instance, null, nbt);
+ FIARYLVL_CAP.getStorage().readNBT(FIARYLVL_CAP, this.instance, null, nbt);
 
  }
 

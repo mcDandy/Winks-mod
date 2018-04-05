@@ -11,20 +11,19 @@ public class CapabilityHandler
 
 {
 
- public static final ResourceLocation FIARY_CAP = new ResourceLocation(Main.MODID, "fiary");
+	public static final ResourceLocation FIARYLVL_CAP = new ResourceLocation(Main.MODID, "fiary");
 
- 
- @SubscribeEvent
+	@SubscribeEvent
 
- public void attachCapability(AttachCapabilitiesEvent<Entity> event)
+	public void attachCapability(AttachCapabilitiesEvent<Entity> event)
 
- {
+	{
 
- if (!(event.getObject() instanceof EntityPlayer)) return;
+		if (!(event.getObject() instanceof EntityPlayer))
+			return;
 
- 
- event.addCapability(FIARY_CAP, new FiaryCapatibilityProvider());
+		event.addCapability(FIARYLVL_CAP, new FiaryLVLProvider());
 
- }
+	}
 
 }

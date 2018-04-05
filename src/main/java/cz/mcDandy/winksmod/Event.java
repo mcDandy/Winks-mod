@@ -1,7 +1,7 @@
 package cz.mcDandy.winksmod;
 
-import cz.mcDandy.winksmod.capatibilities.FiaryCapatibilityProvider;
-import cz.mcDandy.winksmod.capatibilities.IFiaryCapatibility;
+import cz.mcDandy.winksmod.capatibilities.FiaryLVLProvider;
+import cz.mcDandy.winksmod.capatibilities.IFiaryLVL;
 import cz.mcDandy.winksmod.register.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,7 +24,7 @@ public class Event {
 	public void onPlayerJoin(PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
 
-		 IFiaryCapatibility fiaryCapatibility = player.getCapability(FiaryCapatibilityProvider.FIARY_CAP, null);
+		 IFiaryLVL fiaryLVL = player.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
 	}
 
 
@@ -38,11 +38,11 @@ public class Event {
 
 	 EntityPlayer player = event.getEntityPlayer();
 
-	 IFiaryCapatibility fiaryCapatibility = player.getCapability(FiaryCapatibilityProvider.FIARY_CAP, null);
+	 IFiaryLVL fiaryLVL = player.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
 
-	 IFiaryCapatibility oldFiaryCapatibility = event.getOriginal().getCapability(FiaryCapatibilityProvider.FIARY_CAP, null);
+	 IFiaryLVL oldFiaryCapatibility = event.getOriginal().getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
 	 
-	 fiaryCapatibility.set(oldFiaryCapatibility.getFiaryLVL());
+	 fiaryLVL.set(oldFiaryCapatibility.getFiaryLVL());
 
 	}
 	// Called when a new frame is displayed (See fps)

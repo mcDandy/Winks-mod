@@ -1,10 +1,11 @@
 package cz.mcDandy.winksmod.capatibilities;
 
-public class FiaryCapatibility implements IFiaryCapatibility
+public class FiaryLVL implements IFiaryLVL
 
 {
 
 	private float fiaryLVL = 0.0F;
+	private boolean transformation=false;
 	
 
 	public void remove(float points)
@@ -45,6 +46,4 @@ public class FiaryCapatibility implements IFiaryCapatibility
 	public boolean IsFiary() {
 		return this.fiaryLVL > 0;
 	}
-
-
 }

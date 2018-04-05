@@ -1,6 +1,6 @@
 package cz.mcDandy.winksmod.capatibilities;
 
-public interface IFiaryCapatibility
+public interface IFiaryLVL
 
 {
 
