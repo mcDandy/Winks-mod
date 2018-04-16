@@ -1,5 +1,6 @@
 package cz.mcDandy.winksmod.Items;
 
+import cz.mcDandy.winksmod.capatibilities.FiaryLVLProvider;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -8,6 +9,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+
 
 public class wings extends ItemBase {
 	public wings(String unlocalizedName, CreativeTabs tab, int stack) {
@@ -25,13 +27,21 @@ public class wings extends ItemBase {
 	 */
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-
+boolean x =false;
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
-
-		playerIn.motionX = playerIn.getLookVec().x;
-		playerIn.motionY = playerIn.getLookVec().y;
-		playerIn.motionZ = playerIn.getLookVec().z;
-		playerIn.setActiveHand(handIn);
+		if(!worldIn.isRemote)
+		{
+			playerIn.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null).set(1.0F);
+			if(playerIn.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null).IsFiary()) 
+			{
+				x=true;
+			}
+			}
+		if(x) {
+				playerIn.motionX = playerIn.getLookVec().x;
+				playerIn.motionY = playerIn.getLookVec().y;
+				playerIn.motionZ = playerIn.getLookVec().z;}
+		
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 	}
 
