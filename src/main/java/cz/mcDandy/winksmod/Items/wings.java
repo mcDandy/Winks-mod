@@ -10,7 +10,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-
 public class wings extends ItemBase {
 	public wings(String unlocalizedName, CreativeTabs tab, int stack) {
 		super(unlocalizedName, tab, stack);
@@ -27,22 +26,21 @@ public class wings extends ItemBase {
 	 */
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-boolean x =false;
+
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		if(!worldIn.isRemote)
 		{
 			playerIn.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null).set(1.0F);
 			if(playerIn.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null).IsFiary()) 
 			{
-				x=true;
-			}
-			}
-		if(x) {
 				playerIn.motionX = playerIn.getLookVec().x;
 				playerIn.motionY = playerIn.getLookVec().y;
 				playerIn.motionZ = playerIn.getLookVec().z;}
 		
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-	}
+			}
+			}
+
+	return new ActionResult<ItemStack>(EnumActionResult.SUCCESS,itemstack);
+}
 
 }
