@@ -38,7 +38,7 @@ public class wings extends ItemBase {
 				playerIn.motionZ = playerIn.getLookVec().z;}
 		
 			}
-			}
+			
 
 	return new ActionResult<ItemStack>(EnumActionResult.SUCCESS,itemstack);
 }
