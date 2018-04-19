@@ -28,19 +28,17 @@ public class wings extends ItemBase {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		if(!worldIn.isRemote)
-		{
+		if (!worldIn.isRemote) {
 			playerIn.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null).set(1.0F);
-			if(playerIn.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null).IsFiary()) 
-			{
+			if (playerIn.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null).IsFiary()) {
 				playerIn.motionX = playerIn.getLookVec().x;
 				playerIn.motionY = playerIn.getLookVec().y;
-				playerIn.motionZ = playerIn.getLookVec().z;}
-		
+				playerIn.motionZ = playerIn.getLookVec().z;
 			}
-			
 
-	return new ActionResult<ItemStack>(EnumActionResult.SUCCESS,itemstack);
-}
+		}
+
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+	}
 
 }
