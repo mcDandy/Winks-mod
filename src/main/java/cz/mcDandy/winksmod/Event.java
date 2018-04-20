@@ -24,6 +24,7 @@ public class Event {
 		EntityPlayer player = event.player;
 
 		IFiaryLVL fiaryLVL = player.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null);
+	//	CapabilityClass cap = playerIn.getCapability(FiaryLVLProvider.FIARYLVL_CAP, null)
 	}
 
 	@SubscribeEvent

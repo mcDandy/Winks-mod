@@ -1,5 +1,8 @@
 package cz.mcDandy.winksmod.capatibilities;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -26,15 +29,13 @@ public class FiaryLVLProvider implements ICapabilitySerializable<NBTBase>
 
 	}
 
-	@Override
-
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-
-	{
-
-		return capability == FIARYLVL_CAP ? FIARYLVL_CAP.<T>cast(this.instance) : null;
-
-	}
+    @SuppressWarnings("unchecked")
+    @Nullable
+    @Override
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
+    {
+        return hasCapability(capability, facing) ? (T) FIARYLVL_CAP : null;
+}
 
 	@Override
 
