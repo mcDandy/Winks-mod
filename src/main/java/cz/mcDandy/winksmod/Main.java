@@ -21,12 +21,13 @@ public class Main {
 	public void init(FMLInitializationEvent event) {
 		// RenderManager rm = Minecraft.getMinecraft().getRenderManager();
 		// RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
+proxy.init(event);
 
 	}
 
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
-		// MinecraftForge.EVENT_BUS.register(new Event());
+
 		proxy.preinit(event);
 	}
 
