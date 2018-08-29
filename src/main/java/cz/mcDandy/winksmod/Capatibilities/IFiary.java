@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.capatibilities;
+package cz.mcDandy.winksmod.Capatibilities;
 
 public interface IFiary
 

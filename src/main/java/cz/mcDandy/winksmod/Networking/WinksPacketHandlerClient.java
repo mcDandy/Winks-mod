@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.networking;
+package cz.mcDandy.winksmod.Networking;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;

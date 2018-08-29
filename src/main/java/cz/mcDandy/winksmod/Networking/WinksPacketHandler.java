@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.networking;
+package cz.mcDandy.winksmod.Networking;
 
 import cz.mcDandy.winksmod.Main;
 import net.minecraft.entity.player.EntityPlayerMP;

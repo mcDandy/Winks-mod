@@ -5,11 +5,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class magicdiamond extends Item {
+public class MagicDiamond extends Item {
 
 	ItemStack itemstack;
 
-	public magicdiamond(String unlocalizedName, CreativeTabs tab, int maxStack) {
+	public MagicDiamond(String unlocalizedName, CreativeTabs tab, int maxStack) {
 		super();
 		this.setRegistryName(Main.MODID, unlocalizedName);
 		this.setUnlocalizedName(unlocalizedName);

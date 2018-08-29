@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.networking;
+package cz.mcDandy.winksmod.Networking;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

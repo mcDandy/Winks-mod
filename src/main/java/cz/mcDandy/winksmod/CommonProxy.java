@@ -24,7 +24,7 @@ public class CommonProxy {
 		// TODO Auto-generated method stub
 		//CapabilityManager.INSTANCE.register(IFiary.class, new FiaryStorange(), Fiary.class);
 		
-		MinecraftForge.EVENT_BUS.register(new Event());
+	//	MinecraftForge.EVENT_BUS.register(new Event());
 		}
 
 }

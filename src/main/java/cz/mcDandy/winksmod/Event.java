@@ -1,10 +1,10 @@
 package cz.mcDandy.winksmod;
 
-import cz.mcDandy.winksmod.capatibilities.CapabilityHandler;
-import cz.mcDandy.winksmod.capatibilities.Fiary;
-import cz.mcDandy.winksmod.capatibilities.FiaryProvider;
-import cz.mcDandy.winksmod.capatibilities.FiaryStorange;
-import cz.mcDandy.winksmod.capatibilities.IFiary;
+import cz.mcDandy.winksmod.Capatibilities.CapabilityHandler;
+import cz.mcDandy.winksmod.Capatibilities.Fiary;
+import cz.mcDandy.winksmod.Capatibilities.FiaryProvider;
+import cz.mcDandy.winksmod.Capatibilities.FiaryStorange;
+import cz.mcDandy.winksmod.Capatibilities.IFiary;
 import cz.mcDandy.winksmod.register.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -27,13 +27,13 @@ public class Event {
 
 	
 	@SubscribeEvent
-	public void AttachCapatibility(AttachCapabilitiesEvent<EntityPlayer> e) 
+	public static void AttachCapatibility(AttachCapabilitiesEvent<EntityPlayer> e) 
 	{
 		//CapabilityManager.INSTANCE.register(IFiary.class, new FiaryStorange(), Fiary.class);
 	e.addCapability(CapabilityHandler.FIARY_CAP_RL, (ICapabilityProvider) FiaryProvider.FIARY_CAP);
 	}
 	@SubscribeEvent
-	public void onPlayerJoin(PlayerLoggedInEvent event) {
+	public static void onPlayerJoin(PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
 
 		IFiary fiary = player.getCapability(FiaryProvider.FIARY_CAP, null);
@@ -41,7 +41,7 @@ public class Event {
 	}
 
 	@SubscribeEvent
-	public void onPlayerClone(PlayerEvent.Clone event)
+	public static void onPlayerClone(PlayerEvent.Clone event)
 
 	{
 if(event.isWasDeath()) {
@@ -58,19 +58,19 @@ if(event.isWasDeath()) {
 
 	// Called when a new frame is displayed (See fps)
 	@SubscribeEvent
-	public void onRenderTick(TickEvent.RenderTickEvent event) {
+	public static void onRenderTick(TickEvent.RenderTickEvent event) {
 
 	}
 
 	// Called when the server ticks. Usually 20 ticks a second.
 	@SubscribeEvent
-	public void onServerTick(TickEvent.ServerTickEvent event) {
+	public static void onServerTick(TickEvent.ServerTickEvent event) {
 
 	}
 
 	// Called when the world ticks
 	@SubscribeEvent
-	public void onWorldTick(TickEvent.WorldTickEvent event) {
+	public static void onWorldTick(TickEvent.WorldTickEvent event) {
 
 	}
 
