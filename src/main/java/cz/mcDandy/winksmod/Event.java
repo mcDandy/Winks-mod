@@ -37,7 +37,11 @@ public class Event {
 		EntityPlayer player = event.player;
 
 		IFiary fiary = player.getCapability(FiaryProvider.FIARY_CAP, null);
-	//	CapabilityClass cap = playerIn.getCapability(FiaryProvider.FIARY_CAP, null)
+		if(fiary==null) {
+			fiary=new Fiary(0, false);
+		//	player.getCapability(FiaryProvider.FIARY_CAP, null).setLVL(0);
+		//	player.getCapability(FiaryProvider.FIARY_CAP, null).setTransformation(false);}
+		//	CapabilityClass cap = playerIn.getCapability(FiaryProvider.FIARY_CAP, null)
 	}
 
 	@SubscribeEvent
