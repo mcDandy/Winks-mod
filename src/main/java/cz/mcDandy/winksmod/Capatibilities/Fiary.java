@@ -3,8 +3,8 @@ package cz.mcDandy.winksmod.Capatibilities;
 public class Fiary implements IFiary
 
 {
-private float LVL;
-	private boolean transformation;
+private float LVL=0;
+	private boolean transformation=false;
 //	private Fiary fiary= new Fiary(0.0D,false);
 	public Fiary(float LVL, boolean transformed) {
 		this.LVL = LVL;

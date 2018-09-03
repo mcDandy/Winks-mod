@@ -14,10 +14,9 @@ public class FiaryProvider implements ICapabilitySerializable<NBTBase>
 {
 
 	@CapabilityInject(IFiary.class)
-
 	public static final Capability<IFiary> FIARY_CAP = null;
 
-	private IFiary instance = FIARY_CAP.getDefaultInstance();
+	private IFiary instance = FIARY_CAP.getDefaultInstance();//java.lang.NullPointerException: Ticking memory connection
 
 	@Override
 
