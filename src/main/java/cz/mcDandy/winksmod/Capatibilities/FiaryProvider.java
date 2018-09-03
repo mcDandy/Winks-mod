@@ -9,15 +9,19 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
-public class FiaryProvider implements ICapabilitySerializable<NBTBase>
+public class FiaryProvider implements ICapabilitySerializable<NBTBase>{
 
-{
+
 
 	@CapabilityInject(IFiary.class)
 	public static final Capability<IFiary> FIARY_CAP = null;
 
 	private IFiary instance = FIARY_CAP.getDefaultInstance();//java.lang.NullPointerException: Ticking memory connection
-
+	
+	    public FiaryProvider()
+	    {
+	        instance = new Fiary();
+	    }
 	@Override
 
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
@@ -33,7 +37,7 @@ public class FiaryProvider implements ICapabilitySerializable<NBTBase>
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
     {
-        return hasCapability(capability, facing) ? (T) FIARY_CAP : null;
+    	 return hasCapability(capability, facing) ? (T) instance : null;
 }
 
 	@Override

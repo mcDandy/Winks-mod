@@ -20,7 +20,8 @@ public class CapabilityHandler
             EntityPlayer player = (EntityPlayer) event.getObject();
             if(!player.hasCapability(FiaryProvider.FIARY_CAP, null))
             {
-                IFiary fiary = FiaryProvider.FIARY_CAP.getDefaultInstance();
+               IFiary fiary = FiaryProvider.FIARY_CAP.getDefaultInstance();
+            	//IFiary fiary = new Fiary();
                 event.addCapability(fiary.getKey(), fiary.getProvider());
             }
         }
