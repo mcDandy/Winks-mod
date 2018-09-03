@@ -1,5 +1,6 @@
 package cz.mcDandy.winksmod;
 
+import cz.mcDandy.winksmod.Capatibilities.Capabilities;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -9,9 +10,7 @@ public class CommonProxy {
 	//public static SimpleNetworkWrapper simpleNetworkWrapper;
 
 	public void preinit(FMLPreInitializationEvent event) {
-//		simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel("MBEchannel");
-//		simpleNetworkWrapper.registerMessage(WinksPacketHandler.class, WinksMessage.class, TARGET_EFFECT_MESSAGE_ID,
-//				Side.SERVER);
+Capabilities.init();
 	}
 
 	public void postinit(FMLPostInitializationEvent event) {
