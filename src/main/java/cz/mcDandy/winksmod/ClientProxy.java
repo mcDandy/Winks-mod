@@ -1,11 +1,8 @@
 package cz.mcDandy.winksmod;
 
 import cz.mcDandy.winksmod.Entities.ModEntities;
-import cz.mcDandy.winksmod.Networking.TransformMSG;
-import cz.mcDandy.winksmod.Networking.WinksPacketHandlerClient;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class ClientProxy extends CommonProxy {
 	@Override
