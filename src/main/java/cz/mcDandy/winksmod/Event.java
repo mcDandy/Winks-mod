@@ -20,29 +20,11 @@ public class Event {
 		IFiary fiary = player.getCapability(FiaryProvider.FIARY_CAP, null);
 		if(fiary==null) {
 			fiary=new Fiary(0, false);
-
+		}
 		}
 				//	player.getCapability(FiaryProvider.FIARY_CAP, null).setLVL(0);
 		//	player.getCapability(FiaryProvider.FIARY_CAP, null).setTransformation(false);}
-		//	CapabilityClass cap = playerIn.getCapability(FiaryProvider.FIARY_CAP, null)
-	}
-
-	@SubscribeEvent
-	public static void onPlayerClone(PlayerEvent.Clone event)
-
-	{
-if(event.isWasDeath()) {
-		EntityPlayer player = event.getEntityPlayer();
-
-		IFiary fiary = player.getCapability(FiaryProvider.FIARY_CAP, null);
-
-		IFiary oldFiaryCapatibility = event.getOriginal().getCapability(FiaryProvider.FIARY_CAP, null);
-
-		fiary.setLVL(oldFiaryCapatibility.getLVL());
-		fiary.setTransformation(oldFiaryCapatibility.IsTransformed());
-		
-}
-	}
+		//	CapabilityClass cap = playerIn.getCapability(FiaryProvider.FIARY_CAP, null);	
 
 	// Called when a new frame is displayed (See fps)
 	@SubscribeEvent

@@ -1,17 +1,32 @@
 package cz.mcDandy.winksmod.Capatibilities;
 
+import cz.mcDandy.winksmod.Main;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+
 public class Fiary implements IFiary
 
 {
-private float LVL=0;
+private double LVL=0;
+private static ResourceLocation RL = new ResourceLocation(Main.MODID, "Fairy");
 	private boolean transformation=false;
 //	private Fiary fiary= new Fiary(0.0D,false);
-	public Fiary(float LVL, boolean transformed) {
+	
+	public Fiary(double LVL, boolean transformed) {
 		this.LVL = LVL;
 		this.transformation = transformed;
 	}
 
-	public void removeLVL(float points)
+	public Fiary() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public void removeLVL(double points)
 
 	{
 
@@ -22,7 +37,7 @@ private float LVL=0;
 
 	}
 
-	public void addLVL(float points)
+	public void addLVL(double points)
 
 	{
 
@@ -30,7 +45,7 @@ private float LVL=0;
 
 	}
 
-	public void setLVL(float points)
+	public void setLVL(double points)
 
 	{
 
@@ -38,7 +53,7 @@ private float LVL=0;
 
 	}
 
-	public float getLVL()
+	public double getLVL()
 
 	{
 
@@ -55,6 +70,41 @@ private float LVL=0;
 	public void setTransformation(boolean transformation) {
 		 this.transformation= transformation;
 	}
+	 @Override
+	    public ResourceLocation getKey()
+	    {
+	        return RL;
+	    }
+
+	    @Override
+	    public ICapabilityProvider getProvider()
+	    {
+	        return new FiaryProvider();
+	    }
+
+	    @Override
+	    public void dataChanged(EntityPlayerMP player)
+	    {
+	        //Sync data to the client
+	        Main.NETWORK.sendTo( new MessageFiary(LVL,transformation), player);
+	    }
+
+	    @Override
+	    public NBTTagCompound serializeNBT()
+	    {
+	        NBTTagCompound tag = new NBTTagCompound();
+	        tag.setDouble("LVL", LVL);
+	        tag.setBoolean("Transformation", transformation);
+	        return tag;
+	    }
+
+	    @Override
+	    public void deserializeNBT(NBTTagCompound nbt)
+	    {
+	        LVL = nbt.getDouble("LVL");
+	        transformation = nbt.getBoolean("Transformation");
+	}
+
 
 	}
 

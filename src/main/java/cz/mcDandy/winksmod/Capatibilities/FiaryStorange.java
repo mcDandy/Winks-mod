@@ -15,14 +15,14 @@ public class FiaryStorange implements IStorage<IFiary>
 
 	{
 		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setFloat("LVL", instance.getLVL());
+		nbt.setDouble("LVL", instance.getLVL());
 		nbt.setBoolean("Trans", instance.IsTransformed());
 		return nbt;
 	}
 	@Override
 	public void readNBT(Capability<IFiary> capability, IFiary instance, EnumFacing side, NBTBase nbt)
 	{
-		instance.setLVL(((NBTTagCompound)nbt).getFloat("LVL"));
+		instance.setLVL(((NBTTagCompound)nbt).getDouble("LVL"));
 		instance.setTransformation(((NBTTagCompound)nbt).getBoolean("Trans"));
 	}
 
