@@ -4,7 +4,6 @@ import cz.mcDandy.winksmod.Items.Fpowder;
 import cz.mcDandy.winksmod.Items.MagicDiamond;
 import cz.mcDandy.winksmod.Items.SolWand;
 import cz.mcDandy.winksmod.Items.Wings;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class ModItems {
