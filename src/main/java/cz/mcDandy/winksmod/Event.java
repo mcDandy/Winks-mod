@@ -1,8 +1,8 @@
 package cz.mcDandy.winksmod;
 
-import cz.mcDandy.winksmod.Capatibilities.Fiary;
-import cz.mcDandy.winksmod.Capatibilities.FiaryProvider;
-import cz.mcDandy.winksmod.Capatibilities.IFiary;
+import cz.mcDandy.winksmod.Capatibilities.Fairy;
+import cz.mcDandy.winksmod.Capatibilities.FairyProvider;
+import cz.mcDandy.winksmod.Capatibilities.IFairy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,15 +17,16 @@ public class Event {
 	public static void onPlayerJoin(PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
 
-		IFiary fiary = player.getCapability(FiaryProvider.FIARY_CAP, null);
-		if(fiary==null) {
-			fiary=new Fiary(0, false);
+		IFairy fairy = player.getCapability(FairyProvider.FAIRY_CAP, null);
+		if(fairy==null) {
+			fairy=new Fairy(0, false);
 		}
 		}
-				//	player.getCapability(FiaryProvider.FIARY_CAP, null).setLVL(0);
-		//	player.getCapability(FiaryProvider.FIARY_CAP, null).setTransformation(false);}
-		//	CapabilityClass cap = playerIn.getCapability(FiaryProvider.FIARY_CAP, null);	
+				//	player.getCapability(FairyProvider.FAIRY_CAP, null).setLVL(0);
+		//	player.getCapability(FairyProvider.FAIRY_CAP, null).setTransformation(false);}
+		//	CapabilityClass cap = playerIn.getCapability(FairyProvider.FAIRY_CAP, null);	
 
+	
 	// Called when a new frame is displayed (See fps)
 	@SubscribeEvent
 	public static void onRenderTick(TickEvent.RenderTickEvent event) {

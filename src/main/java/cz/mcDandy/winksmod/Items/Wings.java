@@ -1,6 +1,6 @@
 package cz.mcDandy.winksmod.Items;
 
-import cz.mcDandy.winksmod.Capatibilities.FiaryProvider;
+import cz.mcDandy.winksmod.Capatibilities.FairyProvider;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -29,10 +29,10 @@ public class Wings extends ItemBase {
 
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		 if (!playerIn.world.isRemote) {
-if(playerIn.hasCapability(FiaryProvider.FIARY_CAP, null)) { //allways false
-	System.out.println(playerIn.getCapability(FiaryProvider.FIARY_CAP, null).getLVL());
-			playerIn.getCapability(FiaryProvider.FIARY_CAP, null).addLVL(1.0F);
-			if (playerIn.getCapability(FiaryProvider.FIARY_CAP, null).IsFiary()) {
+if(playerIn.hasCapability(FairyProvider.FAIRY_CAP, null)) { //allways false
+	System.out.println(playerIn.getCapability(FairyProvider.FAIRY_CAP, null).getLVL());
+			playerIn.getCapability(FairyProvider.FAIRY_CAP, null).addLVL(1.0F);
+			if (playerIn.getCapability(FairyProvider.FAIRY_CAP, null).IsFiary()) {
 				playerIn.motionX = playerIn.getLookVec().x;
 				playerIn.motionY = playerIn.getLookVec().y;
 				playerIn.motionZ = playerIn.getLookVec().z;

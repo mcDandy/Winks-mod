@@ -6,12 +6,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 
-public class FiaryStorange implements IStorage<IFiary>
+public class FairyStorange implements IStorage<IFairy>
 
 {
 
 	@Override
-	public NBTBase writeNBT(Capability<IFiary> capability, IFiary instance, EnumFacing side)
+	public NBTBase writeNBT(Capability<IFairy> capability, IFairy instance, EnumFacing side)
 
 	{
 		NBTTagCompound nbt = new NBTTagCompound();
@@ -20,7 +20,7 @@ public class FiaryStorange implements IStorage<IFiary>
 		return nbt;
 	}
 	@Override
-	public void readNBT(Capability<IFiary> capability, IFiary instance, EnumFacing side, NBTBase nbt)
+	public void readNBT(Capability<IFairy> capability, IFairy instance, EnumFacing side, NBTBase nbt)
 	{
 		instance.setLVL(((NBTTagCompound)nbt).getDouble("LVL"));
 		instance.setTransformation(((NBTTagCompound)nbt).getBoolean("Trans"));

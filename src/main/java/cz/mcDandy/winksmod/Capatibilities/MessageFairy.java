@@ -8,15 +8,15 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageFiary implements IMessage
+public class MessageFairy implements IMessage
 {
     private double LVL;
     private Boolean transformation;
 
-    public MessageFiary() {}
+    public MessageFairy() {}
 
-    public MessageFiary(double lVL, boolean transformed) {
-		this.LVL = lVL;
+    public MessageFairy(double LVL, boolean transformed) {
+		this.LVL = LVL;
 		this.transformation = transformed;
     }
     @Override
@@ -33,10 +33,10 @@ public class MessageFiary implements IMessage
         buf.writeBoolean(transformation);
     }
 
-    public static class Handler implements IMessageHandler<MessageFiary, IMessage>
+    public static class Handler implements IMessageHandler<MessageFairy, IMessage>
     {
         @Override
-        public IMessage onMessage(final MessageFiary message, MessageContext ctx)
+        public IMessage onMessage(final MessageFairy message, MessageContext ctx)
         {
             IThreadListener mainThread = Minecraft.getMinecraft();
             mainThread.addScheduledTask(new Runnable()
@@ -46,7 +46,7 @@ public class MessageFiary implements IMessage
                 {
                     Minecraft mc = Minecraft.getMinecraft();
                     EntityPlayerSP player = mc.player;
-                    IFiary capability = player.getCapability(FiaryProvider.FIARY_CAP, null);
+                    IFairy capability = player.getCapability(FairyProvider.FAIRY_CAP, null);
                     if(capability != null)
                         capability.setLVL(message.LVL);
                     capability.setTransformation(message.transformation);

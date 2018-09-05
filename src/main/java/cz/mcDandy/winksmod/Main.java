@@ -1,6 +1,6 @@
 package cz.mcDandy.winksmod;
 
-import cz.mcDandy.winksmod.Capatibilities.MessageFiary;
+import cz.mcDandy.winksmod.Capatibilities.MessageFairy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -34,7 +34,7 @@ proxy.init(event);
 
         NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
         //Packet used to sync the PlayerNumber capability from the server to the client
-        NETWORK.registerMessage(MessageFiary.Handler.class, MessageFiary.class, 0, Side.CLIENT);
+        NETWORK.registerMessage(MessageFairy.Handler.class, MessageFairy.class, 0, Side.CLIENT);
 
 	}
 

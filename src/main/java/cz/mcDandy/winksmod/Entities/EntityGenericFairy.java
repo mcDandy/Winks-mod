@@ -11,11 +11,11 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityGenericFiary extends EntityMob {
+public class EntityGenericFairy extends EntityMob {
 
 	public static final ResourceLocation LOOT = new ResourceLocation(Main.MODID, "loot_tables/fiary_generic");
 
-	public EntityGenericFiary(World worldIn) {
+	public EntityGenericFairy(World worldIn) {
 		super(worldIn);
 		// TODO Auto-generated constructor stub
 	}

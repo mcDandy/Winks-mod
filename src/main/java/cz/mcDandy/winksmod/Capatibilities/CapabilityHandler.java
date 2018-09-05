@@ -18,11 +18,11 @@ public class CapabilityHandler
         if(event.getObject() instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) event.getObject();
-            if(!player.hasCapability(FiaryProvider.FIARY_CAP, null))
+            if(!player.hasCapability(FairyProvider.FAIRY_CAP, null))
             {
-              IFiary fiary = FiaryProvider.FIARY_CAP.getDefaultInstance();
-            //	IFiary fiary = new Fiary();
-                event.addCapability(fiary.getKey(), fiary.getProvider());
+              IFairy fairy = FairyProvider.FAIRY_CAP.getDefaultInstance();
+            //	IFairy fiary = new Fairy();
+                event.addCapability(fairy.getKey(), fairy.getProvider());
             }
         }
     }
@@ -33,9 +33,9 @@ public class CapabilityHandler
         //Send client capability details to the client on login
         if(event.player instanceof EntityPlayerMP)
         {
-            IFiary fiary = event.player.getCapability(FiaryProvider.FIARY_CAP, null);
-            if(fiary != null)
-                fiary.dataChanged((EntityPlayerMP) event.player);
+            IFairy fairy = event.player.getCapability(FairyProvider.FAIRY_CAP, null);
+            if(fairy != null)
+                fairy.dataChanged((EntityPlayerMP) event.player);
         }
     }
 
@@ -46,8 +46,8 @@ public class CapabilityHandler
         if(event.isWasDeath() && event.getEntityPlayer() instanceof EntityPlayerMP)
         {
             EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
-            IFiary oldFiary = event.getOriginal().getCapability(FiaryProvider.FIARY_CAP, null);
-            IFiary newFiary = player.getCapability(FiaryProvider.FIARY_CAP, null);
+            IFairy oldFiary = event.getOriginal().getCapability(FairyProvider.FAIRY_CAP, null);
+            IFairy newFiary = player.getCapability(FairyProvider.FAIRY_CAP, null);
             if(oldFiary == null || newFiary == null) return;
             newFiary.deserializeNBT(oldFiary.serializeNBT());
             newFiary.dataChanged(player);

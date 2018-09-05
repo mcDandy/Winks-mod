@@ -7,17 +7,17 @@ import java.util.concurrent.Callable;
 
 public class Capabilities
 {
-    @CapabilityInject(IFiary.class)
-    public static Capability<IFiary> FIARY_CAP = null;
+    @CapabilityInject(IFairy.class)
+    public static Capability<IFairy> FIARY_CAP = null;
 
     public static void init()
     {
-        CapabilityManager.INSTANCE.register(IFiary.class, new FiaryStorange(), new Callable<IFiary>()
+        CapabilityManager.INSTANCE.register(IFairy.class, new FairyStorange(), new Callable<IFairy>()
         {
             @Override
-            public IFiary call() throws Exception
+            public IFairy call() throws Exception
             {
-                return new Fiary();
+                return new Fairy();
             }
         });
     }

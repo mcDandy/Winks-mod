@@ -7,20 +7,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-public class Fiary implements IFiary
+public class Fairy implements IFairy
 
 {
 private double LVL=0;
 private static ResourceLocation RL = new ResourceLocation(Main.MODID, "Fairy");
 	private boolean transformation=false;
-//	private Fiary fiary= new Fiary(0.0D,false);
+//	private Fairy fiary= new Fairy(0.0D,false);
 	
-	public Fiary(double LVL, boolean transformed) {
+	public Fairy(double LVL, boolean transformed) {
 		this.LVL = LVL;
 		this.transformation = transformed;
 	}
 
-	public Fiary() {
+	public Fairy() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -79,14 +79,14 @@ private static ResourceLocation RL = new ResourceLocation(Main.MODID, "Fairy");
 	    @Override
 	    public ICapabilityProvider getProvider()
 	    {
-	        return new FiaryProvider();
+	        return new FairyProvider();
 	    }
 
 	    @Override
 	    public void dataChanged(EntityPlayerMP player)
 	    {
 	        //Sync data to the client
-	        Main.NETWORK.sendTo( new MessageFiary(LVL,transformation), player);
+	        Main.NETWORK.sendTo( new MessageFairy(LVL,transformation), player);
 	    }
 
 	    @Override
