@@ -14,9 +14,8 @@ public class FiaryProvider implements ICapabilitySerializable<NBTBase>{
 
 
 	@CapabilityInject(IFiary.class)
-	public static final Capability<IFiary> FIARY_CAP = null;
-
-	private IFiary instance = FIARY_CAP.getDefaultInstance();//java.lang.NullPointerException: Ticking memory connection
+	public static Capability<IFiary> FIARY_CAP = null;//Cannot be null
+	private IFiary instance = FIARY_CAP.getDefaultInstance();
 	
 	    public FiaryProvider()
 	    {
@@ -49,6 +48,7 @@ public class FiaryProvider implements ICapabilitySerializable<NBTBase>{
 		return FIARY_CAP.getStorage().writeNBT(FIARY_CAP, this.instance, null);
 
 	}
+  @SuppressWarnings({"ConstantConditions", "SameReturnValue"})
 
 	@Override
 
@@ -60,4 +60,4 @@ public class FiaryProvider implements ICapabilitySerializable<NBTBase>{
 
 	}
 
-}
+}  
