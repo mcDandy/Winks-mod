@@ -15,7 +15,7 @@ public class FairyProvider implements ICapabilitySerializable<NBTBase>{
 
 	@CapabilityInject(IFairy.class)
 	public static Capability<IFairy> FAIRY_CAP = null;//Cannot be null
-	private IFairy instance = FAIRY_CAP.getDefaultInstance();
+	private IFairy instance = new Fairy();
 	
 	    public FairyProvider()
 	    {

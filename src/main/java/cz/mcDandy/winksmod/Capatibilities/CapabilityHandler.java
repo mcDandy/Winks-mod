@@ -20,9 +20,9 @@ public class CapabilityHandler
             EntityPlayer player = (EntityPlayer) event.getObject();
             if(!player.hasCapability(FairyProvider.FAIRY_CAP, null))
             {
-              IFairy fairy = FairyProvider.FAIRY_CAP.getDefaultInstance();
-            //	IFairy fiary = new Fairy();
-                event.addCapability(fairy.getKey(), fairy.getProvider());
+              IFairy fairy = new Fairy();
+          //    IFairy fairy = new Fairy();
+              event.addCapability(fairy.getKey(), fairy.getProvider());
             }
         }
     }

@@ -13,7 +13,7 @@ public class Fairy implements IFairy
 private double LVL=0;
 private static ResourceLocation RL = new ResourceLocation(Main.MODID, "Fairy");
 	private boolean transformation=false;
-//	private Fairy fiary= new Fairy(0.0D,false);
+
 	
 	public Fairy(double LVL, boolean transformed) {
 		this.LVL = LVL;
