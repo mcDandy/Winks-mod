@@ -18,12 +18,13 @@ public class Main {
 	public static Main instance;
 	@SidedProxy(clientSide = "cz.mcDandy.winksmod.ClientProxy", serverSide = "cz.mcDndy.winksmod.ServerProxy")
 	public static CommonProxy proxy;
-	 public static SimpleNetworkWrapper NETWORK;
+	public static SimpleNetworkWrapper NETWORK;
+
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		// RenderManager rm = Minecraft.getMinecraft().getRenderManager();
 		// RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
-proxy.init(event);
+		proxy.init(event);
 
 	}
 
@@ -32,9 +33,9 @@ proxy.init(event);
 
 		proxy.preinit(event);
 
-        NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-        //Packet used to sync the PlayerNumber capability from the server to the client
-        NETWORK.registerMessage(MessageFairy.Handler.class, MessageFairy.class, 0, Side.CLIENT);
+		NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+		// Packet used to sync the PlayerNumber capability from the server to the client
+		NETWORK.registerMessage(MessageFairy.Handler.class, MessageFairy.class, 0, Side.CLIENT);
 
 	}
 

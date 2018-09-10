@@ -7,9 +7,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class CommonProxy {
 
-
 	public void preinit(FMLPreInitializationEvent event) {
-Capabilities.init();
+		Capabilities.init();
 	}
 
 	public void postinit(FMLPostInitializationEvent event) {
@@ -20,6 +19,6 @@ Capabilities.init();
 	public void init(FMLInitializationEvent event) {
 		// TODO Auto-generated method stub
 
-		}
+	}
 
 }

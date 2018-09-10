@@ -18,15 +18,15 @@ public class Event {
 		EntityPlayer player = event.player;
 
 		IFairy fairy = player.getCapability(FairyProvider.FAIRY_CAP, null);
-		if(fairy==null) {
-			fairy=new Fairy(0, false);
+		if (fairy == null) {
+			fairy = new Fairy(0, false);
 		}
-		}
-				//	player.getCapability(FairyProvider.FAIRY_CAP, null).setLVL(0);
-		//	player.getCapability(FairyProvider.FAIRY_CAP, null).setTransformation(false);}
-		//	CapabilityClass cap = playerIn.getCapability(FairyProvider.FAIRY_CAP, null);	
+	}
+	// player.getCapability(FairyProvider.FAIRY_CAP, null).setLVL(0);
+	// player.getCapability(FairyProvider.FAIRY_CAP,
+	// null).setTransformation(false);}
+	// CapabilityClass cap = playerIn.getCapability(FairyProvider.FAIRY_CAP, null);
 
-	
 	// Called when a new frame is displayed (See fps)
 	@SubscribeEvent
 	public static void onRenderTick(TickEvent.RenderTickEvent event) {

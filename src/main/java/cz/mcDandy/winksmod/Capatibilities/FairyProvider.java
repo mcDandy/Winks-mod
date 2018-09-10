@@ -9,49 +9,39 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
-public class FairyProvider implements ICapabilitySerializable<NBTBase>{
-
-
+public class FairyProvider implements ICapabilitySerializable<NBTBase> {
 
 	@CapabilityInject(IFairy.class)
-	public static Capability<IFairy> FAIRY_CAP = null;//Cannot be null
+	public static Capability<IFairy> FAIRY_CAP = null;
 	private IFairy instance = new Fairy();
-	
-	    public FairyProvider()
-	    {
-	        instance = new Fairy();
-	    }
+
+	public FairyProvider() {
+		instance = new Fairy();
+	}
+
 	@Override
 
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-
 	{
-
 		return capability == FAIRY_CAP;
-
 	}
 
-    @SuppressWarnings("unchecked")
-    @Nullable
-    @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
-    {
-    	 return hasCapability(capability, facing) ? (T) instance : null;
-}
+	@SuppressWarnings("unchecked")
+	@Nullable
+	@Override
+	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+		return hasCapability(capability, facing) ? (T) instance : null;
+	}
 
 	@Override
 
 	public NBTBase serializeNBT()
 
 	{
-
 		return FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null);
-
 	}
-  @SuppressWarnings({"ConstantConditions", "SameReturnValue"})
 
 	@Override
-
 	public void deserializeNBT(NBTBase nbt)
 
 	{
@@ -60,4 +50,4 @@ public class FairyProvider implements ICapabilitySerializable<NBTBase>{
 
 	}
 
-}  
+}

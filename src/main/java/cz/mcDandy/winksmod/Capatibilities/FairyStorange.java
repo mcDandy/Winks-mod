@@ -19,11 +19,11 @@ public class FairyStorange implements IStorage<IFairy>
 		nbt.setBoolean("Trans", instance.IsTransformed());
 		return nbt;
 	}
+
 	@Override
-	public void readNBT(Capability<IFairy> capability, IFairy instance, EnumFacing side, NBTBase nbt)
-	{
-		instance.setLVL(((NBTTagCompound)nbt).getDouble("LVL"));
-		instance.setTransformation(((NBTTagCompound)nbt).getBoolean("Trans"));
+	public void readNBT(Capability<IFairy> capability, IFairy instance, EnumFacing side, NBTBase nbt) {
+		instance.setLVL(((NBTTagCompound) nbt).getDouble("LVL"));
+		instance.setTransformation(((NBTTagCompound) nbt).getBoolean("Trans"));
 	}
 
 }

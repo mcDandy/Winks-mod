@@ -18,9 +18,9 @@ public interface IFairy
 	public double getLVL();
 
 	public boolean IsFiary();
-	
+
 	public boolean IsTransformed();
-	
+
 	public void setTransformation(boolean transformation);
 
 	public ICapabilityProvider getProvider();
