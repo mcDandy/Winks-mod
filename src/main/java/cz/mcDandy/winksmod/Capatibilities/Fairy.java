@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class Fairy implements IFairy
 
@@ -23,6 +22,7 @@ public class Fairy implements IFairy
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
 	public void removeLVL(double points)
 
 	{
@@ -34,6 +34,7 @@ public class Fairy implements IFairy
 
 	}
 
+	@Override
 	public void addLVL(double points)
 
 	{
@@ -42,6 +43,7 @@ public class Fairy implements IFairy
 
 	}
 
+	@Override
 	public void setLVL(double points)
 
 	{
@@ -50,6 +52,7 @@ public class Fairy implements IFairy
 
 	}
 
+	@Override
 	public double getLVL()
 
 	{
@@ -58,14 +61,17 @@ public class Fairy implements IFairy
 
 	}
 
+	@Override
 	public boolean IsFiary() {
 		return this.LVL > 0;
 	}
 
+	@Override
 	public boolean IsTransformed() {
 		return transformation;
 	}
 
+	@Override
 	public void setTransformation(boolean transformation) {
 		this.transformation = transformation;
 	}

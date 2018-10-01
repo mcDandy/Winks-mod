@@ -12,7 +12,7 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 public class FairyProvider implements ICapabilitySerializable<NBTBase> {
 
 	@CapabilityInject(IFairy.class)
-	public static Capability<IFairy> FAIRY_CAP = null;
+	public static final Capability<IFairy> FAIRY_CAP = null;
 	private IFairy instance = new Fairy();
 
 	public FairyProvider() {
@@ -21,8 +21,7 @@ public class FairyProvider implements ICapabilitySerializable<NBTBase> {
 
 	@Override
 
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-	{
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		return capability == FAIRY_CAP;
 	}
 
@@ -34,18 +33,19 @@ public class FairyProvider implements ICapabilitySerializable<NBTBase> {
 	}
 
 	@Override
-
 	public NBTBase serializeNBT()
 
 	{
-		return FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null);
+		System.out.println(FAIRY_CAP);
+		System.out.println(FAIRY_CAP.getStorage());
+		System.out.println(FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null));
+		return FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null);// ClientException NullPointerException
 	}
 
 	@Override
 	public void deserializeNBT(NBTBase nbt)
 
 	{
-
 		FAIRY_CAP.getStorage().readNBT(FAIRY_CAP, this.instance, null, nbt);
 
 	}
