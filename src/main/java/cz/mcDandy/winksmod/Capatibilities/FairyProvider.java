@@ -37,9 +37,9 @@ public class FairyProvider implements ICapabilitySerializable<NBTBase> {
 
 	{
 		System.out.println(FAIRY_CAP);
-		System.out.println(FAIRY_CAP.getStorage());
+		System.out.println(FAIRY_CAP.getStorage());  //NullPointerException ClientThreadException
 		System.out.println(FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null));
-		return FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null);// ClientException NullPointerException
+		return FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null);
 	}
 
 	@Override
