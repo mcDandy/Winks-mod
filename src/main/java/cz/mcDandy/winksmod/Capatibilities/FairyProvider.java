@@ -20,7 +20,6 @@ public class FairyProvider implements ICapabilitySerializable<NBTBase> {
 	}
 
 	@Override
-
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		return capability == FAIRY_CAP;
 	}
@@ -34,8 +33,7 @@ public class FairyProvider implements ICapabilitySerializable<NBTBase> {
 
 	@Override
 	public NBTBase serializeNBT()
-
-	{
+    {
 		System.out.println(FAIRY_CAP);
 		System.out.println(FAIRY_CAP.getStorage());  //NullPointerException ClientThreadException
 		System.out.println(FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null));
@@ -44,10 +42,8 @@ public class FairyProvider implements ICapabilitySerializable<NBTBase> {
 
 	@Override
 	public void deserializeNBT(NBTBase nbt)
-
 	{
 		FAIRY_CAP.getStorage().readNBT(FAIRY_CAP, this.instance, null, nbt);
 
 	}
-
 }
