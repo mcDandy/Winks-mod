@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class Fairy implements IFairy
-
 {
 	private double LVL = 0;
 	private static ResourceLocation RL = new ResourceLocation(Main.MODID, "Fairy");
@@ -24,41 +23,29 @@ public class Fairy implements IFairy
 
 	@Override
 	public void removeLVL(double points)
-
 	{
-
 		this.LVL -= points;
 
 		if (this.LVL < 0.0F)
 			this.LVL = 0.0F;
-
 	}
 
 	@Override
 	public void addLVL(double points)
-
 	{
-
 		this.LVL += points;
-
 	}
 
 	@Override
 	public void setLVL(double points)
-
 	{
-
 		this.LVL = points;
-
 	}
 
 	@Override
 	public double getLVL()
-
 	{
-
 		return this.LVL;
-
 	}
 
 	@Override

@@ -9,10 +9,8 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 public class FairyStorange implements IStorage<IFairy>
 
 {
-
 	@Override
 	public NBTBase writeNBT(Capability<IFairy> capability, IFairy instance, EnumFacing side)
-
 	{
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setDouble("LVL", instance.getLVL());
@@ -25,5 +23,4 @@ public class FairyStorange implements IStorage<IFairy>
 		instance.setLVL(((NBTTagCompound) nbt).getDouble("LVL"));
 		instance.setTransformation(((NBTTagCompound) nbt).getBoolean("Trans"));
 	}
-
 }
