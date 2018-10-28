@@ -33,14 +33,10 @@ public class FairyProvider implements ICapabilitySerializable<NBTBase> {
 
 	@Override
 	public NBTBase serializeNBT()
-	{if(FAIRY_CAP!=null) {
-		System.out.println(FAIRY_CAP);
-		System.out.println(FAIRY_CAP.getStorage());  //NullPointerException ClientThreadException
-		System.out.println(FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null));
+	{
 		return FAIRY_CAP.getStorage().writeNBT(FAIRY_CAP, this.instance, null);
 	}
-	return null;
-	}
+
 
 	@Override
 	public void deserializeNBT(NBTBase nbt)

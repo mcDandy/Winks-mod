@@ -29,8 +29,8 @@ public class Wings extends ItemBase {
 
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		if (!playerIn.world.isRemote) {
-			if (playerIn.hasCapability(FairyProvider.FAIRY_CAP, null)) { // allways false
-				System.out.println(playerIn.getCapability(FairyProvider.FAIRY_CAP, null).getLVL());
+			if (playerIn.hasCapability(FairyProvider.FAIRY_CAP, null)) { 
+				System.out.println(playerIn.getCapability(FairyProvider.FAIRY_CAP, null).IsFiary());
 				playerIn.getCapability(FairyProvider.FAIRY_CAP, null).addLVL(1.0F);
 				if (playerIn.getCapability(FairyProvider.FAIRY_CAP, null).IsFiary()) {
 					playerIn.motionX = playerIn.getLookVec().x;
