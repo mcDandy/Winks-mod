@@ -35,7 +35,7 @@ public class RenderGenericFairy extends RenderLiving<EntityFairyGeneric> {
 
 		@Override
 		public Render<? super EntityFairyGeneric> createRenderFor(RenderManager manager) {
-			return new RenderGenericFairy(manager);
+			return new RenderGenericFairy(manager, new ModelBiped(), 0.5F);
 		}
 
 	}
