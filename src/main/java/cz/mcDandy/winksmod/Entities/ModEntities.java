@@ -15,21 +15,21 @@ public class ModEntities {
 	public static void init() {
 		// Every entity in our mod has an ID (local to this mod)
 		int id = 1;
-		EntityRegistry.registerModEntity(new ResourceLocation(Main.MODID, "Entities"), EntityGenericFairy.class,
+		EntityRegistry.registerModEntity(new ResourceLocation(Main.MODID, "Entities"), EntityFairyGeneric.class,
 				"GenericFairy", id++, Main.instance, 64, 3, true, 0xffffff, 0x000000);
 
 		// We want our mob to spawn in Plains and ice plains biomes. If you don't add
 		// this then it will not spawn automatically
 		// but you can of course still make it spawnmanually
-		EntityRegistry.addSpawn(EntityGenericFairy.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.PLAINS,
+		EntityRegistry.addSpawn(EntityFairyGeneric.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.PLAINS,
 				Biomes.ICE_PLAINS);
 
 		// This is the loot table for our mob
-		LootTableList.register(EntityGenericFairy.LOOT);
+		LootTableList.register(EntityFairyGeneric.LOOT);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
-		RenderingRegistry.registerEntityRenderingHandler(EntityGenericFairy.class, RenderGenericFairy.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(EntityFairyGeneric.class, RenderGenericFairy.FACTORY);
 	}
 }
