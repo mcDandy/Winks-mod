@@ -40,6 +40,8 @@ public class EntityFairyGeneric extends EntityMob {
 
 	@Override
 	protected void initEntityAI() {
+        this.targetTasks.addTask(1, new EntityFairyGeneric.AIHurtByAggressor(this));
+        this.targetTasks.addTask(2, new EntityFairyGeneric.AITargetAggressor(this));
 		tasks.addTask(4, new EntityAILookIdle(this));
 		tasks.addTask(0, new EntityAISwimming(this));
 		tasks.addTask(5, new EntityAIWander(this, interpTargetPitch, 10));
@@ -124,8 +126,8 @@ public class EntityFairyGeneric extends EntityMob {
 	}
 
 	static class AIHurtByAggressor extends EntityAIHurtByTarget {
-		public AIHurtByAggressor(EntityPigZombie p_i45828_1_) {
-			super(p_i45828_1_, true);
+		public AIHurtByAggressor(EntityFairyGeneric entityFairyGeneric) {
+			super(entityFairyGeneric, true);
 		}
 
 		@Override
@@ -139,7 +141,7 @@ public class EntityFairyGeneric extends EntityMob {
 	}
 
 	static class AITargetAggressor extends EntityAINearestAttackableTarget<EntityPlayer> {
-		public AITargetAggressor(EntityPigZombie p_i45829_1_) {
+		public AITargetAggressor(EntityFairyGeneric p_i45829_1_) {
 			super(p_i45829_1_, EntityPlayer.class, true);
 		}
 
