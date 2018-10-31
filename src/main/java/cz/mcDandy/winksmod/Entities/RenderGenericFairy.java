@@ -13,17 +13,13 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderGenericFairy extends RenderLiving<EntityFairyGeneric> {
 
-	private ResourceLocation mobTexture = new ResourceLocation(Main.MODID,":textures/entities/FairyGeneric.png");
+	private ResourceLocation mobTexture = new ResourceLocation(Main.MODID, ":textures/entities/FairyGeneric.png");
 
 	public static final Factory FACTORY = new Factory();
+
 	public RenderGenericFairy(RenderManager rendermanagerIn, ModelBase modelbaseIn, float shadowsizeIn) {
 		super(rendermanagerIn, modelbaseIn, shadowsizeIn);
-}
-	/*public RenderGenericFairy(RenderManager rendermanagerIn) {
-		// We use the vanilla zombie model here and we simply
-		// retexture it. Of course you can make your own model
-		super(rendermanagerIn, new ModelBiped(), 0.5F);
-	}*/
+	}
 
 	@Override
 	@Nonnull
