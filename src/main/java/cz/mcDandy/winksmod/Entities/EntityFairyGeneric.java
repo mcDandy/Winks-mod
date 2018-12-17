@@ -40,13 +40,13 @@ public class EntityFairyGeneric extends EntityMob {
 
 	@Override
 	protected void initEntityAI() {
-        this.targetTasks.addTask(1, new EntityFairyGeneric.AIHurtByAggressor(this));
-        this.targetTasks.addTask(2, new EntityFairyGeneric.AITargetAggressor(this));
+		this.targetTasks.addTask(1, new EntityFairyGeneric.AIHurtByAggressor(this));
+		this.targetTasks.addTask(2, new EntityFairyGeneric.AITargetAggressor(this));
 		tasks.addTask(4, new EntityAILookIdle(this));
 		tasks.addTask(0, new EntityAISwimming(this));
 		tasks.addTask(5, new EntityAIWander(this, interpTargetPitch, 10));
 		tasks.addTask(1, new EntityAIMoveThroughVillage(this, 1.0D, false));
-		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+		// this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityWitch.class, false, true));
 		// S this.targetTasks.addTask(6, new EntityAiFly());
 	}
