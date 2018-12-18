@@ -21,7 +21,7 @@ public class SolWand extends Item {
 		this.setUnlocalizedName(unlocalizedName);
 		this.setCreativeTab(tab);
 		this.setMaxStackSize(1);
-		this.setMaxDamage(100);
+		this.setMaxDamage(1000);
 
 		isDamageable();
 		// getDurabilityForDisplay();
@@ -48,9 +48,23 @@ public class SolWand extends Item {
 
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 
-		if (itemstack.getMaxDamage() - itemstack.getItemDamage() > 10) {
+		if(playerIn.isSneaking()) 
+		{
+			int x = 100;
+	   	    int y = 70;
+	   	    int z = 100;
+	   	    //safe
+	   	    //	playerIn.attemptTeleport(x, y, z)
+	   	    playerIn.setPositionAndUpdate(x, playerIn.getEntityWorld().getHeight(x, z), z);
+	   	    //unsafe
+	   	    playerIn.setPositionAndUpdate(x, y, z);
+        //  entitylivingbase.fallDistance = 0.0F;
+      }
+		else
+		{
+			if (itemstack.getMaxDamage() - itemstack.getItemDamage() > 100) {
 			EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
-			itemstack.damageItem(10, playerIn);
+			itemstack.damageItem(100, playerIn);
 			fireball.posX = playerIn.posX;
 			fireball.posY = playerIn.posY + playerIn.getEyeHeight();
 			fireball.posZ = playerIn.posZ;
@@ -58,7 +72,7 @@ public class SolWand extends Item {
 			fireball.accelerationY = playerIn.getLookVec().y;
 			fireball.accelerationZ = playerIn.getLookVec().z;
 			worldIn.spawnEntity(fireball);
-
+		}
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 		}
 
