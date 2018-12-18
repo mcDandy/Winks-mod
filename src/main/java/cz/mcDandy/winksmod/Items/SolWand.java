@@ -1,6 +1,8 @@
 package cz.mcDandy.winksmod.Items;
 
 import cz.mcDandy.winksmod.Main;
+import cz.mcDandy.winksmod.GUI.TpWandGui;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -50,16 +52,8 @@ public class SolWand extends Item {
 
 		if(playerIn.isSneaking()) 
 		{
-			int x = 100;
-	   	    int y = 70;
-	   	    int z = 100;
-	   	    //safe
-	   	    //	playerIn.attemptTeleport(x, y, z)
-	   	    playerIn.setPositionAndUpdate(x, playerIn.getEntityWorld().getHeight(x, z), z);
-	   	    //unsafe
-	   	    playerIn.setPositionAndUpdate(x, y, z);
-        //  entitylivingbase.fallDistance = 0.0F;
-      }
+			  Minecraft.getMinecraft().displayGuiScreen(new TpWandGui());
+	    }
 		else
 		{
 			if (itemstack.getMaxDamage() - itemstack.getItemDamage() > 100) {

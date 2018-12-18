@@ -138,16 +138,10 @@ public class TpWandGui extends GuiScreen {
 			if (button.id == 0) {
 				{
 					if (entity instanceof EntityLivingBase)
-						((EntityLivingBase) entity).setPositionAndUpdate((int) new Object() {
+						 entity.setPositionAndUpdate(
 
-							int convert(String s) {
-								try {
-									return Integer.parseInt(s.trim());
-								} catch (Exception e) {
-								}
-								return 0;
-							}
-						}.convert((new Object() {
+						Integer.parseInt(guiinventory.get("text:Xpos").getClass()..trim())
+						.convert((new Object() {
 
 							public String getText() {
 								GuiTextField textField = (GuiTextField) guiinventory.get("text:Xpos");
