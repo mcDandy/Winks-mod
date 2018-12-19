@@ -52,7 +52,7 @@ public class SolWand extends Item {
 
 		if(playerIn.isSneaking()) 
 		{
-			  Minecraft.getMinecraft().displayGuiScreen(new TpWandGui());
+			  Minecraft.getMinecraft().displayGuiScreen(new TpWandGui(worldIn,playerIn));
 	    }
 		else
 		{
