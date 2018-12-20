@@ -2,6 +2,8 @@ package cz.mcDandy.winksmod.Entities;
 
 import javax.annotation.Nonnull;
 
+import cz.mcDandy.winksmod.Main;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -9,29 +11,27 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class RenderGenericFairy extends RenderLiving<EntityGenericFairy> {
+public class RenderGenericFairy extends RenderLiving<EntityFairyGeneric> {
 
-	private ResourceLocation mobTexture = new ResourceLocation("modtut:textures/entity/weirdzombie.png");
+	private ResourceLocation mobTexture = new ResourceLocation(Main.MODID, ":textures/entities/FairyGeneric.png");
 
 	public static final Factory FACTORY = new Factory();
 
-	public RenderGenericFairy(RenderManager rendermanagerIn) {
-		// We use the vanilla zombie model here and we simply
-		// retexture it. Of course you can make your own model
-		super(rendermanagerIn, new ModelBiped(), 0.5F);
+	public RenderGenericFairy(RenderManager rendermanagerIn, ModelBase modelbaseIn, float shadowsizeIn) {
+		super(rendermanagerIn, modelbaseIn, shadowsizeIn);
 	}
 
 	@Override
 	@Nonnull
-	protected ResourceLocation getEntityTexture(@Nonnull EntityGenericFairy entity) {
+	protected ResourceLocation getEntityTexture(@Nonnull EntityFairyGeneric entity) {
 		return mobTexture;
 	}
 
-	public static class Factory implements IRenderFactory<EntityGenericFairy> {
+	public static class Factory implements IRenderFactory<EntityFairyGeneric> {
 
 		@Override
-		public Render<? super EntityGenericFairy> createRenderFor(RenderManager manager) {
-			return new RenderGenericFairy(manager);
+		public Render<? super EntityFairyGeneric> createRenderFor(RenderManager manager) {
+			return new RenderGenericFairy(manager, new ModelBiped(), 0.5F);
 		}
 
 	}
