@@ -1,6 +1,8 @@
 package cz.mcDandy.winksmod.Items;
 
 import cz.mcDandy.winksmod.Main;
+import cz.mcDandy.winksmod.GUI.TpWandGui;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -21,7 +23,7 @@ public class SolWand extends Item {
 		this.setUnlocalizedName(unlocalizedName);
 		this.setCreativeTab(tab);
 		this.setMaxStackSize(1);
-		this.setMaxDamage(100);
+		this.setMaxDamage(1000);
 
 		isDamageable();
 		// getDurabilityForDisplay();
@@ -48,17 +50,20 @@ public class SolWand extends Item {
 
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 
-		if (itemstack.getMaxDamage() - itemstack.getItemDamage() > 10) {
-			EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
-			itemstack.damageItem(10, playerIn);
-			fireball.posX = playerIn.posX;
-			fireball.posY = playerIn.posY + playerIn.getEyeHeight();
-			fireball.posZ = playerIn.posZ;
-			fireball.accelerationX = playerIn.getLookVec().x;
-			fireball.accelerationY = playerIn.getLookVec().y;
-			fireball.accelerationZ = playerIn.getLookVec().z;
-			worldIn.spawnEntity(fireball);
-
+		if (playerIn.isSneaking()) {
+			Minecraft.getMinecraft().displayGuiScreen(new TpWandGui(worldIn, playerIn));
+		} else {
+			if (itemstack.getMaxDamage() - itemstack.getItemDamage() > 100) {
+				EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
+				itemstack.damageItem(100, playerIn);
+				fireball.posX = playerIn.posX;
+				fireball.posY = playerIn.posY + playerIn.getEyeHeight();
+				fireball.posZ = playerIn.posZ;
+				fireball.accelerationX = playerIn.getLookVec().x;
+				fireball.accelerationY = playerIn.getLookVec().y;
+				fireball.accelerationZ = playerIn.getLookVec().z;
+				worldIn.spawnEntity(fireball);
+			}
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 		}
 

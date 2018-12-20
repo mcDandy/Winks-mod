@@ -10,8 +10,7 @@ public class FairyStorange implements IStorage<IFairy>
 
 {
 	@Override
-	public NBTBase writeNBT(Capability<IFairy> capability, IFairy instance, EnumFacing side)
-	{
+	public NBTBase writeNBT(Capability<IFairy> capability, IFairy instance, EnumFacing side) {
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setDouble("LVL", instance.getLVL());
 		nbt.setBoolean("Trans", instance.IsTransformed());
