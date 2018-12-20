@@ -50,23 +50,20 @@ public class SolWand extends Item {
 
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 
-		if(playerIn.isSneaking()) 
-		{
-			  Minecraft.getMinecraft().displayGuiScreen(new TpWandGui(worldIn,playerIn));
-	    }
-		else
-		{
+		if (playerIn.isSneaking()) {
+			Minecraft.getMinecraft().displayGuiScreen(new TpWandGui(worldIn, playerIn));
+		} else {
 			if (itemstack.getMaxDamage() - itemstack.getItemDamage() > 100) {
-			EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
-			itemstack.damageItem(100, playerIn);
-			fireball.posX = playerIn.posX;
-			fireball.posY = playerIn.posY + playerIn.getEyeHeight();
-			fireball.posZ = playerIn.posZ;
-			fireball.accelerationX = playerIn.getLookVec().x;
-			fireball.accelerationY = playerIn.getLookVec().y;
-			fireball.accelerationZ = playerIn.getLookVec().z;
-			worldIn.spawnEntity(fireball);
-		}
+				EntityLargeFireball fireball = new EntityLargeFireball(worldIn, playerIn, 10, 10, 10);
+				itemstack.damageItem(100, playerIn);
+				fireball.posX = playerIn.posX;
+				fireball.posY = playerIn.posY + playerIn.getEyeHeight();
+				fireball.posZ = playerIn.posZ;
+				fireball.accelerationX = playerIn.getLookVec().x;
+				fireball.accelerationY = playerIn.getLookVec().y;
+				fireball.accelerationZ = playerIn.getLookVec().z;
+				worldIn.spawnEntity(fireball);
+			}
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 		}
 

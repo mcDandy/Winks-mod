@@ -1,7 +1,5 @@
 package cz.mcDandy.winksmod.GUI;
 
-import java.util.HashMap;
-
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.gui.GuiButton;
@@ -25,7 +23,6 @@ public class TpWandGui extends GuiScreen {
 	private int guiTop;
 	private int xSize;
 	private int ySize;
-
 
 	public TpWandGui(World world, EntityPlayer entity) {
 		super();
@@ -108,7 +105,7 @@ public class TpWandGui extends GuiScreen {
 		this.buttonList.clear();
 		this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport"));
 		Xpos = new GuiTextField(0, this.fontRenderer, 38, 19, 120, 20);
-	
+
 		Xpos.setMaxStringLength(32767);
 		Xpos.setFocused(true);
 		Xpos.setText("");
