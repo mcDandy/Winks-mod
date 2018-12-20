@@ -10,6 +10,7 @@ public class Fpowder extends ItemFoodBase {
 
 	public Fpowder(String unlocalizedName, CreativeTabs tab) {
 		super(unlocalizedName, tab, 64, 0, true);
+		this.setAlwaysEdible();
 		// TODO Auto-generated constructor stub
 	}
 
