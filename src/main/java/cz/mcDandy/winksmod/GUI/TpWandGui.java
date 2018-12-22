@@ -104,19 +104,19 @@ public class TpWandGui extends GuiScreen {
 		// Keyboard.enableRepeatEvents(true);
 		this.buttonList.clear();
 		this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport"));
+		
 		Xpos = new GuiTextField(0, this.fontRenderer, 38, 19, 120, 20);
-
-		Xpos.setMaxStringLength(32767);
+		Xpos.setMaxStringLength(9);
 		Xpos.setFocused(true);
 		Xpos.setText("");
+		
 		Ypos = new GuiTextField(1, this.fontRenderer, 38, 45, 120, 20);
-
-		Ypos.setMaxStringLength(32767);
+		Ypos.setMaxStringLength(9);
 		Ypos.setFocused(true);
 		Ypos.setText("");
+		
 		Zpos = new GuiTextField(2, this.fontRenderer, 39, 70, 120, 20);
-
-		Zpos.setMaxStringLength(32767);
+		Zpos.setMaxStringLength(9);
 		Zpos.setFocused(true);
 		Zpos.setText("");
 
