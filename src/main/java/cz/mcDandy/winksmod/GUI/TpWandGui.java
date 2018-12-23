@@ -1,7 +1,9 @@
 package cz.mcDandy.winksmod.GUI;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import cz.mcDandy.winksmod.Main;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
@@ -14,7 +16,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class TpWandGui extends GuiScreen {
 
-	// int x, y, z;
+	double x, y, z;
 	EntityPlayer entity;
 	GuiTextField Xpos;
 	GuiTextField Ypos;
@@ -26,29 +28,49 @@ public class TpWandGui extends GuiScreen {
 
 	public TpWandGui(World world, EntityPlayer entity) {
 		super();
-		// this.x = entity.posX;
-		// this.y = entity.posY;
-		// this.z = entity.posZ;
-		this.entity = entity;
+		this.x = entity.posX;
+		this.y = entity.posY;
+		this.z = entity.posZ;
+	  	this.entity = entity;
 		this.xSize = 176;
 		this.ySize = 166;
 	}
 
-	private static final ResourceLocation texture = new ResourceLocation("tpwandgui.png");
-
-	/*
-	 * @Override public void drawScreen(int mouseX, int mouseY, float partialTicks)
-	 * { this.drawDefaultBackground(); super.drawScreen(mouseX, mouseY,
-	 * partialTicks); // this.renderHoveredToolTip(mouseX, mouseY); }
-	 */
+	private static final ResourceLocation texture = new ResourceLocation(Main.MODID+":solwand.png");
 	@Override
-	public void drawScreen(int par2, int par3, float par1) {
+	public void initGui() {
+		super.initGui();
+		this.guiLeft = (this.width - 176) / 2;
+		this.guiTop = (this.height - 166) / 2;
+		// Keyboard.enableRepeatEvents(true);
+		this.buttonList.clear();
+		this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport"));
+		
+		Xpos = new GuiTextField(0, this.fontRenderer, 38, 19, 120, 20);
+		Xpos.setMaxStringLength(9);
+		Xpos.setFocused(true);
+		Xpos.setText("");
+		
+		Ypos = new GuiTextField(1, this.fontRenderer, 38, 45, 120, 20);
+		Ypos.setMaxStringLength(9);
+		Ypos.setFocused(true);
+		Ypos.setText("");
+		
+		Zpos = new GuiTextField(2, this.fontRenderer, 39, 70, 120, 20);
+		Zpos.setMaxStringLength(9);
+		Zpos.setFocused(true);
+		Zpos.setText("");
+
+	}
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.drawDefaultBackground();
-		this.mc.renderEngine.bindTexture(texture);
+	//	this.mc.renderEngine.bindTexture(texture);
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+	//	this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 		zLevel = 100.0F;
 
 		Xpos.drawTextBox();
@@ -57,7 +79,7 @@ public class TpWandGui extends GuiScreen {
 		this.fontRenderer.drawString("X:", 18, 20, -16777216);
 		this.fontRenderer.drawString("Y:", 19, 51, -16777216);
 		this.fontRenderer.drawString("Z:", 19, 75, -16777216);
-
+		 super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
 	@Override
@@ -93,34 +115,10 @@ public class TpWandGui extends GuiScreen {
 	@Override
 	public void onGuiClosed() {
 		super.onGuiClosed();
-		// Keyboard.enableRepeatEvents(false);
+		 Keyboard.enableRepeatEvents(false);
 	}
 
-	@Override
-	public void initGui() {
-		super.initGui();
-		this.guiLeft = (this.width - 176) / 2;
-		this.guiTop = (this.height - 166) / 2;
-		// Keyboard.enableRepeatEvents(true);
-		this.buttonList.clear();
-		this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport"));
-		
-		Xpos = new GuiTextField(0, this.fontRenderer, 38, 19, 120, 20);
-		Xpos.setMaxStringLength(9);
-		Xpos.setFocused(true);
-		Xpos.setText("");
-		
-		Ypos = new GuiTextField(1, this.fontRenderer, 38, 45, 120, 20);
-		Ypos.setMaxStringLength(9);
-		Ypos.setFocused(true);
-		Ypos.setText("");
-		
-		Zpos = new GuiTextField(2, this.fontRenderer, 39, 70, 120, 20);
-		Zpos.setMaxStringLength(9);
-		Zpos.setFocused(true);
-		Zpos.setText("");
 
-	}
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
