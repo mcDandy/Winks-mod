@@ -46,17 +46,17 @@ public class TpWandGui extends GuiScreen {
 		this.buttonList.clear();
 		this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport"));
 		
-		Xpos = new GuiTextField(0, this.fontRenderer, 38, 19, 120, 20);
+		Xpos = new GuiTextField(0, this.fontRenderer, guiLeft+38, guiTop+19, 120, 20);
 		Xpos.setMaxStringLength(9);
 		Xpos.setFocused(true);
 		Xpos.setText("");
 		
-		Ypos = new GuiTextField(1, this.fontRenderer, 38, 45, 120, 20);
+		Ypos = new GuiTextField(1, this.fontRenderer, guiLeft+38, guiTop+45, 120, 20);
 		Ypos.setMaxStringLength(9);
 		Ypos.setFocused(true);
 		Ypos.setText("");
 		
-		Zpos = new GuiTextField(2, this.fontRenderer, 39, 70, 120, 20);
+		Zpos = new GuiTextField(2, this.fontRenderer, guiLeft+39, guiTop+70, 120, 20);
 		Zpos.setMaxStringLength(9);
 		Zpos.setFocused(true);
 		Zpos.setText("");
@@ -76,9 +76,9 @@ public class TpWandGui extends GuiScreen {
 		Xpos.drawTextBox();
 		Ypos.drawTextBox();
 		Zpos.drawTextBox();
-		this.fontRenderer.drawString("X:", 18, 20, -16777216);
-		this.fontRenderer.drawString("Y:", 19, 51, -16777216);
-		this.fontRenderer.drawString("Z:", 19, 75, -16777216);
+		this.fontRenderer.drawString("X:", guiLeft+19, guiTop+20, -16777216);
+		this.fontRenderer.drawString("Y:", guiLeft+19, guiTop+51, -16777216);
+		this.fontRenderer.drawString("Z:", guiLeft+19, guiTop+75, -16777216);
 		 super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
