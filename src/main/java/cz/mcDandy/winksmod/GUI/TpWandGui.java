@@ -54,7 +54,7 @@ public class TpWandGui extends GuiScreen {
 		Zpos.drawTextBox();
 		tp.drawButton(mc, l, l, par1);
 		this.fontRenderer.drawString("X:", k+19, l+25, -16777216);
-		this.fontRenderer.drawString("Y:", k+19, l+51, -16777216);
+		this.fontRenderer.drawString("Y:", k+19, l+50, -16777216);
 		this.fontRenderer.drawString("Z:", k+19, l+75, -16777216);
 		
 
