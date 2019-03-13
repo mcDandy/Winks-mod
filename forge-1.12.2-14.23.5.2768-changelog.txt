@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Changelog:
-=======
-Changelog:
->>>>>>> refs/heads/Entities
 Build 2768:
 	LexManos: Bump version number for RB.
 
