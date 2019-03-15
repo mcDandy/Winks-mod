@@ -8,7 +8,7 @@ public class BlockBase extends Block {
 
 	public BlockBase(String unlocalizedName, Material mat, CreativeTabs tab) {
 		super(mat);
-		setUnlocalizedName(unlocalizedName);
+		setTranslationKey(unlocalizedName);
 		setRegistryName(unlocalizedName);
 		setCreativeTab(tab);// TODO Auto-generated constructor stub
 	}

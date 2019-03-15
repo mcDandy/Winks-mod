@@ -8,7 +8,7 @@ public class BlockBaseFalling extends BlockFalling {
 
 	public BlockBaseFalling(String unlocalizedName, Material mat, CreativeTabs tab) {
 		super(mat);
-		setUnlocalizedName(unlocalizedName);
+		setTranslationKey(unlocalizedName);
 		setRegistryName(unlocalizedName);
 		setCreativeTab(tab);// TODO Auto-generated constructor stub
 	}

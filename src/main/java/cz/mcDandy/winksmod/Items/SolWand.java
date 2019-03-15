@@ -14,14 +14,12 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class SolWand extends Item {
+public class SolWand extends ItemBase {
 	// ItemStack itemstack = new ItemStack(ModItems.solwand);
 
 	public SolWand(String unlocalizedName, CreativeTabs tab, int stack) {
-		super();
+		super(unlocalizedName,tab);
 		this.setRegistryName(Main.MODID, unlocalizedName);
-		this.setUnlocalizedName(unlocalizedName);
-		this.setCreativeTab(tab);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(1000);
 

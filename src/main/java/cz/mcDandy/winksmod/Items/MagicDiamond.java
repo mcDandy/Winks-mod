@@ -5,15 +5,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class MagicDiamond extends Item {
+public class MagicDiamond extends ItemBase {
 
 	ItemStack itemstack;
 
 	public MagicDiamond(String unlocalizedName, CreativeTabs tab, int maxStack) {
-		super();
+		super(unlocalizedName,tab);
 		this.setRegistryName(Main.MODID, unlocalizedName);
-		this.setUnlocalizedName(unlocalizedName);
-		this.setCreativeTab(tab);
 		this.maxStackSize = maxStack;
 		this.setMaxDamage(100);
 		// this.setDamage(itemstack, 99);

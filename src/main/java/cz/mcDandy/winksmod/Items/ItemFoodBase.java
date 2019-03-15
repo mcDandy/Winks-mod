@@ -12,7 +12,7 @@ public class ItemFoodBase extends ItemFood {
 	public ItemFoodBase(String unlocalizedName, CreativeTabs tab, int stackSize) {
 		// TODO Auto-generated constructor stub
 		super(stackSize, 0, false);
-		setUnlocalizedName(unlocalizedName);
+		setTranslationKey(unlocalizedName);
 		setRegistryName(Main.MODID + ":" + unlocalizedName);
 		setCreativeTab(tab);
 		setMaxStackSize(stackSize);
@@ -22,7 +22,7 @@ public class ItemFoodBase extends ItemFood {
 			boolean alwaysEdible) {
 		// TODO Auto-generated constructor stub
 		super(stackSize, potionEffectProbability, alwaysEdible);
-		setUnlocalizedName(unlocalizedName);
+		setTranslationKey(unlocalizedName);
 		setRegistryName(Main.MODID + ":" + unlocalizedName);
 		setCreativeTab(tab);
 		setMaxStackSize(stackSize);
