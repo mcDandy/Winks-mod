@@ -50,7 +50,8 @@ public class TpWandGui extends GuiScreen {
 		Xpos.setMaxStringLength(9);
 		Xpos.setFocused(true);
 		Xpos.setText("");
-
+		
+		
 		Ypos = new GuiTextField(1, this.fontRenderer, guiLeft+38, guiTop+45, 120, 20);
 		Ypos.setMaxStringLength(9);
 		Ypos.setFocused(true);
