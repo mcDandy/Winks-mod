@@ -19,7 +19,7 @@ public class SolWand extends ItemBase {
 
 	public SolWand(String unlocalizedName, CreativeTabs tab, int stack) {
 		super(unlocalizedName,tab);
-		this.setRegistryName(Main.MODID, unlocalizedName);
+	
 		this.setMaxStackSize(1);
 		this.setMaxDamage(1000);
 
