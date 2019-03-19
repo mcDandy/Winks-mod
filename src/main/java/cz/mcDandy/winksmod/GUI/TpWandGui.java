@@ -2,20 +2,19 @@ package cz.mcDandy.winksmod.GUI;
 
 import org.lwjgl.opengl.GL11;
 
+import cz.mcDandy.winksmod.Main;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class TpWandGui extends GuiScreen {
 
 	// int x, y, z;
-	EntityPlayer entity;
+	EntityPlayerMP entity;
 	GuiTextField Xpos;
 	GuiTextField Ypos;
 	GuiTextField Zpos;
@@ -25,7 +24,7 @@ public class TpWandGui extends GuiScreen {
 	private int ySize;
 	GuiButton tp;
 
-	public TpWandGui(World world, EntityPlayer entity) {
+	public TpWandGui(World world, EntityPlayerMP entity) {
 		super();
 		// this.x = entity.posX;
 		// this.y = entity.posY;
@@ -100,10 +99,6 @@ public class TpWandGui extends GuiScreen {
 		super.initGui();
 		this.guiLeft = (this.width - 176) / 2;
 		this.guiTop = (this.height - 166) / 2;
-		// Keyboard.enableRepeatEvents(true);
-		// this.buttonList.clear();
-		// this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop + 126,
-		// 86, 20, "Teleport"));
 		tp = new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport");
 		Xpos = new GuiTextField(0, this.fontRenderer, this.guiLeft + 38, this.guiTop + 19, 120, 20);
 
@@ -125,12 +120,13 @@ public class TpWandGui extends GuiScreen {
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
-		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-		World world = server.getWorld(entity.dimension);
 		if (button.id == tp.id) {
-
+			double X = Double.parseDouble(Xpos.getText());
+			double Y = Double.parseDouble(Ypos.getText());
+			double Z = Double.parseDouble(Zpos.getText());
+// Teleporting will be done on server
+			Main.NETWORK.sendTo(new MessageTp(X,Y,Z), entity);
 			if (entity instanceof EntityLivingBase)
-
 				entity.setPositionAndUpdate(Integer.parseInt(Xpos.getText().trim()),
 						Integer.parseInt(Ypos.getText().trim()), Integer.parseInt(Zpos.getText().trim()));
 
