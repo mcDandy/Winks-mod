@@ -42,7 +42,7 @@ public class TpWandGui extends GuiScreen {
 	 * partialTicks); // this.renderHoveredToolTip(mouseX, mouseY); }
 	 */
 	@Override
-	public void drawScreen(int par2, int par3, float par1) {
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.drawDefaultBackground();
 		this.mc.renderEngine.bindTexture(texture);
@@ -52,12 +52,10 @@ public class TpWandGui extends GuiScreen {
 		Xpos.drawTextBox();
 		Ypos.drawTextBox();
 		Zpos.drawTextBox();
-		tp.drawButton(mc, l, l, par1);
+		tp.drawButton(mc, mouseX, mouseY, partialTicks);
 		this.fontRenderer.drawString("X:", k+19, l+25, -16777216);
 		this.fontRenderer.drawString("Y:", k+19, l+50, -16777216);
 		this.fontRenderer.drawString("Z:", k+19, l+75, -16777216);
-		
-
 	}
 
 	@Override
