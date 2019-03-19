@@ -127,7 +127,7 @@ public class TpWandGui extends GuiScreen {
 	protected void actionPerformed(GuiButton button) {
 		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
 		World world = server.getWorld(entity.dimension);
-		if (button.id == 0) {
+		if (button.id == tp.id) {
 
 			if (entity instanceof EntityLivingBase)
 
