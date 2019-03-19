@@ -1,13 +1,11 @@
 package cz.mcDandy.winksmod.Items;
 
-import cz.mcDandy.winksmod.Main;
 import cz.mcDandy.winksmod.GUI.TpWandGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -18,8 +16,8 @@ public class SolWand extends ItemBase {
 	// ItemStack itemstack = new ItemStack(ModItems.solwand);
 
 	public SolWand(String unlocalizedName, CreativeTabs tab, int stack) {
-		super(unlocalizedName,tab);
-	
+		super(unlocalizedName, tab);
+
 		this.setMaxStackSize(1);
 		this.setMaxDamage(1000);
 

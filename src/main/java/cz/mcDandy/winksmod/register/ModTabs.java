@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 public class ModTabs {
 	public static CreativeTabs fmod = new CreativeTabs("fmod") {
 
-
 		@Override
 		public ItemStack createIcon() {
 			// TODO Auto-generated method stub

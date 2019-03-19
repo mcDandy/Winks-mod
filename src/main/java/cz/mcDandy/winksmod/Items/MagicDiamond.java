@@ -1,8 +1,6 @@
 package cz.mcDandy.winksmod.Items;
 
-import cz.mcDandy.winksmod.Main;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class MagicDiamond extends ItemBase {
@@ -10,7 +8,7 @@ public class MagicDiamond extends ItemBase {
 	ItemStack itemstack;
 
 	public MagicDiamond(String unlocalizedName, CreativeTabs tab, int maxStack) {
-		super(unlocalizedName,tab);
+		super(unlocalizedName, tab);
 
 		this.maxStackSize = maxStack;
 		this.setMaxDamage(100);

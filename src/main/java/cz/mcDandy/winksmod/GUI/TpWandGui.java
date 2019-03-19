@@ -24,6 +24,7 @@ public class TpWandGui extends GuiScreen {
 	private int xSize;
 	private int ySize;
 	GuiButton tp;
+
 	public TpWandGui(World world, EntityPlayer entity) {
 		super();
 		// this.x = entity.posX;
@@ -53,9 +54,9 @@ public class TpWandGui extends GuiScreen {
 		Ypos.drawTextBox();
 		Zpos.drawTextBox();
 		tp.drawButton(mc, mouseX, mouseY, partialTicks);
-		this.fontRenderer.drawString("X:", k+19, l+25, -16777216);
-		this.fontRenderer.drawString("Y:", k+19, l+50, -16777216);
-		this.fontRenderer.drawString("Z:", k+19, l+75, -16777216);
+		this.fontRenderer.drawString("X:", k + 19, l + 25, -16777216);
+		this.fontRenderer.drawString("Y:", k + 19, l + 50, -16777216);
+		this.fontRenderer.drawString("Z:", k + 19, l + 75, -16777216);
 	}
 
 	@Override
@@ -100,9 +101,10 @@ public class TpWandGui extends GuiScreen {
 		this.guiLeft = (this.width - 176) / 2;
 		this.guiTop = (this.height - 166) / 2;
 		// Keyboard.enableRepeatEvents(true);
-	//	this.buttonList.clear();
-	//	this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport"));
-		tp=new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport");
+		// this.buttonList.clear();
+		// this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop + 126,
+		// 86, 20, "Teleport"));
+		tp = new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport");
 		Xpos = new GuiTextField(0, this.fontRenderer, this.guiLeft + 38, this.guiTop + 19, 120, 20);
 
 		Xpos.setMaxStringLength(32767);
