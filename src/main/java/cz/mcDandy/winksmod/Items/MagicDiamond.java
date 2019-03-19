@@ -11,7 +11,7 @@ public class MagicDiamond extends ItemBase {
 
 	public MagicDiamond(String unlocalizedName, CreativeTabs tab, int maxStack) {
 		super(unlocalizedName,tab);
-		this.setRegistryName(Main.MODID, unlocalizedName);
+
 		this.maxStackSize = maxStack;
 		this.setMaxDamage(100);
 		// this.setDamage(itemstack, 99);
