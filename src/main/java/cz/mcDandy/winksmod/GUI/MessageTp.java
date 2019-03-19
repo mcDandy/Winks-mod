@@ -9,17 +9,17 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageTp implements IMessage {
-	private double X;
-	private double Y;
-	private double Z;
+	private static double X;
+	private static double Y;
+	private static double Z;
 
 	public MessageTp() {
 	}
 
 	public MessageTp(double X,double Y,double Z) {
-		this.X = X;
-		this.Y = Y;
-		this.Z = Z;
+		MessageTp.X = X;
+		MessageTp.Y = Y;
+		MessageTp.Z = Z;
 		}
 
 	@Override
