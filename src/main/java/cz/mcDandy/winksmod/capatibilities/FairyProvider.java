@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.Capatibilities;
+package cz.mcDandy.winksmod.capatibilities;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

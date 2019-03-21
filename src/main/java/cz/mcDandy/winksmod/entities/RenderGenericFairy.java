@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.Entities;
+package cz.mcDandy.winksmod.entities;
 
 import javax.annotation.Nonnull;
 

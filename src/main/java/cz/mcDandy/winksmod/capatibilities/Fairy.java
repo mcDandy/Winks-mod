@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.Capatibilities;
+package cz.mcDandy.winksmod.capatibilities;
 
 import cz.mcDandy.winksmod.Main;
 import net.minecraft.entity.player.EntityPlayerMP;

@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.Capatibilities;
+package cz.mcDandy.winksmod.capatibilities;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

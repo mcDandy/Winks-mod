@@ -1,6 +1,6 @@
 package cz.mcDandy.winksmod;
 
-import cz.mcDandy.winksmod.Capatibilities.MessageFairy;
+import cz.mcDandy.winksmod.capatibilities.MessageFairy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;

@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.Entities;
+package cz.mcDandy.winksmod.entities;
 
 import cz.mcDandy.winksmod.Main;
 import net.minecraft.entity.EnumCreatureType;

@@ -1,6 +1,6 @@
-package cz.mcDandy.winksmod.Items;
+package cz.mcDandy.winksmod.items;
 
-import cz.mcDandy.winksmod.Capatibilities.FairyProvider;
+import cz.mcDandy.winksmod.capatibilities.FairyProvider;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
