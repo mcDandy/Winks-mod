@@ -1,8 +1,10 @@
 package cz.mcDandy.winksmod.GUI;
 
+import cz.mcDandy.winksmod.register.ModItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IThreadListener;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -46,8 +48,11 @@ public class MessageTp implements IMessage {
 				public void run() {
 					Minecraft mc = Minecraft.getMinecraft();
 					EntityPlayerSP player = mc.player;
-					player.setPositionAndUpdate(X,Y,Z);	
-				}
+					if(player.getHeldItemMainhand().equals(new ItemStack(ModItems.solwand))) 
+					{
+						player.setPositionAndUpdate(X,Y,Z);	
+					}
+				s}
 			});
 			return null;
 		}
