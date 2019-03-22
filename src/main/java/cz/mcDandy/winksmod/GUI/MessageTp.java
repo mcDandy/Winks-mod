@@ -19,18 +19,18 @@ public class MessageTp implements IMessage {
 	public MessageTp() {
 	}
 
-	public MessageTp(double X,double Y,double Z) {
+	public MessageTp(double X, double Y, double Z) {
 		this.X = X;
 		this.Y = Y;
 		this.Z = Z;
-		}
+	}
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		X = buf.readDouble();
 		Y = buf.readDouble();
 		Z = buf.readDouble();
-		
+
 	}
 
 	@Override
@@ -48,9 +48,23 @@ public class MessageTp implements IMessage {
 				@Override
 				public void run() {
 					EntityPlayerMP player = ctx.getServerHandler().player;
-					if(player.getHeldItemMainhand().equals(new ItemStack(ModItems.solwand))) 
-					{
-						player.setPositionAndUpdate(X,Y,Z);	
+					Minecraft mc = Minecraft.getMinecraft();
+					if (player.getHeldItemMainhand().equals(new ItemStack(ModItems.solwand))) {
+						if (Y != Double.NaN) { //normal teleport
+							if(player.getHeldItemMainhand().getMaxDamage()-player.getHeldItemMainhand().getItemDamage()<Math.pow(player.getDistance(X, Y, Z), 2)) 
+							{
+								player.getHeldItemMainhand().damageItem((int)Math.pow(player.getDistance(X, Y, Z), 2), player);
+								player.setPositionAndUpdate(X, Y, Z);
+							}
+						} else { //safe teleport - Height is surface height
+
+							if(player.getHeldItemMainhand().getMaxDamage()-player.getHeldItemMainhand().getItemDamage()<Math.pow(player.getDistance(X, 0, Z), 2)) 
+							{
+								player.getHeldItemMainhand().damageItem((int)Math.pow(player.getDistance(X, 0, Z), 2), player);
+								player.setPositionAndUpdate(X, mc.world.getHeight((int)X,(int)Z), Z);
+							}
+							
+						}
 					}
 				}
 			});
