@@ -120,12 +120,12 @@ public class TpWandGui extends GuiScreen {
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
-		if (button.id == tp.id) {
+		if (button.id == tp.id) 
+		{
 			double X = Double.parseDouble(Xpos.getText());
 			double Y = Double.parseDouble(Ypos.getText());
 			double Z = Double.parseDouble(Zpos.getText());
-// Teleporting will be done on server
-			Main.NETWORK.sendTo(new MessageTp(X,Y,Z), entity);
+			Main.NETWORK.sendTo(new MessageTp(X, Y, Z), entity);
 			if (entity instanceof EntityLivingBase)
 				entity.setPositionAndUpdate(Integer.parseInt(Xpos.getText().trim()),
 						Integer.parseInt(Ypos.getText().trim()), Integer.parseInt(Zpos.getText().trim()));
