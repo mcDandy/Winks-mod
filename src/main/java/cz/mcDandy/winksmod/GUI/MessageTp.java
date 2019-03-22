@@ -50,7 +50,7 @@ public class MessageTp implements IMessage {
 				public void run() {
 					EntityPlayerMP player = ctx.getServerHandler().player;
 					Minecraft mc = Minecraft.getMinecraft();
-					if (player.getHeldItemMainhand().equals(new ItemStack(ModItems.solwand))) {
+					if (player.getHeldItemMainhand().getItem().equals(new ItemStack(ModItems.solwand).getItem())) {
 						if (Y != Double.NaN) { // normal teleport
 							if (player.getHeldItemMainhand().getMaxDamage() - player.getHeldItemMainhand().getItemDamage() < Math.pow(player.getDistance(X, Y, Z), 2)) 
 							{
