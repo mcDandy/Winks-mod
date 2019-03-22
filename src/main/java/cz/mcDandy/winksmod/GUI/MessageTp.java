@@ -52,7 +52,7 @@ public class MessageTp implements IMessage {
 					{
 						player.setPositionAndUpdate(X,Y,Z);	
 					}
-				s}
+				}
 			});
 			return null;
 		}
