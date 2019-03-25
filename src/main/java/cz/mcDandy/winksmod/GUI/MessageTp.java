@@ -1,13 +1,16 @@
 package cz.mcDandy.winksmod.GUI;
 
+import java.awt.TextComponent;
+
 import cz.mcDandy.winksmod.register.ModItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -59,7 +62,7 @@ public class MessageTp implements IMessage {
 							}
 							else 
 							{
-								//not enough energy
+								player.server.sendMessage(new TextComponentString("NotEnouchEnergy"));//not enough energy
 							}
 						} else { // safe teleport - Height is surface height
 
@@ -71,12 +74,12 @@ public class MessageTp implements IMessage {
 								}
 								else 
 								{
-								 //Chunk not loaded	
+									player.server.sendMessage(new TextComponentString("ChunckNotLoaded"));//Chunk not loaded	
 								}
 							}
 							else 
 							{
-									//not enough energy	
+								player.server.sendMessage(new TextComponentString("NotEnouchEnergy"));//not enough energy	
 							}
 						}
 					}
