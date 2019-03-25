@@ -103,17 +103,17 @@ public class TpWandGui extends GuiScreen {
 		this.guiLeft = (this.width - 176) / 2;
 		this.guiTop = (this.height - 166) / 2;
 		this.buttonList.add(new GuiButton(0, 47, 126, 86, 20, "Teleport"));
-		
+
 		Xpos = new GuiTextField(0, this.fontRenderer, this.guiLeft + 38, this.guiTop + 19, 120, 20);
 		Xpos.setMaxStringLength(32767);
 		Xpos.setFocused(true);
 		Xpos.setText("");
-		
+
 		Ypos = new GuiTextField(1, this.fontRenderer, this.guiLeft + 38, this.guiTop + 45, 120, 20);
 		Ypos.setMaxStringLength(32767);
 		Ypos.setFocused(true);
 		Ypos.setText("");
-	
+
 		Zpos = new GuiTextField(2, this.fontRenderer, this.guiLeft + 39, this.guiTop + 70, 120, 20);
 		Zpos.setMaxStringLength(32767);
 		Zpos.setFocused(true);
@@ -123,8 +123,7 @@ public class TpWandGui extends GuiScreen {
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
-		if (button.id == tp.id) 
-		{
+		if (button.id == tp.id) {
 			double X = Double.parseDouble(Xpos.getText());
 			double Y = Double.parseDouble(Ypos.getText());
 			double Z = Double.parseDouble(Zpos.getText());

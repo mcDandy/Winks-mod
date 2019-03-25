@@ -54,39 +54,39 @@ public class MessageTp implements IMessage {
 					Main.logger.log(Level.INFO, "Server recived Teleport button click.");
 					EntityPlayerMP player = ctx.getServerHandler().player;
 					Minecraft mc = Minecraft.getMinecraft();
-					if (player.getHeldItemMainhand().getItem().equals(new ItemStack(ModItems.solwand).getItem())) 
-					{
+					if (player.getHeldItemMainhand().getItem().equals(new ItemStack(ModItems.solwand).getItem())) {
 						if (Y != Double.NaN) { // normal teleport
-							if (player.getHeldItemMainhand().getMaxDamage() - player.getHeldItemMainhand().getItemDamage() < Math.pow(player.getDistance(X, Y, Z), 2)) 
-							{
-								player.getHeldItemMainhand().damageItem((int) Math.pow(player.getDistance(X, Y, Z), 2),player);
+							if (player.getHeldItemMainhand().getMaxDamage()
+									- player.getHeldItemMainhand().getItemDamage() < Math
+											.pow(player.getDistance(X, Y, Z), 2)) {
+								player.getHeldItemMainhand().damageItem((int) Math.pow(player.getDistance(X, Y, Z), 2),
+										player);
 								player.setPositionAndUpdate(X, Y, Z);
-							}
-							else 
-							{
-								player.server.sendMessage(new TextComponentString("NotEnouchEnergy"));//not enough energy
+							} else {
+								player.server.sendMessage(new TextComponentString("NotEnouchEnergy"));// not enough
+																										// energy
 							}
 						} else { // safe teleport - Height is surface height
 
-							if (player.getHeldItemMainhand().getMaxDamage() - player.getHeldItemMainhand().getItemDamage() < Math.pow(player.getDistance(X, 0, Z), 2)) 
-							{
+							if (player.getHeldItemMainhand().getMaxDamage()
+									- player.getHeldItemMainhand().getItemDamage() < Math
+											.pow(player.getDistance(X, 0, Z), 2)) {
 								if (mc.world.getChunk(new BlockPos((int) X, 0, (int) Z)).isLoaded()) {
-									player.getHeldItemMainhand().damageItem((int) Math.pow(player.getDistance(X, 0, Z), 2), player);
+									player.getHeldItemMainhand()
+											.damageItem((int) Math.pow(player.getDistance(X, 0, Z), 2), player);
 									player.setPositionAndUpdate(X, mc.world.getHeight((int) X, (int) Z), Z);
+								} else {
+									player.server.sendMessage(new TextComponentString("ChunckNotLoaded"));// Chunk not
+																											// loaded
 								}
-								else 
-								{
-									player.server.sendMessage(new TextComponentString("ChunckNotLoaded"));//Chunk not loaded	
-								}
-							}
-							else 
-							{
-								player.server.sendMessage(new TextComponentString("NotEnouchEnergy"));//not enough energy	
+							} else {
+								player.server.sendMessage(new TextComponentString("NotEnouchEnergy"));// not enough
+																										// energy
 							}
 						}
-					}
-					else {
-						Main.logger.log(Level.WARNING, "User "+player.getUniqueID()+ " used "+player.getHeldItemMainhand()+" which is unusual");
+					} else {
+						Main.logger.log(Level.WARNING, "User " + player.getUniqueID() + " used "
+								+ player.getHeldItemMainhand() + " which is unusual");
 
 					}
 				}

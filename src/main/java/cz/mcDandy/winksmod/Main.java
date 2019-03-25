@@ -1,6 +1,5 @@
 package cz.mcDandy.winksmod;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import cz.mcDandy.winksmod.capatibilities.MessageFairy;
@@ -36,7 +35,7 @@ public class Main {
 	public void preinit(FMLPreInitializationEvent event) {
 		logger = Logger.getLogger(MODID);
 		proxy.preinit(event);
-        
+
 		NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 		// Packet used to sync the PlayerNumber capability from the server to the client
 		NETWORK.registerMessage(MessageFairy.Handler.class, MessageFairy.class, 0, Side.CLIENT);
