@@ -1,5 +1,7 @@
 package cz.mcDandy.winksmod.GUI;
 
+import java.util.logging.Level;
+
 import org.lwjgl.opengl.GL11;
 
 import cz.mcDandy.winksmod.Main;
@@ -126,6 +128,7 @@ public class TpWandGui extends GuiScreen {
 			double X = Double.parseDouble(Xpos.getText());
 			double Y = Double.parseDouble(Ypos.getText());
 			double Z = Double.parseDouble(Zpos.getText());
+			Main.logger.log(Level.INFO, "Cliend clicked on Teleport button.");
 			Main.NETWORK.sendTo(new MessageTp(X, Y, Z), (EntityPlayerMP) entity);
 			if (entity instanceof EntityLivingBase)
 				entity.setPositionAndUpdate(Integer.parseInt(Xpos.getText().trim()),

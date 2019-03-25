@@ -1,5 +1,8 @@
 package cz.mcDandy.winksmod.GUI;
 
+import java.util.logging.Level;
+
+import cz.mcDandy.winksmod.Main;
 import cz.mcDandy.winksmod.register.ModItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -48,9 +51,11 @@ public class MessageTp implements IMessage {
 			mainThread.addScheduledTask(new Runnable() {
 				@Override
 				public void run() {
+					Main.logger.log(Level.INFO, "Server recived Teleport button click.");
 					EntityPlayerMP player = ctx.getServerHandler().player;
 					Minecraft mc = Minecraft.getMinecraft();
-					if (player.getHeldItemMainhand().getItem().equals(new ItemStack(ModItems.solwand).getItem())) {
+					if (player.getHeldItemMainhand().getItem().equals(new ItemStack(ModItems.solwand).getItem())) 
+					{
 						if (Y != Double.NaN) { // normal teleport
 							if (player.getHeldItemMainhand().getMaxDamage() - player.getHeldItemMainhand().getItemDamage() < Math.pow(player.getDistance(X, Y, Z), 2)) 
 							{
@@ -79,6 +84,10 @@ public class MessageTp implements IMessage {
 								player.server.sendMessage(new TextComponentString("NotEnouchEnergy"));//not enough energy	
 							}
 						}
+					}
+					else {
+						Main.logger.log(Level.WARNING, "User "+player.getUniqueID()+ " used "+player.getHeldItemMainhand()+" which is unusual");
+
 					}
 				}
 			});
