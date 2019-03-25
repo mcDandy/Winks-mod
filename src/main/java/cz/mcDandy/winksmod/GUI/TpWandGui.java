@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -14,7 +15,7 @@ import net.minecraft.world.World;
 public class TpWandGui extends GuiScreen {
 
 	// int x, y, z;
-	EntityPlayerMP entity;
+	EntityPlayer entity;
 	GuiTextField Xpos;
 	GuiTextField Ypos;
 	GuiTextField Zpos;
@@ -24,12 +25,12 @@ public class TpWandGui extends GuiScreen {
 	private int ySize;
 	GuiButton tp;
 
-	public TpWandGui(World world, EntityPlayerMP entity) {
+	public TpWandGui(World world, EntityPlayer playerIn) {
 		super();
 		// this.x = entity.posX;
 		// this.y = entity.posY;
 		// this.z = entity.posZ;
-		this.entity = entity;
+		this.entity = playerIn;
 		this.xSize = 176;
 		this.ySize = 166;
 	}
@@ -62,9 +63,9 @@ public class TpWandGui extends GuiScreen {
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 		try {
 			super.mouseClicked(mouseX, mouseY, mouseButton);
-			Xpos.mouseClicked(mouseX - guiLeft, mouseY - guiTop, mouseButton);
-			Ypos.mouseClicked(mouseX - guiLeft, mouseY - guiTop, mouseButton);
-			Zpos.mouseClicked(mouseX - guiLeft, mouseY - guiTop, mouseButton);
+			Xpos.mouseClicked(mouseX, mouseY, mouseButton);
+			Ypos.mouseClicked(mouseX, mouseY, mouseButton);
+			Zpos.mouseClicked(mouseX, mouseY, mouseButton);
 		} catch (Exception ignored) {
 		}
 	}
@@ -125,7 +126,7 @@ public class TpWandGui extends GuiScreen {
 			double X = Double.parseDouble(Xpos.getText());
 			double Y = Double.parseDouble(Ypos.getText());
 			double Z = Double.parseDouble(Zpos.getText());
-			Main.NETWORK.sendTo(new MessageTp(X, Y, Z), entity);
+			Main.NETWORK.sendTo(new MessageTp(X, Y, Z), (EntityPlayerMP) entity);
 			if (entity instanceof EntityLivingBase)
 				entity.setPositionAndUpdate(Integer.parseInt(Xpos.getText().trim()),
 						Integer.parseInt(Ypos.getText().trim()), Integer.parseInt(Zpos.getText().trim()));
