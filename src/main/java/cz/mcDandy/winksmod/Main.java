@@ -1,11 +1,9 @@
 package cz.mcDandy.winksmod;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.logging.log4j.util.Constants;
-
 import cz.mcDandy.winksmod.capatibilities.MessageFairy;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -38,7 +36,7 @@ public class Main {
 	public void preinit(FMLPreInitializationEvent event) {
 		logger = Logger.getLogger(MODID);
 		proxy.preinit(event);
-
+        
 		NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 		// Packet used to sync the PlayerNumber capability from the server to the client
 		NETWORK.registerMessage(MessageFairy.Handler.class, MessageFairy.class, 0, Side.CLIENT);

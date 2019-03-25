@@ -55,7 +55,7 @@ public class TpWandGui extends GuiScreen {
 		Xpos.drawTextBox();
 		Ypos.drawTextBox();
 		Zpos.drawTextBox();
-		tp.drawButton(mc, mouseX, mouseY, partialTicks);
+		this.buttonList.get(0).drawButton(mc, mouseX, mouseY, partialTicks);
 		this.fontRenderer.drawString("X:", k + 19, l + 25, -16777216);
 		this.fontRenderer.drawString("Y:", k + 19, l + 50, -16777216);
 		this.fontRenderer.drawString("Z:", k + 19, l + 75, -16777216);
@@ -102,19 +102,19 @@ public class TpWandGui extends GuiScreen {
 		super.initGui();
 		this.guiLeft = (this.width - 176) / 2;
 		this.guiTop = (this.height - 166) / 2;
-		tp = new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport");
+		this.buttonList.add(new GuiButton(0, 47, 126, 86, 20, "Teleport"));
+		
 		Xpos = new GuiTextField(0, this.fontRenderer, this.guiLeft + 38, this.guiTop + 19, 120, 20);
-
 		Xpos.setMaxStringLength(32767);
 		Xpos.setFocused(true);
 		Xpos.setText("");
+		
 		Ypos = new GuiTextField(1, this.fontRenderer, this.guiLeft + 38, this.guiTop + 45, 120, 20);
-
 		Ypos.setMaxStringLength(32767);
 		Ypos.setFocused(true);
 		Ypos.setText("");
+	
 		Zpos = new GuiTextField(2, this.fontRenderer, this.guiLeft + 39, this.guiTop + 70, 120, 20);
-
 		Zpos.setMaxStringLength(32767);
 		Zpos.setFocused(true);
 		Zpos.setText("");
@@ -133,7 +133,6 @@ public class TpWandGui extends GuiScreen {
 			if (entity instanceof EntityLivingBase)
 				entity.setPositionAndUpdate(Integer.parseInt(Xpos.getText().trim()),
 						Integer.parseInt(Ypos.getText().trim()), Integer.parseInt(Zpos.getText().trim()));
-
 		}
 	}
 
