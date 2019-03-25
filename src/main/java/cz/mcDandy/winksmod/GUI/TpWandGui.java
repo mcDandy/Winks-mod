@@ -120,7 +120,7 @@ public class TpWandGui extends GuiScreen {
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
-		Main.logger.log(Level.INFO, "Cliend clicked on button: " + button.id);
+	//	Main.logger.log(Level.INFO, "Cliend clicked on button: " + button.id);
 		if (button.id == this.buttonList.get(0).id) {
 			double X = Double.parseDouble(Xpos.getText());
 			double Y = Double.parseDouble(Ypos.getText());
