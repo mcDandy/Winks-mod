@@ -39,11 +39,6 @@ public class TpWandGui extends GuiScreen {
 
 	private static final ResourceLocation texture = new ResourceLocation("tpwandgui.png");
 
-	/*
-	 * @Override public void drawScreen(int mouseX, int mouseY, float partialTicks)
-	 * { this.drawDefaultBackground(); super.drawScreen(mouseX, mouseY,
-	 * partialTicks); // this.renderHoveredToolTip(mouseX, mouseY); }
-	 */
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -69,6 +64,7 @@ public class TpWandGui extends GuiScreen {
 			Ypos.mouseClicked(mouseX, mouseY, mouseButton);
 			Zpos.mouseClicked(mouseX, mouseY, mouseButton);
 		} catch (Exception ignored) {
+			Main.logger.log(Level.WARNING, ignored.toString());
 		}
 	}
 
@@ -88,6 +84,7 @@ public class TpWandGui extends GuiScreen {
 			Ypos.textboxKeyTyped(typedChar, keyCode);
 			Zpos.textboxKeyTyped(typedChar, keyCode);
 		} catch (Exception ignored) {
+			Main.logger.log(Level.WARNING, ignored.toString());
 		}
 	}
 
@@ -102,7 +99,7 @@ public class TpWandGui extends GuiScreen {
 		super.initGui();
 		this.guiLeft = (this.width - 176) / 2;
 		this.guiTop = (this.height - 166) / 2;
-		this.buttonList.add(new GuiButton(0, 47, 126, 86, 20, "Teleport"));
+		this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop +  126, 86, 20, "Teleport"));
 
 		Xpos = new GuiTextField(0, this.fontRenderer, this.guiLeft + 38, this.guiTop + 19, 120, 20);
 		Xpos.setMaxStringLength(32767);
@@ -123,16 +120,14 @@ public class TpWandGui extends GuiScreen {
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
-		if (button.id == tp.id) {
+		Main.logger.log(Level.INFO, "Cliend clicked on button: " + button.id);
+		if (button.id == this.buttonList.get(0).id) {
 			double X = Double.parseDouble(Xpos.getText());
 			double Y = Double.parseDouble(Ypos.getText());
 			double Z = Double.parseDouble(Zpos.getText());
 			Main.logger.log(Level.INFO, "Cliend clicked on Teleport button.");
 			Main.NETWORK.sendTo(new MessageTp(X, Y, Z), (EntityPlayerMP) entity);
-			if (entity instanceof EntityLivingBase)
-				entity.setPositionAndUpdate(Integer.parseInt(Xpos.getText().trim()),
-						Integer.parseInt(Ypos.getText().trim()), Integer.parseInt(Zpos.getText().trim()));
-		}
+					}
 	}
 
 	@Override
