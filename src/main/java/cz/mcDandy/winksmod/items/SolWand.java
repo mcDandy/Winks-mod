@@ -4,6 +4,7 @@ import cz.mcDandy.winksmod.GUI.TpWandGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;

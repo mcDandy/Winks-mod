@@ -99,7 +99,7 @@ public class TpWandGui extends GuiScreen {
 		super.initGui();
 		this.guiLeft = (this.width - 176) / 2;
 		this.guiTop = (this.height - 166) / 2;
-		this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop +  126, 86, 20, "Teleport"));
+		this.buttonList.add(new GuiButton(0, this.guiLeft + 47, this.guiTop + 126, 86, 20, "Teleport"));
 
 		Xpos = new GuiTextField(0, this.fontRenderer, this.guiLeft + 38, this.guiTop + 19, 120, 20);
 		Xpos.setMaxStringLength(32767);
@@ -120,14 +120,14 @@ public class TpWandGui extends GuiScreen {
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
-	//	Main.logger.log(Level.INFO, "Cliend clicked on button: " + button.id);
+		// Main.logger.log(Level.INFO, "Cliend clicked on button: " + button.id);
 		if (button.id == this.buttonList.get(0).id) {
 			double X = Double.parseDouble(Xpos.getText());
 			double Y = Double.parseDouble(Ypos.getText());
 			double Z = Double.parseDouble(Zpos.getText());
 			Main.logger.log(Level.INFO, "Cliend clicked on Teleport button.");
 			Main.NETWORK.sendTo(new MessageTp(X, Y, Z), (EntityPlayerMP) entity);
-					}
+		}
 	}
 
 	@Override
