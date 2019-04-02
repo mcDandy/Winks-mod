@@ -129,7 +129,7 @@ public class TpWandGui extends GuiScreen {
 			double Y = Double.parseDouble(Ypos.getText());
 			double Z = Double.parseDouble(Zpos.getText());
 			Main.logger.log(Level.INFO, "Cliend clicked on Teleport button.");
-			Main.NETWORK.sendTo(new MessageTp(X, Y, Z), (EntityPlayerMP) entity);
+			Main.NETWORK.sendToServer(new MessageTp(X, Y, Z));
 		}
 	}
 

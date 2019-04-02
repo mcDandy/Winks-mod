@@ -16,9 +16,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageTp implements IMessage {
-	private double X;
-	private double Y;
-	private double Z;
+	private static double X;
+	private static double Y;
+	private static double Z;
 
 	public MessageTp() {
 	}
@@ -44,7 +44,7 @@ public class MessageTp implements IMessage {
 		buf.writeDouble(Z);
 	}
 
-	public class Handler implements IMessageHandler<MessageTp, IMessage> {
+	public static class Handler implements IMessageHandler<MessageTp, IMessage> {
 		@Override
 		public IMessage onMessage(final MessageTp message, MessageContext ctx) {
 			IThreadListener mainThread = Minecraft.getMinecraft();
