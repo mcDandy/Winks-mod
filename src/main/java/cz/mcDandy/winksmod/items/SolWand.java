@@ -20,9 +20,9 @@ public class SolWand extends ItemBase {
 		super(unlocalizedName, tab);
 
 		this.setMaxStackSize(1);
-		this.setMaxDamage(1000);
+		this.setMaxDamage(10000);
 
-		isDamageable();
+		//isDamageable();
 		// getDurabilityForDisplay();
 		// TODO Auto-generated constructor stub
 	}
