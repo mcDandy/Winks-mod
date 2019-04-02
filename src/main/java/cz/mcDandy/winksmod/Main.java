@@ -2,6 +2,7 @@ package cz.mcDandy.winksmod;
 
 import java.util.logging.Logger;
 
+import cz.mcDandy.winksmod.GUI.MessageTp;
 import cz.mcDandy.winksmod.capatibilities.MessageFairy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -39,6 +40,7 @@ public class Main {
 		NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 		// Packet used to sync the PlayerNumber capability from the server to the client
 		NETWORK.registerMessage(MessageFairy.Handler.class, MessageFairy.class, 0, Side.CLIENT);
+		NETWORK.registerMessage(MessageTp.Handler.class, MessageTp.class, 1, Side.CLIENT);
 
 	}
 
