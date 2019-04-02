@@ -80,11 +80,14 @@ public class TpWandGui extends GuiScreen {
 	protected void keyTyped(char typedChar, int keyCode) {
 		try {
 			super.keyTyped(typedChar, keyCode);
-			Xpos.textboxKeyTyped(typedChar, keyCode);
-			Ypos.textboxKeyTyped(typedChar, keyCode);
-			Zpos.textboxKeyTyped(typedChar, keyCode);
+			if(Character.isDigit(typedChar)||typedChar=='\b'||keyCode==127||keyCode==37||keyCode==39)
+			{
+				Xpos.textboxKeyTyped(typedChar, keyCode);
+				Ypos.textboxKeyTyped(typedChar, keyCode);
+				Zpos.textboxKeyTyped(typedChar, keyCode);
+			}
 		} catch (Exception ignored) {
-			Main.logger.log(Level.WARNING, ignored.toString());
+			Main.logger.log(Level.SEVERE, ignored.toString());
 		}
 	}
 
