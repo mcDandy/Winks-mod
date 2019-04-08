@@ -17,7 +17,6 @@ public class ModEntities {
 		int id = 1;
 		EntityRegistry.registerModEntity(new ResourceLocation(Main.MODID, "Entities"), EntityFairyGeneric.class,
 				"FairyGeneric", id++, Main.instance, 64, 3, true, 0xffffff, 0x000000);
-
 		// We want our mob to spawn in Plains and ice plains biomes. If you don't add
 		// this then it will not spawn automatically
 		// but you can of course still make it spawn manually
