@@ -1,11 +1,9 @@
 package cz.mcDandy.winksmod.GUI;
 
-<<<<<<< HEAD
 import org.lwjgl.input.Keyboard;
-=======
+
 import java.util.logging.Level;
 
->>>>>>> master
 import org.lwjgl.opengl.GL11;
 
 import cz.mcDandy.winksmod.Main;
@@ -33,17 +31,16 @@ public class TpWandGui extends GuiScreen {
 
 	public TpWandGui(World world, EntityPlayer playerIn) {
 		super();
-<<<<<<< HEAD
 		this.x = entity.posX;
 		this.y = entity.posY;
 		this.z = entity.posZ;
 	  	this.entity = entity;
-=======
+
 		// this.x = entity.posX;
 		// this.y = entity.posY;
 		// this.z = entity.posZ;
 		this.entity = playerIn;
->>>>>>> master
+
 		this.xSize = 176;
 		this.ySize = 166;
 	}
@@ -74,32 +71,22 @@ public class TpWandGui extends GuiScreen {
 		Zpos.setFocused(true);
 		Zpos.setText("");
 
-<<<<<<< HEAD
+
 	}
+
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		
-=======
-	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
->>>>>>> master
+
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.drawDefaultBackground();
 	//	this.mc.renderEngine.bindTexture(texture);
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
-<<<<<<< HEAD
+
 	//	this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 		zLevel = 100.0F;
 
-		Xpos.drawTextBox();
-		Ypos.drawTextBox();
-		Zpos.drawTextBox();
-		this.fontRenderer.drawString("X:", guiLeft+19, guiTop+20, -16777216);
-		this.fontRenderer.drawString("Y:", guiLeft+19, guiTop+51, -16777216);
-		this.fontRenderer.drawString("Z:", guiLeft+19, guiTop+75, -16777216);
-		 super.drawScreen(mouseX, mouseY, partialTicks);
-=======
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 		Xpos.drawTextBox();
 		Ypos.drawTextBox();
@@ -108,8 +95,8 @@ public class TpWandGui extends GuiScreen {
 		this.fontRenderer.drawString("X:", k + 19, l + 25, -16777216);
 		this.fontRenderer.drawString("Y:", k + 19, l + 50, -16777216);
 		this.fontRenderer.drawString("Z:", k + 19, l + 75, -16777216);
->>>>>>> master
-	}
+
+		 super.drawScreen(mouseX, mouseY, partialTicks);	}
 
 	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
@@ -152,9 +139,6 @@ public class TpWandGui extends GuiScreen {
 		 Keyboard.enableRepeatEvents(false);
 	}
 
-<<<<<<< HEAD
-
-=======
 	@Override
 	public void initGui() {
 		super.initGui();
@@ -169,16 +153,15 @@ public class TpWandGui extends GuiScreen {
 
 		Ypos = new GuiTextField(1, this.fontRenderer, this.guiLeft + 38, this.guiTop + 45, 120, 20);
 		Ypos.setMaxStringLength(32767);
-		Ypos.setFocused(true);
+//		Ypos.setFocused(true);
 		Ypos.setText("");
 
 		Zpos = new GuiTextField(2, this.fontRenderer, this.guiLeft + 39, this.guiTop + 70, 120, 20);
 		Zpos.setMaxStringLength(32767);
-		Zpos.setFocused(true);
+//		Zpos.setFocused(true);
 		Zpos.setText("");
 
 	}
->>>>>>> master
 
 	@Override
 	protected void actionPerformed(GuiButton button) {
