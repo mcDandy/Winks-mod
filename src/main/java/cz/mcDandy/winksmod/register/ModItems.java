@@ -1,9 +1,9 @@
 package cz.mcDandy.winksmod.register;
 
-import cz.mcDandy.winksmod.Items.Fpowder;
-import cz.mcDandy.winksmod.Items.MagicDiamond;
-import cz.mcDandy.winksmod.Items.SolWand;
-import cz.mcDandy.winksmod.Items.Wings;
+import cz.mcDandy.winksmod.items.Fpowder;
+import cz.mcDandy.winksmod.items.MagicDiamond;
+import cz.mcDandy.winksmod.items.SolWand;
+import cz.mcDandy.winksmod.items.Wings;
 import net.minecraft.item.Item;
 
 public class ModItems {

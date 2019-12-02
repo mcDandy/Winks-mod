@@ -1,6 +1,9 @@
 package cz.mcDandy.winksmod;
 
-import cz.mcDandy.winksmod.Capatibilities.MessageFairy;
+import java.util.logging.Logger;
+
+import cz.mcDandy.winksmod.GUI.MessageTp;
+import cz.mcDandy.winksmod.capatibilities.MessageFairy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -13,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(modid = Main.MODID, version = Main.VERSION)
 public class Main {
+	public static Logger logger;
 	public static final String MODID = "winksmod";
 	public static final String VERSION = "1.0";
 	public static Main instance;
@@ -30,12 +34,13 @@ public class Main {
 
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
-
+		logger = Logger.getLogger(MODID);
 		proxy.preinit(event);
 
 		NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 		// Packet used to sync the PlayerNumber capability from the server to the client
 		NETWORK.registerMessage(MessageFairy.Handler.class, MessageFairy.class, 0, Side.CLIENT);
+		NETWORK.registerMessage(MessageTp.Handler.class, MessageTp.class, 1, Side.CLIENT);
 
 	}
 

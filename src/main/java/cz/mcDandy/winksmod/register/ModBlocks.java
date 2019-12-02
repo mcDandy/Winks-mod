@@ -1,6 +1,6 @@
 package cz.mcDandy.winksmod.register;
 
-import cz.mcDandy.winksmod.Blocks.fp_Block;
+import cz.mcDandy.winksmod.blocks.fp_Block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
