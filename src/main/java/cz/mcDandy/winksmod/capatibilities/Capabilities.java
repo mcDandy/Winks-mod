@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.capatibilities;
+package cz.mcDandy.winksmod.Capatibilities;
 
 import java.util.concurrent.Callable;
 

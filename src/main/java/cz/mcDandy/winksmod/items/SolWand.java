@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.items;
+package cz.mcDandy.winksmod.Items;
 
 import cz.mcDandy.winksmod.GUI.TpWandGui;
 import net.minecraft.client.Minecraft;
@@ -7,20 +7,21 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class SolWand extends ItemBase {
+public class SolWand extends Item {
 	// ItemStack itemstack = new ItemStack(ModItems.solwand);
 
-	public SolWand(String unlocalizedName, CreativeTabs tab, int stack) {
-		super(unlocalizedName, tab);
+	public SolWand(String unlocalizedName, Properties properities) {
+		super(properities);
 
-		this.setMaxStackSize(1);
-		this.setMaxDamage(10000);
+
 
 		//isDamageable();
 		// getDurabilityForDisplay();

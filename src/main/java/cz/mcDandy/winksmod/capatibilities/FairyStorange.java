@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.capatibilities;
+package cz.mcDandy.winksmod.Capatibilities;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;

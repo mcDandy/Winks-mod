@@ -1,17 +1,17 @@
-package cz.mcDandy.winksmod.items;
+package cz.mcDandy.winksmod.Items;
 
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class MagicDiamond extends ItemBase {
+public class MagicDiamond extends Item {
 
 	ItemStack itemstack;
 
-	public MagicDiamond(String unlocalizedName, CreativeTabs tab, int maxStack) {
-		super(unlocalizedName, tab);
+	public MagicDiamond(Properties properities) {
+		super(properities);
 
-		this.maxStackSize = maxStack;
-		this.setMaxDamage(100);
+		properities.maxDamage(100);
+		properities.maxStackSize(1);
 		// this.setDamage(itemstack, 99);
 
 		showDurabilityBar(itemstack);

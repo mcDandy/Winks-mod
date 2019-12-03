@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.blocks;
+package cz.mcDandy.winksmod.Blocks;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;

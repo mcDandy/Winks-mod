@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.capatibilities;
+package cz.mcDandy.winksmod.Capatibilities;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;

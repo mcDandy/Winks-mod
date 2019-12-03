@@ -1,6 +1,6 @@
 package cz.mcDandy.winksmod;
 
-import cz.mcDandy.winksmod.entities.ModEntities;
+import cz.mcDandy.winksmod.Entities.ModEntities;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 

@@ -3,7 +3,7 @@ package cz.mcDandy.winksmod.GUI;
 import java.util.logging.Level;
 
 import cz.mcDandy.winksmod.Main;
-import cz.mcDandy.winksmod.register.ModItems;
+import cz.mcDandy.winksmod.Register.ModItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;

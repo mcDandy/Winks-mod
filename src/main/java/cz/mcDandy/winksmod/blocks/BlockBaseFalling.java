@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.blocks;
+package cz.mcDandy.winksmod.Blocks;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;

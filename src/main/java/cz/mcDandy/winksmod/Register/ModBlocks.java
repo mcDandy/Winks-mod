@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.register;
+package cz.mcDandy.winksmod.Register;
 
 import cz.mcDandy.winksmod.blocks.fp_Block;
 import net.minecraft.block.Block;
