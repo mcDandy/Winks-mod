@@ -24,7 +24,7 @@ class Event{
 	public static void onRegisterBlocks(final RegistryEvent.Register<Block> event) {
 		// Register all your blocks inside this registerAll call
 		event.getRegistry().registerAll(
-				setup(new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(3.0F, 3.0F)), "fpBlock")
+				setup(new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(3.0F, 3.0F)), "fp_block")
 				
 				);
 	//	LOGGER.debug("Registered Blocks");
