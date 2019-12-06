@@ -1,10 +1,13 @@
 package cz.mcDandy.winksmod;
 
+import java.awt.Color;
+
 import javax.annotation.Nonnull;
 
 import com.google.common.base.Preconditions;
 
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
+import cz.mcDandy.winksmod.Blocks.Fp_block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
@@ -24,7 +27,7 @@ class Event{
 	public static void onRegisterBlocks(final RegistryEvent.Register<Block> event) {
 		// Register all your blocks inside this registerAll call
 		event.getRegistry().registerAll(
-				setup(new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(3.0F, 3.0F)), "fp_block")
+				setup(new Fp_block(Color.MAGENTA.getRGB(), Block.Properties.create(Material.SAND).hardnessAndResistance(3.0F, 3.0F)), "fp_block")
 				
 				);
 	//	LOGGER.debug("Registered Blocks");
