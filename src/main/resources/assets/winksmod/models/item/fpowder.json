@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "winksmod:items/fpowder"
+		"layer0": "winksmod:item/fpowder"
 	}
 }
