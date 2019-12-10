@@ -1,7 +1,7 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "blocks/hardened_clay_stained_white"
+        "particle": "minecraft:white_concreate"
     },
     "elements": [
         {
