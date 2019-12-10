@@ -8,6 +8,7 @@ import com.google.common.base.Preconditions;
 
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import cz.mcDandy.winksmod.Blocks.Fp_block;
+import cz.mcDandy.winksmod.Items.SolariaWand;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
@@ -42,7 +43,8 @@ class Event{
 		final IForgeRegistry<Item> registry = event.getRegistry();
 		registry.registerAll(
 				// This is a very simple Item. It has no special properties except for being on our creative tab.
-				setup(new Item(new Item.Properties().group(/*ModItemGroups.WMOD*/ItemGroup.DECORATIONS)), "fpowder")
+				setup(new Item(new Item.Properties().group(/*ModItemGroups.WMOD*/ItemGroup.DECORATIONS)), "fpowder"),
+				setup(new SolariaWand(new Item.Properties().group(/*ModItemGroups.WMOD*/ItemGroup.DECORATIONS)), "solaria_wand")
 		);
 
 		// We need to go over the entire registry so that we include any potential Registry Overrides
