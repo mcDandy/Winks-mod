@@ -1,7 +1,38 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "minecraft:white_concreate"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
     },
     "elements": [
         {
@@ -253,13 +284,13 @@
         },
         {
             "name": "Handle",
-            "from": [ 7.5, -24.0, 7.5 ], 
+            "from": [ 7.5, -30.0, 7.5 ], 
             "to": [ 8.5, 2.0, 8.5 ], 
             "faces": {
-                "north": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 26.0 ] },
-                "east": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 26.0 ] },
-                "south": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 26.0 ] },
-                "west": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 26.0 ] },
+                "north": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 32.0 ] },
+                "east": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 32.0 ] },
+                "south": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 32.0 ] },
+                "west": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 32.0 ] },
                 "up": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
                 "down": { "texture": "#-1", "uv": [ 0.0, 0.0, 1.0, 1.0 ] }
             }
