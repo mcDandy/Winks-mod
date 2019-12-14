@@ -6,4 +6,5 @@ import net.minecraftforge.fml.common.Mod;
 public class Main {
 	public static final String MODID = "winksmod";
 	public static Main instance;
-	}
+
+}
