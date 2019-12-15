@@ -1,6 +1,7 @@
 package cz.mcDandy.winksmod;
 
 import java.awt.Color;
+import cz.mcDandy.winksmod.Main;
 
 import javax.annotation.Nonnull;
 
@@ -81,7 +82,7 @@ class Event {
 			// Setup the new BlockItem with the block's registry name and register it
 			registry.register(setup(blockItem, blockRegistryName));
 		}
-		// LOGGER.debug("Registered Items");
+		 Main.LOGGER.info("Registered Items");
 	}
 
 	@Nonnull
