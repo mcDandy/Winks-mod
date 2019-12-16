@@ -31,12 +31,15 @@ public class SolariaWand extends Item {
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
 		super.onPlayerStoppedUsing(stack, worldIn, entityLiving, timeLeft);
-		Main.LOGGER.info("Right clicked with SolariaWand");
+		Main.LOGGER.info("Loook vector:" +entityLiving.getLookVec());
 		SunSpell s = new SunSpell(worldIn, entityLiving, entityLiving.getLookVec().getX() * speed,
 				entityLiving.getLookVec().getY() * speed, entityLiving.getLookVec().getZ() * speed);
-		s.posX = entityLiving.posX + s.getMotion().x * 4.0D;
+	//	s.posX = entityLiving.posX + s.getMotion().x * 4.0D;
 		s.posY = entityLiving.posY + entityLiving.getEyeHeight();
-		s.posZ = entityLiving.posZ + s.getMotion().z * 4.0D;
+	//	s.posZ = entityLiving.posZ + s.getMotion().z * 4.0D;
+		s.accelerationX = entityLiving.getLookVec().x;
+		s.accelerationY = entityLiving.getLookVec().y;
+		s.accelerationZ = entityLiving.getLookVec().z;
 		worldIn.addEntity(s);
 	}
 
