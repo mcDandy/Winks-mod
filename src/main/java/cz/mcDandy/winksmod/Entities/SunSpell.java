@@ -1,11 +1,13 @@
 package cz.mcDandy.winksmod.Entities;
 
+import cz.mcDandy.winksmod.Items.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractFireballEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
@@ -50,7 +52,7 @@ public class SunSpell extends ProjectileItemEntity {
 	@Override
 	protected Item getDefaultItem() {
 		// TODO Auto-generated method stub
-		return null;
+		return ModItems.SOLAR_CORE;
 	}
 
 }
