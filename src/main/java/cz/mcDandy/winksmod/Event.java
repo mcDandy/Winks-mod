@@ -1,7 +1,6 @@
 package cz.mcDandy.winksmod;
 
 import java.awt.Color;
-import cz.mcDandy.winksmod.Main;
 
 import javax.annotation.Nonnull;
 
@@ -9,10 +8,12 @@ import com.google.common.base.Preconditions;
 
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import cz.mcDandy.winksmod.Blocks.Fp_block;
+import cz.mcDandy.winksmod.Entities.ModEntities;
 import cz.mcDandy.winksmod.Items.ModItems;
-import cz.mcDandy.winksmod.Items.SolariaWand;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -49,7 +50,7 @@ class Event {
 				ModItems.Items
 		// We need to go over the entire registry so that we include any potential
 		// Registry Overrides
-				);
+		);
 		for (final Block block : ForgeRegistries.BLOCKS.getValues()) {
 
 			final ResourceLocation blockRegistryName = block.getRegistryName();
@@ -81,8 +82,13 @@ class Event {
 			// Setup the new BlockItem with the block's registry name and register it
 			registry.register(setup(blockItem, blockRegistryName));
 		}
-		 Main.LOGGER.info("Registered Items");
+		Main.LOGGER.info("Registered Items");
 	}
+	   @SubscribeEvent
+	    public static void register(RegistryEvent.Register<EntityType<?>> e) {
+	        IForgeRegistry<EntityType<?>> registry = e.getRegistry();
+        registry.registerAll(ModEntities.Entities);
+	    }
 
 	@Nonnull
 	private static <T extends IForgeRegistryEntry<T>> T setup(@Nonnull final T entry, @Nonnull final String name) {
@@ -103,5 +109,6 @@ class Event {
 		entry.setRegistryName(registryName);
 		return entry;
 	}
+	
 
 }
