@@ -36,10 +36,9 @@ public class SolariaWand extends Item {
 		s.posX = entityLiving.posX + s.getMotion().x * 4.0D;
 		s.posY = entityLiving.posY + entityLiving.getEyeHeight();
 		s.posZ = entityLiving.posZ + s.getMotion().z * 4.0D;
-		// s.accelerationX = entityLiving.getLookVec().x;
-		// s.accelerationY = entityLiving.getLookVec().y;
-		// s.accelerationZ = entityLiving.getLookVec().z;
-		s.shoot(entityLiving, entityLiving.rotationPitch, entityLiving.rotationYaw, 0, speed, 0);
+		 s.accelerationX = entityLiving.getLookVec().x;
+		 s.accelerationY = entityLiving.getLookVec().y;
+		 s.accelerationZ = entityLiving.getLookVec().z;
 		worldIn.addEntity(s);
 	}
 
