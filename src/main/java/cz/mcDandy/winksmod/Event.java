@@ -20,6 +20,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
@@ -88,16 +89,19 @@ class Event {
 		}
 		Main.LOGGER.info("Registered Items");
 	}
-	   @SubscribeEvent
-	    public static void register(RegistryEvent.Register<EntityType<?>> e) {
-	        IForgeRegistry<EntityType<?>> registry = e.getRegistry();
-        registry.registerAll(ModEntities.Entities);
-	    }
-	  @SubscribeEvent
-	   public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
-	        event.getRegistry().register(ModDimensions.OMEGA);
-	        DimensionManager.registerDimension(ModDimensions.OMEGA_RES, ModDimensions.OMEGA, null, true);
-	    }
+
+	@SubscribeEvent
+	public static void register(RegistryEvent.Register<EntityType<?>> e) {
+		IForgeRegistry<EntityType<?>> registry = e.getRegistry();
+		registry.registerAll(ModEntities.Entities);
+	}
+
+	@SubscribeEvent
+	public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
+		if (DimensionType.byName(ModDimensions.OMEGA_RES) == null) {
+			DimensionManager.registerDimension(ModDimensions.OMEGA_RES, ModDimensions.OMEGA, null, false);
+		}
+	}
 
 	@Nonnull
 	private static <T extends IForgeRegistryEntry<T>> T setup(@Nonnull final T entry, @Nonnull final String name) {
@@ -118,6 +122,5 @@ class Event {
 		entry.setRegistryName(registryName);
 		return entry;
 	}
-	
 
 }
