@@ -8,6 +8,8 @@ import com.google.common.base.Preconditions;
 
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import cz.mcDandy.winksmod.Blocks.Fp_block;
+import cz.mcDandy.winksmod.Dimensions.DimOmega;
+import cz.mcDandy.winksmod.Dimensions.ModDimensions;
 import cz.mcDandy.winksmod.Entities.ModEntities;
 import cz.mcDandy.winksmod.Items.ModItems;
 import net.minecraft.block.Block;
@@ -18,6 +20,8 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -88,6 +92,11 @@ class Event {
 	    public static void register(RegistryEvent.Register<EntityType<?>> e) {
 	        IForgeRegistry<EntityType<?>> registry = e.getRegistry();
         registry.registerAll(ModEntities.Entities);
+	    }
+	  @SubscribeEvent
+	   public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
+	        event.getRegistry().register(ModDimensions.OMEGA);
+	        DimensionManager.registerDimension(ModDimensions.OMEGA_RES, ModDimensions.OMEGA, null, true);
 	    }
 
 	@Nonnull
