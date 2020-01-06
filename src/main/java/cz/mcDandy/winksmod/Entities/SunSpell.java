@@ -26,8 +26,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class SunSpell extends DamagingProjectileEntity {
 	public int explosionPower = 1;
 	public Entity thrower;
-	   public SunSpell(EntityType<? extends DamagingProjectileEntity> p_i50171_1_, World p_i50171_2_) {
-		      super(p_i50171_1_, p_i50171_2_);
+	   public SunSpell(EntityType<? extends DamagingProjectileEntity> entityIn, World worldIn) {
+		      super(entityIn, worldIn);
 		   }
 
 		   @OnlyIn(Dist.CLIENT)
@@ -43,7 +43,7 @@ public class SunSpell extends DamagingProjectileEntity {
 		    * Called when this EntityFireball hits a block or entity.
 		    */
 		   protected void onImpact(RayTraceResult result) {
-		      if (result.getType() != RayTraceResult.Type.ENTITY || !((EntityRayTraceResult)result).getEntity().isEntityEqual(this.shootingEntity)) {
+		      if (result.getType() == RayTraceResult.Type.BLOCK) {
 		         if (!this.world.isRemote) {
 		     /*       List<LivingEntity> list = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(4.0D, 2.0D, 4.0D));
 		            AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.world, this.posX, this.posY, this.posZ);
@@ -66,10 +66,17 @@ public class SunSpell extends DamagingProjectileEntity {
 		            this.world.playEvent(2006, new BlockPos(this.posX, this.posY, this.posZ), 0);
 		            this.world.addEntity(areaeffectcloudentity);
 		         */
+		        	 
 		        	 this.remove();
 		         }
-
+		         if (result.getType() == RayTraceResult.Type.ENTITY) {
+			         if (!this.world.isRemote) {
+			        	 
+			        	 this.remove();
+			         }
+		         }
 		      }
+		      
 		   }
 
 		   /**
