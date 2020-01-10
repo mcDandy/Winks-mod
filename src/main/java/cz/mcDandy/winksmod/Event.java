@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 
 import com.google.common.base.Preconditions;
 
+import cz.mcDandy.winksmod.Dimensions.Biomes.ModBiomes;
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import cz.mcDandy.winksmod.Blocks.Fp_block;
 import cz.mcDandy.winksmod.Dimensions.DimOmega;
@@ -20,6 +21,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
@@ -99,7 +101,13 @@ class Event {
 	@SubscribeEvent
 	public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
 		if (DimensionType.byName(ModDimensions.OMEGA_RES) == null) {
-			DimensionManager.registerDimension(ModDimensions.OMEGA_RES, ModDimensions.OMEGA, null, false);
+			event.getRegistry().registerAll(ModDimensions.OMEGA);
+		}
+	}
+	@SubscribeEvent
+	public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
+		if (DimensionType.byName(ModDimensions.OMEGA_RES) == null) {
+			event.getRegistry().registerAll(ModBiomes.BIOMES);
 		}
 	}
 

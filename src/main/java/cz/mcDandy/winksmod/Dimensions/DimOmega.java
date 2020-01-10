@@ -5,6 +5,7 @@ package cz.mcDandy.winksmod.Dimensions;
 
 import javax.annotation.Nullable;
 
+import cz.mcDandy.winksmod.Dimensions.Biomes.ModBiomes;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -24,8 +25,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class DimOmega extends Dimension {
 	public DimOmega(World worldIn, DimensionType typeIn) {
 		super(worldIn, typeIn);
-		this.doesWaterVaporize = false;
-		this.nether = false;
 	}
 
 	/**
@@ -33,7 +32,7 @@ public class DimOmega extends Dimension {
 	 */
 	@OnlyIn(Dist.CLIENT)
 	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
-		return new Vec3d((double) 0.2F, (double) 0.03F, (double) 0.03F);
+		return new Vec3d((double) 0.03F, (double) 0.03F, (double) 0.2F);
 	}
 
 	/**
@@ -54,8 +53,7 @@ public class DimOmega extends Dimension {
 		nethergensettings.setDefaultBlock(Blocks.PACKED_ICE.getDefaultState());
 		nethergensettings.setDefaultFluid(Blocks.WATER.getDefaultState());
 		return ChunkGeneratorType.CAVES.create(this.world,
-				BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(Biomes.NETHER)),
-				nethergensettings);
+				BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings().setBiome(ModBiomes.OMEGA_BIOME)), nethergensettings);
 	}
 
 	/**
