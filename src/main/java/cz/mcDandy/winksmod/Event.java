@@ -91,6 +91,14 @@ class Event {
 		}
 		Main.LOGGER.info("Registered Items");
 	}
+	@SubscribeEvent
+	public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
+		event.getRegistry().registerAll(ModDimensions.OMEGA);
+	}
+	@SubscribeEvent
+	public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
+		event.getRegistry().registerAll(ModBiomes.BIOMES);
+	}
 
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<EntityType<?>> e) {
@@ -98,14 +106,6 @@ class Event {
 		registry.registerAll(ModEntities.Entities);
 	}
 
-	@SubscribeEvent
-	public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
-			event.getRegistry().registerAll(ModDimensions.OMEGA);
-	}
-	@SubscribeEvent
-	public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
-		event.getRegistry().registerAll(ModBiomes.BIOMES);
-	}
 
 	@Nonnull
 	private static <T extends IForgeRegistryEntry<T>> T setup(@Nonnull final T entry, @Nonnull final String name) {
