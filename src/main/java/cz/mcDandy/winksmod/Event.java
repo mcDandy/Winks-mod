@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 
 import com.google.common.base.Preconditions;
 
+import cz.mcDandy.winksmod.Blocks.ModBlocks;
 import cz.mcDandy.winksmod.Dimensions.Biomes.ModBiomes;
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import cz.mcDandy.winksmod.Blocks.Fp_block;
@@ -14,6 +15,7 @@ import cz.mcDandy.winksmod.Dimensions.ModDimensions;
 import cz.mcDandy.winksmod.Entities.ModEntities;
 import cz.mcDandy.winksmod.Items.ModItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -37,9 +39,8 @@ class Event {
 	@SubscribeEvent
 	public static void onRegisterBlocks(final RegistryEvent.Register<Block> event) {
 		// Register all your blocks inside this registerAll call
-		event.getRegistry().registerAll(setup(new Fp_block(Color.MAGENTA.getRGB(),
-				Block.Properties.create(Material.SAND).hardnessAndResistance(3.0F, 3.0F)), "fp_block")
-
+		event.getRegistry().registerAll(
+			ModBlocks.BLOCKS
 		);
 		// LOGGER.debug("Registered Blocks");
 	}
@@ -89,6 +90,7 @@ class Event {
 			// Setup the new BlockItem with the block's registry name and register it
 			registry.register(setup(blockItem, blockRegistryName));
 		}
+
 		Main.LOGGER.info("Registered Items");
 	}
 	@SubscribeEvent
