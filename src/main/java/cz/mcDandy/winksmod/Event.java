@@ -100,9 +100,7 @@ class Event {
 
 	@SubscribeEvent
 	public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
-		if (DimensionType.byName(ModDimensions.OMEGA_RES) == null) {
 			event.getRegistry().registerAll(ModDimensions.OMEGA);
-		}
 	}
 	@SubscribeEvent
 	public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
