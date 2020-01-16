@@ -10,7 +10,7 @@ import net.minecraftforge.common.ModDimension;
 
 public class ModDimensions {
 	 public static final ResourceLocation OMEGA_RES = new ResourceLocation(Main.MODID,"omega_dim");
-	public static ModDimension OMEGA = new ModDimension() {
+	public static ModDimension OMEGA = new DimOmega() {
 	        @Override
 	        public BiFunction<World, DimensionType, ? extends Dimension> getFactory() {
 	            return DimOmega::new;

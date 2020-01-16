@@ -23,6 +23,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class DimOmega extends Dimension {
+
 	public DimOmega(World worldIn, DimensionType typeIn) {
 		super(worldIn, typeIn);
 	}
@@ -110,3 +111,4 @@ public class DimOmega extends Dimension {
 		};
 	}
 }
+
