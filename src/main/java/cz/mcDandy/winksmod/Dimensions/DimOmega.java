@@ -24,7 +24,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class DimOmega extends Dimension {
 
-	public DimOmega(World worldIn, DimensionType typeIn) {
+    public static String Name="omega";
+
+    public DimOmega(World worldIn, DimensionType typeIn) {
 		super(worldIn, typeIn);
 	}
 

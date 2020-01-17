@@ -28,6 +28,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -101,7 +102,21 @@ class Event {
 	public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
 		event.getRegistry().registerAll(ModBiomes.BIOMES);
 	}
-
+	@SubscribeEvent
+	public static void onModDimensionRegister(final RegisterDimensionsEvent event)
+	{
+		ResourceLocation id = new ResourceLocation(Main.MODID, dungeon_basic_regname);
+		if (DimensionType.byName(id) == null)
+		{
+			ModDimensions.DIM_OMEGA = DimensionManager.registerDimension(id, DUNGEON_MOD_DIMENSION.get(), new PacketBuffer(Unpooled.buffer()), true);
+			DimensionManager.keepLoaded(DUNGEON_DIMENSION, false);
+		}
+		else
+		{
+			DUNGEON_DIMENSION = DimensionType.byName(id);
+		}
+	}
+}
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<EntityType<?>> e) {
 		IForgeRegistry<EntityType<?>> registry = e.getRegistry();
