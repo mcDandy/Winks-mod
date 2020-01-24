@@ -21,7 +21,7 @@ public class OmegaPortalBlock extends FallingBlock {
 
 	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
 		if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && VoxelShapes.compare(VoxelShapes.create(entityIn.getBoundingBox().offset((double) (-pos.getX()), (double) (-pos.getY()), (double) (-pos.getZ()))), state.getShape(worldIn, pos), IBooleanFunction.AND)) {
-			entityIn.changeDimension(worldIn.dimension.getType() == DimensionType.byName(ModDimensions.OMEGA_RES) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.OMEGA_RES));
+			entityIn.changeDimension(worldIn.dimension.getType() == ModDimensions.DIM_OMEGA ? DimensionType.OVERWORLD : ModDimensions.DIM_OMEGA);
 		}
 	}
 }

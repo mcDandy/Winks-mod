@@ -21,12 +21,13 @@ import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.NetherGenSettings;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ModDimension;
 
 public class DimOmega extends Dimension {
 
-    public static String Name="omega";
+	public static String Name = "omega";
 
-    public DimOmega(World worldIn, DimensionType typeIn) {
+	public DimOmega(World worldIn, DimensionType typeIn) {
 		super(worldIn, typeIn);
 	}
 
@@ -112,5 +113,6 @@ public class DimOmega extends Dimension {
 			}
 		};
 	}
+
 }
 

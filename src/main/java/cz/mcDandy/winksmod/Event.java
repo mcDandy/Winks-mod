@@ -14,6 +14,7 @@ import cz.mcDandy.winksmod.Dimensions.DimOmega;
 import cz.mcDandy.winksmod.Dimensions.ModDimensions;
 import cz.mcDandy.winksmod.Entities.ModEntities;
 import cz.mcDandy.winksmod.Items.ModItems;
+import io.netty.buffer.Unpooled;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
@@ -22,6 +23,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
@@ -36,6 +38,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @EventBusSubscriber(modid = Main.MODID, bus = EventBusSubscriber.Bus.MOD)
+public
 class Event {
 	@SubscribeEvent
 	public static void onRegisterBlocks(final RegistryEvent.Register<Block> event) {
@@ -94,10 +97,10 @@ class Event {
 
 		Main.LOGGER.info("Registered Items");
 	}
-	@SubscribeEvent
+/*	@SubscribeEvent
 	public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
 		event.getRegistry().registerAll(ModDimensions.OMEGA);
-	}
+	}*/
 	@SubscribeEvent
 	public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
 		event.getRegistry().registerAll(ModBiomes.BIOMES);
@@ -105,18 +108,18 @@ class Event {
 	@SubscribeEvent
 	public static void onModDimensionRegister(final RegisterDimensionsEvent event)
 	{
-		ResourceLocation id = new ResourceLocation(Main.MODID, dungeon_basic_regname);
+		ResourceLocation id = new ResourceLocation(Main.MODID, DimOmega.Name);
 		if (DimensionType.byName(id) == null)
 		{
-			ModDimensions.DIM_OMEGA = DimensionManager.registerDimension(id, DUNGEON_MOD_DIMENSION.get(), new PacketBuffer(Unpooled.buffer()), true);
-			DimensionManager.keepLoaded(DUNGEON_DIMENSION, false);
+			ModDimensions.DIM_OMEGA = DimensionManager.registerDimension(id, ModDimensions.OMEGA_MOD_DIM.get(), new PacketBuffer(Unpooled.buffer()), true);
+			DimensionManager.keepLoaded(ModDimensions.DIM_OMEGA, false);
 		}
 		else
 		{
-			DUNGEON_DIMENSION = DimensionType.byName(id);
+			ModDimensions.DIM_OMEGA = DimensionType.byName(id);
 		}
 	}
-}
+
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<EntityType<?>> e) {
 		IForgeRegistry<EntityType<?>> registry = e.getRegistry();
