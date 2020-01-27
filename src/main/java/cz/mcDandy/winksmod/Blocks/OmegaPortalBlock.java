@@ -2,12 +2,17 @@ package cz.mcDandy.winksmod.Blocks;
 
 import cz.mcDandy.winksmod.Dimensions.ModDimensions;
 import cz.mcDandy.winksmod.Utils;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.IBooleanFunction;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,6 +22,11 @@ public class OmegaPortalBlock extends FallingBlock {
 
 	public OmegaPortalBlock(Properties properties) {
 		super(properties);
+	}
+
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		return Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 	}
 
 	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
