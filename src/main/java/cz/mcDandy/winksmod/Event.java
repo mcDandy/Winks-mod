@@ -8,6 +8,7 @@ import com.google.common.base.Preconditions;
 
 import cz.mcDandy.winksmod.Blocks.ModBlocks;
 import cz.mcDandy.winksmod.Dimensions.Biomes.ModBiomes;
+import cz.mcDandy.winksmod.Dimensions.ModDimOmega;
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import cz.mcDandy.winksmod.Blocks.Fp_block;
 import cz.mcDandy.winksmod.Dimensions.DimOmega;
@@ -36,10 +37,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.minecraftforge.registries.ObjectHolder;
 
 @EventBusSubscriber(modid = Main.MODID, bus = EventBusSubscriber.Bus.MOD)
 public
 class Event {
+
 	@SubscribeEvent
 	public static void onRegisterBlocks(final RegistryEvent.Register<Block> event) {
 		// Register all your blocks inside this registerAll call
@@ -97,28 +100,33 @@ class Event {
 
 		Main.LOGGER.info("Registered Items");
 	}
-/*	@SubscribeEvent
+	@SubscribeEvent
 	public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
-		event.getRegistry().registerAll(ModDimensions.OMEGA);
-	}*/
+		event.getRegistry().register(new ModDimOmega().setRegistryName(ModDimensions.OMEGA_TYPE_RL));
+	}
+	@SubscribeEvent
+	public static void onRegisterDimensionsEvent(RegisterDimensionsEvent event)
+	{
+		// the first argument here is a resource location for your dimension type
+		// the second argument here is the ModDimension that your DimensionType uses
+		// the third argument here is an optional PacketBuffer with extra data you want to pass
+		// to your DimensionType, which is in turn passed to your Dimension
+		// which allows you to define properties of your Dimension when you register this
+		// the fourth argument determines skylight for some reason
+		// we'll also need to add a check to prevent the dimension from being registered more than once
+		if (DimensionType.byName(ModDimensions.OMEGA_TYPE_RL) == null)
+		{
+			DimensionManager.registerDimension(ModDimensions.OMEGA_TYPE_RL, ModDimensions.OMEGA_DIMENSION, null, false);
+		}
+
+		// this returns a DimensionType for your ResourceLocation; alternatively you can also retrieve the dimensiontype with
+		// DimensionType.byName(ResourceLocation)
+	}
 	@SubscribeEvent
 	public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
 		event.getRegistry().registerAll(ModBiomes.BIOMES);
 	}
-	@SubscribeEvent
-	public static void onModDimensionRegister(final RegisterDimensionsEvent event)
-	{
-		ResourceLocation id = new ResourceLocation(Main.MODID, DimOmega.Name);
-		if (DimensionType.byName(id) == null)
-		{
-			ModDimensions.DIM_OMEGA = DimensionManager.registerDimension(id, ModDimensions.OMEGA_MOD_DIM.get(), new PacketBuffer(Unpooled.buffer()), true);
-			DimensionManager.keepLoaded(ModDimensions.DIM_OMEGA, false);
-		}
-		else
-		{
-			ModDimensions.DIM_OMEGA = DimensionType.byName(id);
-		}
-	}
+
 
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<EntityType<?>> e) {

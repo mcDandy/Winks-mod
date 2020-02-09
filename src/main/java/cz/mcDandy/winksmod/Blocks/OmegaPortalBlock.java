@@ -4,6 +4,15 @@ import cz.mcDandy.winksmod.Dimensions.ModDimensions;
 import cz.mcDandy.winksmod.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
+
+
 import net.minecraft.block.FallingBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -18,20 +27,26 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 @Utils.NoAutomaticBlockItem
-public class OmegaPortalBlock extends FallingBlock {
+public class OmegaPortalBlock extends Block {
 
 	public OmegaPortalBlock(Properties properties) {
 		super(properties);
 	}
 
+
+	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		player.changeDimension(worldIn.dimension.getType() == DimensionType.byName(ModDimensions.OMEGA_TYPE_RL) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.OMEGA_TYPE_RL));
+
+		return true;
+	}
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
+		return VoxelShapes.empty();
 	}
 
-	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+	/*public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
 		if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && VoxelShapes.compare(VoxelShapes.create(entityIn.getBoundingBox().offset((double) (-pos.getX()), (double) (-pos.getY()), (double) (-pos.getZ()))), state.getShape(worldIn, pos), IBooleanFunction.AND)) {
 			entityIn.changeDimension(worldIn.dimension.getType() == ModDimensions.DIM_OMEGA ? DimensionType.OVERWORLD : ModDimensions.DIM_OMEGA);
 		}
-	}
+	}*/
 }
