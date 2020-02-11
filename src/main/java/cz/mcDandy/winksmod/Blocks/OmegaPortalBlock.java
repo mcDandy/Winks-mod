@@ -35,7 +35,7 @@ public class OmegaPortalBlock extends Block {
 
 
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		player.changeDimension(worldIn.dimension.getType() == DimensionType.byName(ModDimensions.OMEGA_TYPE_RL) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.OMEGA_TYPE_RL));
+		player.changeDimension(worldIn.dimension.getType() == DimensionType.byName(ModDimensions.OMEGA_RL) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.OMEGA_RL));
 
 		return true;
 	}

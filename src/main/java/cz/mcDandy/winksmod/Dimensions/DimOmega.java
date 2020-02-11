@@ -6,26 +6,29 @@ package cz.mcDandy.winksmod.Dimensions;
 import javax.annotation.Nullable;
 
 import cz.mcDandy.winksmod.Dimensions.Biomes.ModBiomes;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.border.WorldBorder;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.ChunkGeneratorType;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.NetherGenSettings;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ModDimension;
 
 public class DimOmega extends Dimension {
-
-	public static String Name = "omega";
 
 	public DimOmega(World worldIn, DimensionType typeIn) {
 		super(worldIn, typeIn);
@@ -68,16 +71,52 @@ public class DimOmega extends Dimension {
 		return false;
 	}
 
+	@Override
 	@Nullable
 	public BlockPos findSpawn(ChunkPos chunkPosIn, boolean checkValid) {
+		for(int i = chunkPosIn.getXStart(); i <= chunkPosIn.getXEnd(); ++i) {
+			for(int j = chunkPosIn.getZStart(); j <= chunkPosIn.getZEnd(); ++j) {
+				BlockPos blockpos = this.findSpawn(i, j, checkValid);
+				if (blockpos != null) {
+					return blockpos;
+				}
+			}
+		}
+
 		return null;
 	}
-
+	@Override
 	@Nullable
 	public BlockPos findSpawn(int posX, int posZ, boolean checkValid) {
-		return null;
-	}
+		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(posX, 0, posZ);
+		Biome biome = this.world.getBiome(blockpos$mutableblockpos);
+		BlockState blockstate = biome.getSurfaceBuilderConfig().getTop();
+		if (checkValid && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
+			return null;
+		} else {
+			Chunk chunk = this.world.getChunk(posX >> 4, posZ >> 4);
+			int i = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, posX & 15, posZ & 15);
+			if (i < 0) {
+				return null;
+			} else if (chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE, posX & 15, posZ & 15) > chunk.getTopBlockY(Heightmap.Type.OCEAN_FLOOR, posX & 15, posZ & 15)) {
+				return null;
+			} else {
+				for(int j = i + 1; j >= 0; --j) {
+					blockpos$mutableblockpos.setPos(posX, j, posZ);
+					BlockState blockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
+					if (!blockstate1.getFluidState().isEmpty()) {
+						break;
+					}
 
+					if (blockstate1.equals(blockstate)) {
+						return blockpos$mutableblockpos.up().toImmutable();
+					}
+				}
+
+				return null;
+			}
+		}
+	}
 	/**
 	 * Calculates the angle of sun and moon in the sky relative to a specified time
 	 * (usually worldTime)
