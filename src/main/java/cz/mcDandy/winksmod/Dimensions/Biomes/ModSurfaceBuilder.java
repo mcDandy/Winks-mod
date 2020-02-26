@@ -1,13 +1,11 @@
 package cz.mcDandy.winksmod.Dimensions.Biomes;
 
-import com.mojang.datafixers.Dynamic;
+import cz.mcDandy.winksmod.Dimensions.Biomes.SurfaceBuilders.OmegaSurfaceBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.surfacebuilders.*;
-import net.minecraft.world.gen.surfacebuilders.OmegaSurfaceBuilder;
-
-import java.util.function.Function;
+import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class ModSurfaceBuilder<C extends ISurfaceBuilderConfig> extends net.minecraftforge.registries.ForgeRegistryEntry<net.minecraft.world.gen.surfacebuilders.SurfaceBuilder<?>> {
         public static final BlockState PACKED_ICE = Blocks.PACKED_ICE.getDefaultState();

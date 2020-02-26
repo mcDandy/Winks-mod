@@ -1,8 +1,10 @@
-package net.minecraft.world.gen.surfacebuilders;
+package cz.mcDandy.winksmod.Dimensions.Biomes.SurfaceBuilders;
 
-import com.mojang.datafixers.Dynamic;
+
 import java.util.Random;
 import java.util.function.Function;
+
+import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.SharedSeedRandom;
@@ -10,6 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.OctavesNoiseGenerator;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class OmegaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
     private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
