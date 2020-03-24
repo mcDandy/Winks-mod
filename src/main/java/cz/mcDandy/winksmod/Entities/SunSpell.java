@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.AbstractFireballEntity;
 import net.minecraft.entity.projectile.DamagingProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
@@ -23,10 +24,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class SunSpell extends DamagingProjectileEntity {
+public class SunSpell extends AbstractFireballEntity {
 	public int explosionPower = 1;
 	public Entity thrower;
-	   public SunSpell(EntityType<? extends DamagingProjectileEntity> entityIn, World worldIn) {
+	   public SunSpell(EntityType<? extends AbstractFireballEntity> entityIn, World worldIn) {
 		      super(entityIn, worldIn);
 		   }
 
