@@ -14,6 +14,8 @@ import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -46,7 +48,7 @@ public class SunSpell extends AbstractFireballEntity {
 		   protected void onImpact(RayTraceResult result) {
 		      if (result.getType() == RayTraceResult.Type.BLOCK) {
 		         if (!this.world.isRemote) {
-		     /*       List<LivingEntity> list = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(4.0D, 2.0D, 4.0D));
+		            List<LivingEntity> list = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(4.0D, 2.0D, 4.0D));
 		            AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.world, this.posX, this.posY, this.posZ);
 		            areaeffectcloudentity.setOwner(this.shootingEntity);
 		            areaeffectcloudentity.setParticleData(ParticleTypes.DRAGON_BREATH);
@@ -66,7 +68,7 @@ public class SunSpell extends AbstractFireballEntity {
 
 		            this.world.playEvent(2006, new BlockPos(this.posX, this.posY, this.posZ), 0);
 		            this.world.addEntity(areaeffectcloudentity);
-		         */
+
 		        	 
 		        	 this.remove();
 		         }
