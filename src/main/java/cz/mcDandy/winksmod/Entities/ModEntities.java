@@ -3,7 +3,6 @@ package cz.mcDandy.winksmod.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.util.registry.Registry;
 
 public class ModEntities {
