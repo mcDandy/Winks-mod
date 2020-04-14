@@ -23,6 +23,7 @@ public class OmegaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
     protected long seed;
     protected OctavesNoiseGenerator octavesNoiseGenerator;
 
+
     public OmegaSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> p_i51308_1_) {
         super(p_i51308_1_);
     }
@@ -35,14 +36,14 @@ public class OmegaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
         boolean flag = this.octavesNoiseGenerator.func_205563_a((double)x * 0.03125D, (double)z * 0.03125D, 0.0D) + random.nextDouble() * 0.2D > 0.0D;
         boolean flag1 = this.octavesNoiseGenerator.func_205563_a((double)x * 0.03125D, 109.0D, (double)z * 0.03125D) + random.nextDouble() * 0.2D > 0.0D;
         int l = (int)(noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
         int i1 = -1;
         BlockState blockstate = PACKED_ICE;
         BlockState blockstate1 = PACKED_ICE;
 
         for(int j1 = 127; j1 >= 0; --j1) {
-            blockpos$mutableblockpos.setPos(j, j1, k);
-            BlockState blockstate2 = chunkIn.getBlockState(blockpos$mutableblockpos);
+            blockpos$mutable.func_181079_c(j, j1, k);
+            BlockState blockstate2 = chunkIn.getBlockState(blockpos$mutable);
             if (blockstate2.getBlock() != null && !blockstate2.isAir()) {
                 if (blockstate2.getBlock() == defaultBlock.getBlock()) {
                     if (i1 == -1) {
@@ -69,13 +70,13 @@ public class OmegaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
 
                         i1 = l;
                         if (j1 >= i - 1) {
-                            chunkIn.setBlockState(blockpos$mutableblockpos, blockstate, false);
+                            chunkIn.setBlockState(blockpos$mutable, blockstate, false);
                         } else {
-                            chunkIn.setBlockState(blockpos$mutableblockpos, blockstate1, false);
+                            chunkIn.setBlockState(blockpos$mutable, blockstate1, false);
                         }
                     } else if (i1 > 0) {
                         --i1;
-                        chunkIn.setBlockState(blockpos$mutableblockpos, blockstate1, false);
+                        chunkIn.setBlockState(blockpos$mutable, blockstate1, false);
                     }
                 }
             } else {
@@ -87,7 +88,7 @@ public class OmegaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
 
     public void setSeed(long seed) {
         if (this.seed != seed || this.octavesNoiseGenerator == null) {
-            this.octavesNoiseGenerator = new OctavesNoiseGenerator(new SharedSeedRandom(seed), 4);
+            this.octavesNoiseGenerator = new OctavesNoiseGenerator(new SharedSeedRandom(seed), 4,0);
         }
 
         this.seed = seed;
