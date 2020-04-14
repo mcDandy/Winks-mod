@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cz.mcDandy.winksmod.Dimensions;
+package cz.mcDandy.winksmod.Dimensions.Omega;
 
 import javax.annotation.Nullable;
 
@@ -37,6 +37,12 @@ public class DimOmega extends Dimension {
 	/**
 	 * Return Vec3D with biome specific fog color
 	 */
+	public static final DimOmega getProvider(World world) {
+		if (world != null && world.dimension instanceof DimOmega) {
+			return (DimOmega) world.dimension;
+		}
+		return null;
+	}
 	@OnlyIn(Dist.CLIENT)
 	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
 		return new Vec3d((double) 0.03F, (double) 0.03F, (double) 0.2F);
