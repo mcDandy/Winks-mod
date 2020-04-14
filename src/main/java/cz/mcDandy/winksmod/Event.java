@@ -35,8 +35,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @EventBusSubscriber(modid = Main.MODID, bus = EventBusSubscriber.Bus.MOD)
-public
-class Event {
+public class Event {
 
     @SubscribeEvent
     public static void onRegisterBlocks(final RegistryEvent.Register<Block> event) {
@@ -96,15 +95,10 @@ class Event {
         Main.LOGGER.info("Registered Items");
     }
 
-    @SubscribeEvent
-    public static void onDimensionModRegistry(RegistryEvent.Register<ModDimension> event) {
-        event.getRegistry().register(ModDimensions.DIM_OMEGA);
-        DimensionManager.registerDimension(ModDimensions.OMEGA_RL, ModDimensions.DIM_OMEGA, null, false);
-    }
 
     @SubscribeEvent
     public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(SunSpell.class, manager -> new SpriteRenderer<SunSpell>(manager, Minecraft.getInstance().getItemRenderer()));
+    //    RenderingRegistry.registerEntityRenderingHandler(SunSpell.class, manager -> new SpriteRenderer<SunSpell>(manager, Minecraft.getInstance().getItemRenderer()));
 
         Main.LOGGER.debug("Registered Renderers");
     }
