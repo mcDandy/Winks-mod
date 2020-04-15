@@ -1,6 +1,8 @@
 package cz.mcDandy.winksmod.Dimensions.Omega;
 
 import javax.annotation.Nullable;
+
+import cz.mcDandy.winksmod.Dimensions.Biomes.ModBiomes;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -18,7 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class DimOmega extends Dimension {
-	private static final Vec3d fogColor = new Vec3d((double)0.03F, (double)0.03F, (double)0.2F);
+	private static final Vec3d fogColor = new Vec3d(0.3, 0.79, 1.0);
 
 	public DimOmega(World worldIn, DimensionType typeIn) {
 		super(worldIn, typeIn, 0.1F);
@@ -35,7 +37,7 @@ public class DimOmega extends Dimension {
 		NetherGenSettings nethergensettings = ChunkGeneratorType.CAVES.createSettings();
 		nethergensettings.setDefaultBlock(Blocks.PACKED_ICE.getDefaultState());
 		nethergensettings.setDefaultFluid(Blocks.WATER.getDefaultState());
-		return ChunkGeneratorType.CAVES.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.func_226840_a_(this.world.getWorldInfo()).setBiome(Biomes.NETHER)), nethergensettings);
+		return ChunkGeneratorType.CAVES.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.func_226840_a_(this.world.getWorldInfo()).setBiome(ModBiomes.OMEGA_BIOME)), nethergensettings);
 	}
 
 	public boolean isSurfaceWorld() {
