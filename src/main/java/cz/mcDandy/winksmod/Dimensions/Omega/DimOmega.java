@@ -20,7 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class DimOmega extends Dimension {
-	private static final Vec3d fogColor = new Vec3d(0.3, 0.79, 1.0);
+	private static final Vec3d fogColor = new Vec3d(0.46, 0.84, 1.0);
 
 	public DimOmega(World worldIn, DimensionType typeIn) {
 		super(worldIn, typeIn, 0.1F);
