@@ -20,6 +20,6 @@ public final class OmegaBiome extends Biome {
       this.addCarver(GenerationStage.Carving.AIR, createCarver(WorldCarver.HELL_CAVE, new ProbabilityConfig(0.2F)));
  //     this.addFeature(GenerationStage.Decorationr.VEGETAL_DECORATION, createDecoratedFeatue(Feature.SPRING_FEATURE, new LiquidsConfig(Fluids.LAVA.getDefaultState()), Placement.COUNT_VERY_BIASED_RANGE, new CountRangeConfig(20, 8, 16, 256)));
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, Blocks.ICE.getDefaultState(), 14)));
-      this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, Blocks.BLUE_ICE.getDefaultState(), 33)));
+      this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, Blocks.BLUE_ICE.getDefaultState(), 33)).func_227228_a_(Placement.MAGMA.func_227446_a_(new FrequencyConfig(4))));;
    }
 }
