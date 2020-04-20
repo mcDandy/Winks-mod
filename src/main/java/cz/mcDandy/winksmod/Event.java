@@ -94,17 +94,7 @@ public class Event {
 
         Main.LOGGER.info("Registered Items");
     }
-
-
-    @SubscribeEvent
-    public static void onFMLClientSetupEvent(final FMLClientSetupEvent event) {
-    //    RenderingRegistry.registerEntityRenderingHandler(SunSpell.class, manager -> new SpriteRenderer<SunSpell>(manager, Minecraft.getInstance().getItemRenderer()));
-
-        Main.LOGGER.debug("Registered Renderers");
-    }
-
-
-
+    
     @SubscribeEvent
     public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
         event.getRegistry().registerAll(ModBiomes.BIOMES);
