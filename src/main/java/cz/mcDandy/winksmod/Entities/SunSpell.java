@@ -37,36 +37,33 @@ public class SunSpell extends DamagingProjectileEntity implements IRendersAsItem
 		super(sunSpellEntityType,world);
 	}
 
-	protected void onImpact(RayTraceResult p_70227_1_) {
-		super.onImpact(p_70227_1_);
-		if (p_70227_1_.getType() != RayTraceResult.Type.ENTITY || !((EntityRayTraceResult)p_70227_1_).getEntity().isEntityEqual(this.shootingEntity)) {
+	protected void onImpact(RayTraceResult result) {
+		super.onImpact(result);
+		if (result.getType() != RayTraceResult.Type.ENTITY || !((EntityRayTraceResult)result).getEntity().isEntityEqual(this.shootingEntity)) {
 			if (!this.world.isRemote) {
-				List<LivingEntity> livingEntities = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(4.0D, 2.0D, 4.0D));
-				AreaEffectCloudEntity areaCloudEffect = new AreaEffectCloudEntity(this.world, this.func_226277_ct_(), this.func_226278_cu_(), this.func_226281_cx_());
-				areaCloudEffect.setOwner(this.shootingEntity);
-				areaCloudEffect.setParticleData(ParticleTypes.DRAGON_BREATH);
-				areaCloudEffect.setRadius(3.0F);
-				areaCloudEffect.setDuration(600);
-				areaCloudEffect.setRadiusPerTick((7.0F - areaCloudEffect.getRadius()) / (float)areaCloudEffect.getDuration());
-				areaCloudEffect.addEffect(new EffectInstance(Effects.INSTANT_DAMAGE, 1, 1));
-				if (!livingEntities.isEmpty()) {
-					Iterator var4 = livingEntities.iterator();
-
-					while(var4.hasNext()) {
-						LivingEntity lvt_5_1_ = (LivingEntity)var4.next();
-						double lvt_6_1_ = this.getDistanceSq(lvt_5_1_);
-						if (lvt_6_1_ < 16.0D) {
-							areaCloudEffect.setPosition(lvt_5_1_.func_226277_ct_(), lvt_5_1_.func_226278_cu_(), lvt_5_1_.func_226281_cx_());
+				List<LivingEntity> list = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(4.0D, 2.0D, 4.0D));
+				AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ());
+				areaeffectcloudentity.setOwner(this.shootingEntity);
+				areaeffectcloudentity.setParticleData(ParticleTypes.DRAGON_BREATH);
+				areaeffectcloudentity.setRadius(3.0F);
+				areaeffectcloudentity.setDuration(600);
+				areaeffectcloudentity.setRadiusPerTick((7.0F - areaeffectcloudentity.getRadius()) / (float)areaeffectcloudentity.getDuration());
+				areaeffectcloudentity.addEffect(new EffectInstance(Effects.INSTANT_DAMAGE, 1, 1));
+				if (!list.isEmpty()) {
+					for(LivingEntity livingentity : list) {
+						double d0 = this.getDistanceSq(livingentity);
+						if (d0 < 16.0D) {
+							areaeffectcloudentity.setPosition(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ());
 							break;
 						}
 					}
 				}
 
 				this.world.playEvent(2006, new BlockPos(this), 0);
-				this.world.addEntity(areaCloudEffect);
+				this.world.addEntity(areaeffectcloudentity);
 				this.remove();
 			}
-
+			
 		}
 	}
 

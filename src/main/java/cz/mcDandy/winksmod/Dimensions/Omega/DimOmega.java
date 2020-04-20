@@ -37,7 +37,7 @@ public class DimOmega extends Dimension {
 		NetherGenSettings nethergensettings = ChunkGeneratorType.CAVES.createSettings();
 		nethergensettings.setDefaultBlock(Blocks.PACKED_ICE.getDefaultState());
 		nethergensettings.setDefaultFluid(Blocks.WATER.getDefaultState());
-		return ChunkGeneratorType.CAVES.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.func_226840_a_(this.world.getWorldInfo()).setBiome(ModBiomes.OMEGA_BIOME)), nethergensettings);
+		return ChunkGeneratorType.CAVES.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings(this.world.getWorldInfo()).setBiome(ModBiomes.OMEGA_BIOME)), nethergensettings);
 	}
 
 	public boolean isSurfaceWorld() {

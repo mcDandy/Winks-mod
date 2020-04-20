@@ -42,7 +42,7 @@ public class OmegaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
         BlockState blockstate1 = PACKED_ICE;
 
         for(int j1 = 127; j1 >= 0; --j1) {
-            blockpos$mutable.func_181079_c(j, j1, k);
+            blockpos$mutable.setPos(j, j1, k);
             BlockState blockstate2 = chunkIn.getBlockState(blockpos$mutable);
             if (blockstate2.getBlock() != null && !blockstate2.isAir()) {
                 if (blockstate2.getBlock() == defaultBlock.getBlock()) {

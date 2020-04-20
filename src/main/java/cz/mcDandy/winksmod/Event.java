@@ -94,7 +94,7 @@ public class Event {
 
         Main.LOGGER.info("Registered Items");
     }
-    
+
     @SubscribeEvent
     public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
         event.getRegistry().registerAll(ModBiomes.BIOMES);

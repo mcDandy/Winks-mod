@@ -29,7 +29,7 @@ public class OmegaPortalBlock extends Block {
 
 
 	@Override
-	public ActionResultType func_225533_a_ (BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated (BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (DimensionType.byName(ModDimensions.OMEGA_RL) == null) {
 			DimensionManager.registerDimension(ModDimensions.OMEGA_RL, ModDimensions.DIM_OMEGA, null, false);
 		}
