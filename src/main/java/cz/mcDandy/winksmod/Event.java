@@ -22,6 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
@@ -105,6 +106,11 @@ public class Event {
     public static void OnEntityRegister(RegistryEvent.Register<EntityType<?>> e) {
         IForgeRegistry<EntityType<?>> registry = e.getRegistry();
         registry.registerAll(ModEntities.Entities);
+    }
+
+    @SubscribeEvent
+    public static void setupModels(ModelRegistryEvent event) {
+
     }
 
     @Nonnull

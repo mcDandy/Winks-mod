@@ -7,6 +7,7 @@ import cz.mcDandy.winksmod.Items.ModItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.DamagingProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.IPacket;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
@@ -18,6 +19,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class SunSpell extends DamagingProjectileEntity implements IRendersAsItem {
 /*	public SunSpell(EntityType<SunSpell> p_i50171_1_, World p_i50171_2_) {
@@ -26,11 +28,11 @@ public class SunSpell extends DamagingProjectileEntity implements IRendersAsItem
 */
 	@OnlyIn(Dist.CLIENT)
 	public SunSpell(World p_i46775_1_, double p_i46775_2_, double p_i46775_4_, double p_i46775_6_, double p_i46775_8_, double p_i46775_10_, double p_i46775_12_) {
-		super(EntityType.DRAGON_FIREBALL, p_i46775_2_, p_i46775_4_, p_i46775_6_, p_i46775_8_, p_i46775_10_, p_i46775_12_, p_i46775_1_);
+		super(ModEntities.SUN_SPELL, p_i46775_2_, p_i46775_4_, p_i46775_6_, p_i46775_8_, p_i46775_10_, p_i46775_12_, p_i46775_1_);
 	}
 
 	public SunSpell(World p_i46776_1_, LivingEntity p_i46776_2_, double p_i46776_3_, double p_i46776_5_, double p_i46776_7_) {
-		super(EntityType.DRAGON_FIREBALL, p_i46776_2_, p_i46776_3_, p_i46776_5_, p_i46776_7_, p_i46776_1_);
+		super(ModEntities.SUN_SPELL, p_i46776_2_, p_i46776_3_, p_i46776_5_, p_i46776_7_, p_i46776_1_);
 	}
 
 	public SunSpell(EntityType<SunSpell> sunSpellEntityType, World world) {
@@ -63,7 +65,7 @@ public class SunSpell extends DamagingProjectileEntity implements IRendersAsItem
 				this.world.addEntity(areaeffectcloudentity);
 				this.remove();
 			}
-			
+
 		}
 	}
 
@@ -86,6 +88,13 @@ public class SunSpell extends DamagingProjectileEntity implements IRendersAsItem
 	@Override
 	public ItemStack getItem() {
 		return new ItemStack(ModItems.SOLAR_CORE);
+	}
+	@Override
+
+	public IPacket<?> createSpawnPacket() {
+
+		return NetworkHooks.getEntitySpawningPacket(this);
+
 	}
 }
 
