@@ -112,11 +112,10 @@ public class Event {
 
 
     @SubscribeEvent
-    public static void register(RegistryEvent.Register<EntityType<?>> e) {
+    public static void OnEntityRegister(RegistryEvent.Register<EntityType<?>> e) {
         IForgeRegistry<EntityType<?>> registry = e.getRegistry();
         registry.registerAll(ModEntities.Entities);
     }
-
 
     @Nonnull
     private static <T extends IForgeRegistryEntry<T>> T setup(@Nonnull final T entry, @Nonnull final String name) {
