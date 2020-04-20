@@ -101,7 +101,7 @@ public class Event {
 
     @SubscribeEvent
     public static void setupModels(ModelRegistryEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(SunSpell.class, new SunSpellRenderer.Factory());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUN_SPELL, new SunSpellRenderer.Factory());
     }
 
     @Nonnull
