@@ -10,8 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.potion.Potions;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -44,25 +46,15 @@ public class SunSpell extends DamagingProjectileEntity implements IRendersAsItem
 		if (result.getType() != RayTraceResult.Type.ENTITY || !((EntityRayTraceResult)result).getEntity().isEntityEqual(this.shootingEntity)) {
 			if (!this.world.isRemote) {
 				List<LivingEntity> list = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(4.0D, 2.0D, 4.0D));
-				AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ());
-				areaeffectcloudentity.setOwner(this.shootingEntity);
-				areaeffectcloudentity.setParticleData(ParticleTypes.DRAGON_BREATH);
-				areaeffectcloudentity.setRadius(3.0F);
-				areaeffectcloudentity.setDuration(600);
-				areaeffectcloudentity.setRadiusPerTick((7.0F - areaeffectcloudentity.getRadius()) / (float)areaeffectcloudentity.getDuration());
-				areaeffectcloudentity.addEffect(new EffectInstance(Effects.INSTANT_DAMAGE, 1, 1));
 				if (!list.isEmpty()) {
 					for(LivingEntity livingentity : list) {
 						double d0 = this.getDistanceSq(livingentity);
 						if (d0 < 16.0D) {
-							areaeffectcloudentity.setPosition(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ());
+							livingentity.addPotionEffect(new EffectInstance(Effects.BLINDNESS,60,1));
 							break;
 						}
 					}
 				}
-
-				this.world.playEvent(2006, new BlockPos(this), 0);
-				this.world.addEntity(areaeffectcloudentity);
 				this.remove();
 			}
 
@@ -78,7 +70,7 @@ public class SunSpell extends DamagingProjectileEntity implements IRendersAsItem
 	}
 
 	protected IParticleData getParticle() {
-		return ParticleTypes.DRAGON_BREATH;
+		return ParticleTypes.LARGE_SMOKE;
 	}
 
 	protected boolean isFireballFiery() {
