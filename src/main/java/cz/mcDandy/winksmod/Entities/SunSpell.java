@@ -49,10 +49,15 @@ public class SunSpell extends DamagingProjectileEntity implements IRendersAsItem
 				if (!list.isEmpty()) {
 					for(LivingEntity livingentity : list) {
 						double d0 = this.getDistanceSq(livingentity);
-						if (d0 < 16.0D) {
+						if (d0 < 4.0D) {
+							livingentity.addPotionEffect(new EffectInstance(Effects.BLINDNESS,120,1));
+							break;
+						}
+						else if (d0 < 16.0D) {
 							livingentity.addPotionEffect(new EffectInstance(Effects.BLINDNESS,60,1));
 							break;
 						}
+
 					}
 				}
 				this.remove();
