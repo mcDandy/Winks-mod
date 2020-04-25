@@ -4,14 +4,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
 public class ModItems {
-	public static Item Fpowder = new Item(new Item.Properties().group(/* ModItemGroups.WMOD */ItemGroup.DECORATIONS))
-			.setRegistryName("fpowder");
+	public static Item FAIRY_POWDER = new Item(new Item.Properties().group(/* ModItemGroups.WMOD */ItemGroup.DECORATIONS))
+			.setRegistryName("fairy_powder");
 	public static Item SOLARIA_WAND = new SolariaWand(
 			new Item.Properties().group(/* ModItemGroups.WMOD */ItemGroup.DECORATIONS)).setRegistryName("solaria_wand");
-	public static Item IRON_ROOD = new Item(new Item.Properties().group(/* ModItemGroups.WMOD */ItemGroup.DECORATIONS))
-			.setRegistryName("iron_rood");
+	public static Item IRON_ROD = new Item(new Item.Properties().group(/* ModItemGroups.WMOD */ItemGroup.DECORATIONS))
+			.setRegistryName("iron_rod");
 	public static Item SOLAR_CORE = new Item(new Item.Properties().group(/* ModItemGroups.WMOD */ItemGroup.DECORATIONS))
 			.setRegistryName("solar_core");
-	public static Item[] Items = new Item[] { Fpowder, SOLARIA_WAND, IRON_ROOD, SOLAR_CORE };
+	public static Item[] Items = new Item[] {FAIRY_POWDER, SOLARIA_WAND, IRON_ROD, SOLAR_CORE };
 
 }

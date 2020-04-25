@@ -29,12 +29,12 @@ public class SunSpell extends DamagingProjectileEntity implements IRendersAsItem
 	}
 */
 	@OnlyIn(Dist.CLIENT)
-	public SunSpell(World p_i46775_1_, double p_i46775_2_, double p_i46775_4_, double p_i46775_6_, double p_i46775_8_, double p_i46775_10_, double p_i46775_12_) {
-		super(ModEntities.SUN_SPELL, p_i46775_2_, p_i46775_4_, p_i46775_6_, p_i46775_8_, p_i46775_10_, p_i46775_12_, p_i46775_1_);
+	public SunSpell(World worldIn, double p_i46775_2_, double p_i46775_4_, double p_i46775_6_, double p_i46775_8_, double p_i46775_10_, double p_i46775_12_) {
+		super(ModEntities.SUN_SPELL, p_i46775_2_, p_i46775_4_, p_i46775_6_, p_i46775_8_, p_i46775_10_, p_i46775_12_, worldIn);
 	}
 
-	public SunSpell(World p_i46776_1_, LivingEntity p_i46776_2_, double p_i46776_3_, double p_i46776_5_, double p_i46776_7_) {
-		super(ModEntities.SUN_SPELL, p_i46776_2_, p_i46776_3_, p_i46776_5_, p_i46776_7_, p_i46776_1_);
+	public SunSpell(World worldIn, LivingEntity livingEntity, double p_i46776_3_, double p_i46776_5_, double p_i46776_7_) {
+		super(ModEntities.SUN_SPELL, livingEntity, p_i46776_3_, p_i46776_5_, p_i46776_7_, worldIn);
 	}
 
 	public SunSpell(EntityType<SunSpell> sunSpellEntityType, World world) {

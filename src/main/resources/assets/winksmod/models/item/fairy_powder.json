@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "winksmod:item/iron_rood"
+		"layer0": "winksmod:item/fairy_powder"
 	}
 }
