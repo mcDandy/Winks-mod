@@ -10,6 +10,7 @@ import cz.mcDandy.winksmod.Render.Entities.SkeletonBanditRenderer;
 import cz.mcDandy.winksmod.Render.Entities.SunSpellRenderer;
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.entity.model.SkeletonModel;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -103,7 +104,7 @@ public class Event {
     @SubscribeEvent
     public static void setupModels(ModelRegistryEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUN_SPELL, new SunSpellRenderer.Factory());
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SKELETON_BANDIT, new SkeletonBanditRenderer.Factory());
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SKELETON_BANDIT, m -> new SkeletonBanditRenderer<>(m, new SkeletonModel<>(), 0.9F));
     }
 
     @Nonnull
