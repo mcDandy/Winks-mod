@@ -104,7 +104,7 @@ public class Event {
     @SubscribeEvent
     public static void setupModels(ModelRegistryEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUN_SPELL, new SunSpellRenderer.Factory());
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SKELETON_BANDIT, m -> new SkeletonBanditRenderer<>(m, new SkeletonModel<>(), 0.9F));
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SKELETON_BANDIT, SkeletonBanditRenderer::new);
     }
 
     @Nonnull

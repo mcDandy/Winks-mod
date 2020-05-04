@@ -6,11 +6,10 @@ import cz.mcDandy.winksmod.Main;
 import cz.mcDandy.winksmod.Render.Models.ModelBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.SpriteRenderer;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.layers.StayClothingLayer;
 import net.minecraft.client.renderer.entity.model.SkeletonModel;
+import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -18,15 +17,14 @@ import net.minecraftforge.common.model.Models;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 @OnlyIn(Dist.CLIENT)
-public class SkeletonBanditRenderer<T extends SkeletonBandit, M extends SkeletonModel<T>> extends MobRenderer<T, M> {
-    private static final ResourceLocation textureLoc = new ResourceLocation(Main.MODID,"rextures/entities/skeleton_bandit.png");
+public class SkeletonBanditRenderer extends SkeletonRenderer {
+    private static final ResourceLocation textureLoc = new ResourceLocation("minecraft:textures/entity/skeleton/skeleton.png");
 
-    public SkeletonBanditRenderer(EntityRendererManager manager, M model, float shadowSize) {
-        super(manager, model, shadowSize);
+    public SkeletonBanditRenderer(EntityRendererManager manager) {
+        super(manager);
+        this.addLayer(new StayClothingLayer<>(this));
     }
-
-    @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getEntityTexture(AbstractSkeletonEntity entity) {
         return textureLoc;
     }
 }
