@@ -22,7 +22,7 @@ public class SkeletonBanditRenderer extends SkeletonRenderer {
 
     public SkeletonBanditRenderer(EntityRendererManager manager) {
         super(manager);
-        this.addLayer(new StayClothingLayer<>(this));
+        this.addLayer(new SkeletonBanditClothingLayerRenderer<>(this));
     }
     public ResourceLocation getEntityTexture(AbstractSkeletonEntity entity) {
         return textureLoc;
