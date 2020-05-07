@@ -14,11 +14,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class SkeletonBanditClothingLayerRenderer<T extends MobEntity & IRangedAttackMob, M extends EntityModel<T>> extends LayerRenderer<T, M> {
-    private static final ResourceLocation STRAY_CLOTHES_TEXTURES = new ResourceLocation(Main.MODID,"textures/entity/skeleton_bandit_overlay.png");
+public class PrisonerClothingLayerRenderer<T extends MobEntity & IRangedAttackMob, M extends EntityModel<T>> extends LayerRenderer<T, M> {
+    private static final ResourceLocation STRAY_CLOTHES_TEXTURES = new ResourceLocation(Main.MODID,"textures/entity/prisoner_overlay.png");
     private final SkeletonModel<T> layerModel = new SkeletonModel<>(0.25F, true);
 
-    public SkeletonBanditClothingLayerRenderer(IEntityRenderer<T, M> renderer) {
+    public PrisonerClothingLayerRenderer(IEntityRenderer<T, M> renderer) {
         super(renderer);
     }
 

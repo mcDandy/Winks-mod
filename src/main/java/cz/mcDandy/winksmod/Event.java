@@ -4,13 +4,11 @@ import com.google.common.base.Preconditions;
 import cz.mcDandy.winksmod.Blocks.ModBlocks;
 import cz.mcDandy.winksmod.Dimensions.Biomes.ModBiomes;
 import cz.mcDandy.winksmod.Entities.ModEntities;
-import cz.mcDandy.winksmod.Entities.SunSpell;
 import cz.mcDandy.winksmod.Items.ModItems;
-import cz.mcDandy.winksmod.Render.Entities.SkeletonBanditRenderer;
+import cz.mcDandy.winksmod.Render.Entities.PrisonerRenderer;
 import cz.mcDandy.winksmod.Render.Entities.SunSpellRenderer;
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.entity.model.SkeletonModel;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -104,7 +102,7 @@ public class Event {
     @SubscribeEvent
     public static void setupModels(ModelRegistryEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUN_SPELL, new SunSpellRenderer.Factory());
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SKELETON_BANDIT, SkeletonBanditRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.PRISONER, PrisonerRenderer::new);
     }
 
     @Nonnull

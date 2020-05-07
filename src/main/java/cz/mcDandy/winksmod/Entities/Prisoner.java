@@ -3,12 +3,10 @@ package cz.mcDandy.winksmod.Entities;
 import net.minecraft.entity.*;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -20,8 +18,8 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class SkeletonBandit extends AbstractSkeletonEntity {
-    public SkeletonBandit(EntityType<? extends SkeletonBandit> typeIn, World worldIn) {
+public class Prisoner extends AbstractSkeletonEntity {
+    public Prisoner(EntityType<? extends Prisoner> typeIn, World worldIn) {
         super(typeIn, worldIn);
     }
 
