@@ -25,12 +25,12 @@ public class SpikeFeature extends Feature<NoFeatureConfig> {
         while(worldIn.isAirBlock(pos) && pos.getY() > 2) {
             pos = pos.down();
         }
+        Main.LOGGER.debug("Trying to place at: "+pos.getX()+" "+pos.getY()+" "+pos.getZ());
 
         if (worldIn.getBlockState(pos).getBlock() != Blocks.PACKED_ICE) {
             return false;
         } else {
             pos = pos.up(rand.nextInt(4));
-            Main.LOGGER.debug("Trying to place at: "+pos.getX()+" "+pos.getY()+" "+pos.getZ());
             int i = rand.nextInt(4) + 7;
             int j = i / 4 + rand.nextInt(2);
             if (j > 1 && rand.nextInt(60) == 0) {
