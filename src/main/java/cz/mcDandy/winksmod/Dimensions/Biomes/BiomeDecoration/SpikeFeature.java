@@ -22,6 +22,12 @@ public class SpikeFeature extends Feature<NoFeatureConfig> {
     }
 
     public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+        while(worldIn.isAirBlock(pos)) {
+            pos = pos.down();
+        }
+        while((worldIn.getBlockState(pos)==Blocks.BEDROCK.getDefaultState()||worldIn.getBlockState(pos)==Blocks.PACKED_ICE.getDefaultState()) && pos.getY() > 2) {
+            pos = pos.down();
+        }
         while(worldIn.isAirBlock(pos) && pos.getY() > 2) {
             pos = pos.down();
         }
