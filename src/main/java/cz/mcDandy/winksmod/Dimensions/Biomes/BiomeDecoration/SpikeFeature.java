@@ -37,6 +37,7 @@ public class SpikeFeature extends Feature<NoFeatureConfig> {
             return false;
         } else {
             pos = pos.up(rand.nextInt(4));
+            Main.LOGGER.debug("Placed at: "+pos.getX()+" "+pos.getY()+" "+pos.getZ());
             int i = rand.nextInt(4) + 7;
             int j = i / 4 + rand.nextInt(2);
             if (j > 1 && rand.nextInt(60) == 0) {
@@ -56,14 +57,14 @@ public class SpikeFeature extends Feature<NoFeatureConfig> {
                             BlockState blockstate = worldIn.getBlockState(pos.add(i1, k, j1));
                             Block block = blockstate.getBlock();
                             if (blockstate.isAir(worldIn, pos.add(i1, k, j1)) || block == Blocks.PACKED_ICE || block == Blocks.ICE) {
-                                this.setBlockState(worldIn, pos.add(i1, k, j1), Blocks.SEA_LANTERN.getDefaultState());
+                                this.setBlockState(worldIn, pos.add(i1, k, j1), Blocks.ICE.getDefaultState());
                             }
 
                             if (k != 0 && l > 1) {
                                 blockstate = worldIn.getBlockState(pos.add(i1, -k, j1));
                                 block = blockstate.getBlock();
-                                if (blockstate.isAir(worldIn, pos.add(i1, -k, j1)) || block == Blocks.PACKED_ICE || block == Blocks.ICE) {
-                                    this.setBlockState(worldIn, pos.add(i1, -k, j1), Blocks.GLOWSTONE.getDefaultState());
+                                if (blockstate.isAir(worldIn, pos.add(i1, -k, j1))) {
+                                    this.setBlockState(worldIn, pos.add(i1, -k, j1), Blocks.PACKED_ICE.getDefaultState());
                                 }
                             }
                         }
