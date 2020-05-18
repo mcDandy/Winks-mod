@@ -74,7 +74,7 @@ public class Prisoner extends AbstractSkeletonEntity {
     }
 
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-        return 2.1F;
+        return 1.7F;
     }
 
     public boolean attackEntityAsMob(Entity entityIn) {
