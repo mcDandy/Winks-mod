@@ -55,14 +55,12 @@ public class SpikeFeature extends Feature<NoFeatureConfig> {
                         float f2 = (float)MathHelper.abs(j1) - 0.25F;
                         if ((i1 == 0 && j1 == 0 || !(f1 * f1 + f2 * f2 > f * f)) && (i1 != -l && i1 != l && j1 != -l && j1 != l || !(rand.nextFloat() > 0.75F))) {
                             BlockState blockstate = worldIn.getBlockState(pos.add(i1, k, j1));
-                            Block block = blockstate.getBlock();
-                            if (blockstate.isAir(worldIn, pos.add(i1, k, j1)) || block == Blocks.PACKED_ICE || block == Blocks.ICE) {
+                            if (blockstate.isAir(worldIn, pos.add(i1, k, j1))) {
                                 this.setBlockState(worldIn, pos.add(i1, k, j1), Blocks.ICE.getDefaultState());
                             }
 
                             if (k != 0 && l > 1) {
                                 blockstate = worldIn.getBlockState(pos.add(i1, -k, j1));
-                                block = blockstate.getBlock();
                                 if (blockstate.isAir(worldIn, pos.add(i1, -k, j1))) {
                                     this.setBlockState(worldIn, pos.add(i1, -k, j1), Blocks.PACKED_ICE.getDefaultState());
                                 }
@@ -89,8 +87,7 @@ public class SpikeFeature extends Feature<NoFeatureConfig> {
 
                     while(blockpos.getY() > 50) {
                         BlockState blockstate1 = worldIn.getBlockState(blockpos);
-                        Block block1 = blockstate1.getBlock();
-                        if (!blockstate1.isAir(worldIn, blockpos) && !isDirt(block1) && block1 != Blocks.SNOW_BLOCK && block1 != Blocks.ICE && block1 != Blocks.PACKED_ICE) {
+                        if (!blockstate1.isAir(worldIn, blockpos)) {
                             break;
                         }
 
