@@ -81,10 +81,10 @@ public class Prisoner extends AbstractSkeletonEntity {
         if (!super.attackEntityAsMob(entityIn)) {
             return false;
         } else {
-            if (entityIn instanceof LivingEntity) {
+          /*  if (entityIn instanceof LivingEntity) {
                 ((LivingEntity)entityIn).addPotionEffect(new EffectInstance(Effects.WITHER, 200));
             }
-
+          */
             return true;
         }
     }
