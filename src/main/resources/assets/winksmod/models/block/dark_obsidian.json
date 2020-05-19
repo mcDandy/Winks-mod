@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "winksmod:block/dark_obsidian"
+	}
+}
