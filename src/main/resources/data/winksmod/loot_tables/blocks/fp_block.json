@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "winksmod:fp_blocks"
+          "name": "winksmod:fp_block"
         }
       ],
       "conditions": [
