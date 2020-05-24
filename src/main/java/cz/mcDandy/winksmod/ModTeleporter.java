@@ -158,7 +158,7 @@ public class ModTeleporter implements ITeleporter {
                                         int sPosY = startY + portalHeight;
                                         int sPosZ = startZ + (k4 - 1) * i4 - j4 * l3;
                                         mutable.setPos(sPosX, sPosY, sPosZ);
-                                        System.out.println(world.getBlockState(mutable));
+                                       Main.LOGGER.debug(world.getBlockState(mutable));
                                         if (portalHeight < 0 && !world.getBlockState(mutable).getMaterial().isSolid() || portalHeight >= 0 && !world.isAirBlock(mutable)) {
                                             continue searchpos;
                                         }
