@@ -6,9 +6,10 @@ import net.minecraft.world.biome.Biome;
 
 public class ModBiomes {
     public static Biome OMEGA_BIOME = register(2684,"winksmod:omega",new OmegaBiome());
+    public static Biome OBSIDIAN_BIOME = register(2685,"winksmod:obsidian",new ObsidianBiome());
     public static Biome[] BIOMES = new Biome[]
            {
-OMEGA_BIOME
+OMEGA_BIOME,OBSIDIAN_BIOME
            };
     private static Biome register(int id, String key, Biome p_222369_2_) {
         Registry.register(Registry.BIOME, id, key, p_222369_2_);

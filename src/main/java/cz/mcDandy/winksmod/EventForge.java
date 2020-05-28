@@ -14,6 +14,7 @@ public class EventForge
     public static void registerDimension(final RegisterDimensionsEvent event)
     {
         DimensionManager.registerDimension(ModDimensions.OMEGA_RL, ModDimensions.DIM_OMEGA, null, false);
+        DimensionManager.registerDimension(ModDimensions.OBSIDIAN_RL, ModDimensions.DIM_OBSIDIAN, null, false);
     }
 
 }

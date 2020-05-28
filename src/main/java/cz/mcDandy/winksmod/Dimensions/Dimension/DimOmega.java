@@ -1,4 +1,4 @@
-package cz.mcDandy.winksmod.Dimensions.Omega;
+package cz.mcDandy.winksmod.Dimensions.Dimension;
 
 import javax.annotation.Nullable;
 
@@ -8,7 +8,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.dimension.Dimension;
