@@ -1,17 +1,20 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url "https://plugins.gradle.org/m2/"}
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "com.wynprice.cursemaven:CurseMaven:2.1.4"
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: "com.wynprice.cursemaven"
 
 version = '1.15.2-0.1.0'
 group = 'cz.daniel.winksmod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -108,7 +111,7 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    compile fg.deobf('curse.maven:obfuscate:2946425') // 0.4.3
 }
 task sourcesJar(type: Jar, dependsOn: classes) {
 	classifier = 'sources'
