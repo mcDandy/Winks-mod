@@ -101,7 +101,6 @@ public class Event {
         event.getRegistry().registerAll(ModBiomes.BIOMES);
     }
 
-
     @SubscribeEvent
     public static void OnEntityRegister(RegistryEvent.Register<EntityType<?>> e) {
         IForgeRegistry<EntityType<?>> registry = e.getRegistry();
@@ -112,18 +111,6 @@ public class Event {
     public static void setupModels(ModelRegistryEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUN_SPELL, new SunSpellRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.PRISONER, PrisonerRenderer::new);
-    }
-
-    @SubscribeEvent
-    public static void onClone(PlayerEvent.Clone event) {
-        if (event.isWasDeath()) {
-            event.getOriginal().getCapability(AccessableTransformationsCapability.ACCESSABLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations originalInstance) -> {
-                ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
-                player.getCapability(AccessableTransformationsCapability.ACCESSABLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations instance) -> {
-                    instance.setRawData(originalInstance.getRawData());
-                });
-            });
-        }
     }
 
     @Nonnull
@@ -144,13 +131,5 @@ public class Event {
         Preconditions.checkNotNull(registryName, "Registry name to assign to entry cannot be null!");
         entry.setRegistryName(registryName);
         return entry;
-    }
-    @SubscribeEvent
-    public void OnPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.player instanceof ServerPlayerEntity) {
-            event.player.getCapability(FairyEnergyCapability.FAIRY_ENERGY_CAPABILITY).ifPresent(fe -> {
-                fe.addOrSubtractAmount(0.01);
-            });
-        }
     }
 }
