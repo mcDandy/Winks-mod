@@ -2,6 +2,7 @@ package cz.mcDandy.winksmod;
 
 import com.google.common.base.Preconditions;
 import cz.mcDandy.winksmod.Blocks.ModBlocks;
+import cz.mcDandy.winksmod.Capabilities.*;
 import cz.mcDandy.winksmod.Dimensions.Biomes.ModBiomes;
 import cz.mcDandy.winksmod.Entities.ModEntities;
 import cz.mcDandy.winksmod.Items.ModItems;
@@ -9,15 +10,23 @@ import cz.mcDandy.winksmod.Render.Entities.PrisonerRenderer;
 import cz.mcDandy.winksmod.Render.Entities.SunSpellRenderer;
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.fml.SidedProvider;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -105,6 +114,18 @@ public class Event {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.PRISONER, PrisonerRenderer::new);
     }
 
+    @SubscribeEvent
+    public static void onClone(PlayerEvent.Clone event) {
+        if (event.isWasDeath()) {
+            event.getOriginal().getCapability(AccessableTransformationsCapability.ACCESSABLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations originalInstance) -> {
+                ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+                player.getCapability(AccessableTransformationsCapability.ACCESSABLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations instance) -> {
+                    instance.setRawData(originalInstance.getRawData());
+                });
+            });
+        }
+    }
+
     @Nonnull
     private static <T extends IForgeRegistryEntry<T>> T setup(@Nonnull final T entry, @Nonnull final String name) {
         Preconditions.checkNotNull(name, "Name to assign to entry cannot be null!");
@@ -124,5 +145,12 @@ public class Event {
         entry.setRegistryName(registryName);
         return entry;
     }
-
+    @SubscribeEvent
+    public void OnPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.player instanceof ServerPlayerEntity) {
+            event.player.getCapability(FairyEnergyCapability.FAIRY_ENERGY_CAPABILITY).ifPresent(fe -> {
+                fe.addOrSubtractAmount(0.01);
+            });
+        }
+    }
 }
