@@ -16,7 +16,7 @@ public class FairyEnergyCapability implements ICapabilitySerializable<DoubleNBT>
 
     @CapabilityInject(IFairyEnergy.class)
     public static final Capability<IFairyEnergy> FAIRY_ENERGY_CAPABILITY = null;
-    private LazyOptional<IFairyEnergy> instance = LazyOptional.of(FAIRY_ENERGY_CAPABILITY::getDefaultInstance);
+    private LazyOptional<IFairyEnergy> instance = LazyOptional.of(() -> FAIRY_ENERGY_CAPABILITY.getDefaultInstance());
 
     public static void register()
     {

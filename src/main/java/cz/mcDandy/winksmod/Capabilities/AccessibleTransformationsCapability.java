@@ -15,7 +15,7 @@ public class AccessibleTransformationsCapability implements ICapabilitySerializa
 
     @CapabilityInject(IAccessibleTransformations.class)
     public static final Capability<IAccessibleTransformations> ACCESSIBLE_TRANSFORMATIONS_CAPABILITY = null;
-    private LazyOptional<IAccessibleTransformations> instance = LazyOptional.of(ACCESSIBLE_TRANSFORMATIONS_CAPABILITY::getDefaultInstance);
+    private LazyOptional<IAccessibleTransformations> instance = LazyOptional.of(() -> ACCESSIBLE_TRANSFORMATIONS_CAPABILITY.getDefaultInstance());
 
     public static void register()
     {
