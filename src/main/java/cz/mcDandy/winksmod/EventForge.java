@@ -35,8 +35,8 @@ public class EventForge
     {
         if(event.getObject() instanceof PlayerEntity)
         {
-            event.addCapability(new ResourceLocation(Main.MODID,"FairyEnergy"), new FairyEnergyCapability());
-            event.addCapability(new ResourceLocation(Main.MODID,"AccessibleTransformations"), new AccessibleTransformationsCapability());
+            event.addCapability(new ResourceLocation(Main.MODID,"fairy_energy"), new FairyEnergyCapability());
+            event.addCapability(new ResourceLocation(Main.MODID,"accessible_transformations"), new AccessibleTransformationsCapability());
         }
     }
     @SubscribeEvent
