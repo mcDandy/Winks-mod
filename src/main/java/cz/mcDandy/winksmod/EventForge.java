@@ -3,7 +3,7 @@ package cz.mcDandy.winksmod;
 import com.mrcrayfish.obfuscate.client.event.PlayerModelEvent;
 import cz.mcDandy.winksmod.Capabilities.AccessibleTransformationsCapability;
 import cz.mcDandy.winksmod.Capabilities.FairyEnergyCapability;
-import cz.mcDandy.winksmod.Capabilities.IAccessableTransformations;
+import cz.mcDandy.winksmod.Capabilities.IAccessibleTransformations;
 import cz.mcDandy.winksmod.Dimensions.ModDimensions;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,9 +42,9 @@ public class EventForge
     @SubscribeEvent
     public static void onClone(PlayerEvent.Clone event) {
         if (event.isWasDeath()) {
-            event.getOriginal().getCapability(AccessibleTransformationsCapability.ACCESSIBLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations originalInstance) -> {
+            event.getOriginal().getCapability(AccessibleTransformationsCapability.ACCESSIBLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessibleTransformations originalInstance) -> {
                 ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
-                player.getCapability(AccessibleTransformationsCapability.ACCESSIBLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations instance) -> {
+                player.getCapability(AccessibleTransformationsCapability.ACCESSIBLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessibleTransformations instance) -> {
                     instance.setRawData(originalInstance.getRawData());
                 });
             });

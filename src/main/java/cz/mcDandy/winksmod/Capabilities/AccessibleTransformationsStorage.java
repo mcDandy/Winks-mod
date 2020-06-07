@@ -7,15 +7,15 @@ import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
 
-public class AccessibleTransformationsStorage implements Capability.IStorage<IAccessableTransformations> {
+public class AccessibleTransformationsStorage implements Capability.IStorage<IAccessibleTransformations> {
     @Nullable
     @Override
-    public INBT writeNBT(Capability<IAccessableTransformations> capability, IAccessableTransformations instance, Direction side) {
+    public INBT writeNBT(Capability<IAccessibleTransformations> capability, IAccessibleTransformations instance, Direction side) {
         return IntNBT.valueOf(instance.getRawData());
     }
 
     @Override
-    public void readNBT(Capability<IAccessableTransformations> capability, IAccessableTransformations instance, Direction side, INBT nbt) {
+    public void readNBT(Capability<IAccessibleTransformations> capability, IAccessibleTransformations instance, Direction side, INBT nbt) {
         if (!(instance instanceof FairyEnergy))
             throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
 

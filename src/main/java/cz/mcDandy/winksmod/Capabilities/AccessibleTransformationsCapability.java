@@ -13,13 +13,13 @@ import javax.annotation.Nullable;
 
 public class AccessibleTransformationsCapability implements ICapabilitySerializable<IntNBT> {
 
-    @CapabilityInject(IAccessableTransformations.class)
-    public static final Capability<IAccessableTransformations> ACCESSIBLE_TRANSFORMATIONS_CAPABILITY = null;
-    private LazyOptional<IAccessableTransformations> instance = LazyOptional.of(ACCESSIBLE_TRANSFORMATIONS_CAPABILITY::getDefaultInstance);
+    @CapabilityInject(IAccessibleTransformations.class)
+    public static final Capability<IAccessibleTransformations> ACCESSIBLE_TRANSFORMATIONS_CAPABILITY = null;
+    private LazyOptional<IAccessibleTransformations> instance = LazyOptional.of(ACCESSIBLE_TRANSFORMATIONS_CAPABILITY::getDefaultInstance);
 
     public static void register()
     {
-        CapabilityManager.INSTANCE.register(IAccessableTransformations.class, new AccessibleTransformationsStorage(), AccessibleTransformations::new);
+        CapabilityManager.INSTANCE.register(IAccessibleTransformations.class, new AccessibleTransformationsStorage(), AccessibleTransformations::new);
     }
 
     @Nonnull

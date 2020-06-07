@@ -1,6 +1,6 @@
 package cz.mcDandy.winksmod.Capabilities;
 
-public interface IAccessableTransformations {
+public interface IAccessibleTransformations {
     int getRawData();
     void setRawData(int amount);
     boolean[] getEnabledTransformations();
