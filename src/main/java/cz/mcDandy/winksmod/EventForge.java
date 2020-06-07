@@ -1,7 +1,7 @@
 package cz.mcDandy.winksmod;
 
 import com.mrcrayfish.obfuscate.client.event.PlayerModelEvent;
-import cz.mcDandy.winksmod.Capabilities.AccessableTransformationsCapability;
+import cz.mcDandy.winksmod.Capabilities.AccessibleTransformationsCapability;
 import cz.mcDandy.winksmod.Capabilities.FairyEnergyCapability;
 import cz.mcDandy.winksmod.Capabilities.IAccessableTransformations;
 import cz.mcDandy.winksmod.Dimensions.ModDimensions;
@@ -31,20 +31,20 @@ public class EventForge
         event.getModelPlayer().bipedBody.addBox(0,1.6f,0.5f,1,2,0.1f);
     }
     @SubscribeEvent
-    public void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event)
+    public static void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event)
     {
         if(event.getObject() instanceof PlayerEntity)
         {
-            event.addCapability(new ResourceLocation(Main.MODID, "FairyEnergy"), new FairyEnergyCapability());
-            event.addCapability(new ResourceLocation(Main.MODID, "AccessableTransformations"), new AccessableTransformationsCapability());
+            event.addCapability(new ResourceLocation(Main.MODID,"FairyEnergy"), new FairyEnergyCapability());
+            event.addCapability(new ResourceLocation(Main.MODID,"AccessibleTransformations"), new AccessibleTransformationsCapability());
         }
     }
     @SubscribeEvent
     public static void onClone(PlayerEvent.Clone event) {
         if (event.isWasDeath()) {
-            event.getOriginal().getCapability(AccessableTransformationsCapability.ACCESSABLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations originalInstance) -> {
+            event.getOriginal().getCapability(AccessibleTransformationsCapability.ACCESSIBLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations originalInstance) -> {
                 ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
-                player.getCapability(AccessableTransformationsCapability.ACCESSABLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations instance) -> {
+                player.getCapability(AccessibleTransformationsCapability.ACCESSIBLE_TRANSFORMATIONS_CAPABILITY).ifPresent((IAccessableTransformations instance) -> {
                     instance.setRawData(originalInstance.getRawData());
                 });
             });

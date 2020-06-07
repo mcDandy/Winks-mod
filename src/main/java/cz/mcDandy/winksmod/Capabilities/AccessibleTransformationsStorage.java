@@ -7,7 +7,7 @@ import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
 
-public class AccessableTransformationsStorage implements Capability.IStorage<IAccessableTransformations> {
+public class AccessibleTransformationsStorage implements Capability.IStorage<IAccessableTransformations> {
     @Nullable
     @Override
     public INBT writeNBT(Capability<IAccessableTransformations> capability, IAccessableTransformations instance, Direction side) {

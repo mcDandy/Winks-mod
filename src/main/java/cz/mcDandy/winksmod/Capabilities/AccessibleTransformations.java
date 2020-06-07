@@ -1,6 +1,6 @@
 package cz.mcDandy.winksmod.Capabilities;
 
-public class AccessableTransformations implements IAccessableTransformations {
+public class AccessibleTransformations implements IAccessableTransformations {
     private int amount = 0;
 
     @Override
