@@ -37,6 +37,8 @@ public class EventForge
         {
             event.addCapability(new ResourceLocation(Main.MODID,"fairy_energy"), new FairyEnergyCapability());
             event.addCapability(new ResourceLocation(Main.MODID,"accessible_transformations"), new AccessibleTransformationsCapability());
+            FairyEnergyCapability.register();
+            AccessibleTransformationsCapability.register();
         }
     }
     @SubscribeEvent
