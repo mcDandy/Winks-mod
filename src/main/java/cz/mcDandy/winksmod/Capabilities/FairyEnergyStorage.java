@@ -1,7 +1,7 @@
 package cz.mcDandy.winksmod.Capabilities;
 
-import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.DoubleNBT;
+import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 
@@ -19,6 +19,6 @@ public class FairyEnergyStorage implements Capability.IStorage<IFairyEnergy> {
         if (!(instance instanceof FairyEnergy))
             throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
 
-        instance.setAmount(((DoubleNBT)nbt).getInt());
+        instance.setAmount(((DoubleNBT) nbt).getInt());
     }
 }

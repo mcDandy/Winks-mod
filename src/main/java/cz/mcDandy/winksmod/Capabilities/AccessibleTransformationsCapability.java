@@ -17,8 +17,7 @@ public class AccessibleTransformationsCapability implements ICapabilitySerializa
     public static final Capability<IAccessibleTransformations> ACCESSIBLE_TRANSFORMATIONS_CAPABILITY = null;
     private LazyOptional<IAccessibleTransformations> instance = LazyOptional.of(() -> ACCESSIBLE_TRANSFORMATIONS_CAPABILITY.getDefaultInstance());
 
-    public static void register()
-    {
+    public static void register() {
         CapabilityManager.INSTANCE.register(IAccessibleTransformations.class, new AccessibleTransformationsStorage(), AccessibleTransformations::new);
     }
 

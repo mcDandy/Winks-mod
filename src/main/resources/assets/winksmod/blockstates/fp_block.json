@@ -1,21 +1,21 @@
 {
-	"variants": {
-		"": [
-			{
-				"model": "winksmod:block/fp_block"
-			},
-			{
-				"model": "winksmod:block/fp_block",
-				"y": 90
-			},
-			{
-				"model": "winksmod:block/fp_block",
-				"y": 180
-			},
-			{
-				"model": "winksmod:block/fp_block",
-				"y": 270
-			}
-		]
-	}
+  "variants": {
+    "": [
+      {
+        "model": "winksmod:block/fp_block"
+      },
+      {
+        "model": "winksmod:block/fp_block",
+        "y": 90
+      },
+      {
+        "model": "winksmod:block/fp_block",
+        "y": 180
+      },
+      {
+        "model": "winksmod:block/fp_block",
+        "y": 270
+      }
+    ]
+  }
 }

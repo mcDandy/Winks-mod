@@ -17,30 +17,29 @@ import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid=Main.MODID, bus= Mod.EventBusSubscriber.Bus.FORGE)
-public class EventForge
-{
+@Mod.EventBusSubscriber(modid = Main.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+public class EventForge {
     @SubscribeEvent
-    public static void registerDimension(final RegisterDimensionsEvent event)
-    {
+    public static void registerDimension(final RegisterDimensionsEvent event) {
         DimensionManager.registerDimension(ModDimensions.OMEGA_RL, ModDimensions.DIM_OMEGA, null, false);
         DimensionManager.registerDimension(ModDimensions.OBSIDIAN_RL, ModDimensions.DIM_OBSIDIAN, null, false);
     }
+
     @SubscribeEvent
-    public static void onPlayerModelEvent(PlayerModelEvent.Render.Pre event){
-        event.getModelPlayer().bipedBody.addBox(0,1.6f,0.5f,1,2,0.1f);
+    public static void onPlayerModelEvent(PlayerModelEvent.Render.Pre event) {
+        event.getModelPlayer().bipedBody.addBox(0, 1.6f, 0.5f, 1, 2, 0.1f);
     }
+
     @SubscribeEvent
-    public static void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event)
-    {
-        if(event.getObject() instanceof PlayerEntity)
-        {
-            event.addCapability(new ResourceLocation(Main.MODID,"fairy_energy"), new FairyEnergyCapability());
-            event.addCapability(new ResourceLocation(Main.MODID,"accessible_transformations"), new AccessibleTransformationsCapability());
+    public static void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event) {
+        if (event.getObject() instanceof PlayerEntity) {
+            event.addCapability(new ResourceLocation(Main.MODID, "fairy_energy"), new FairyEnergyCapability());
+            event.addCapability(new ResourceLocation(Main.MODID, "accessible_transformations"), new AccessibleTransformationsCapability());
             FairyEnergyCapability.register();
             AccessibleTransformationsCapability.register();
         }
     }
+
     @SubscribeEvent
     public static void onClone(PlayerEvent.Clone event) {
         if (event.isWasDeath()) {
@@ -52,6 +51,7 @@ public class EventForge
             });
         }
     }
+
     @SubscribeEvent
     public void OnPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.player instanceof ServerPlayerEntity) {

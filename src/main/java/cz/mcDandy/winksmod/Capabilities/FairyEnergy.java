@@ -12,7 +12,7 @@ public class FairyEnergy implements IFairyEnergy {
     public void setAmount(double amount) {
         this.amount = amount;
 
-        if(this.amount < 0)
+        if (this.amount < 0)
             this.amount = 0;
     }
 
@@ -20,7 +20,7 @@ public class FairyEnergy implements IFairyEnergy {
     public void addOrSubtractAmount(double amount) {
         this.amount += amount;
 
-        if(this.amount < 0)
+        if (this.amount < 0)
             this.amount = 0;
     }
 }

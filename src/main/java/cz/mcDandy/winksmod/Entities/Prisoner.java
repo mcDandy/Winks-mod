@@ -7,8 +7,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -43,7 +41,7 @@ public class Prisoner extends AbstractSkeletonEntity {
         super.dropSpecialItems(source, looting, recentlyHitIn);
         Entity entity = source.getTrueSource();
         if (entity instanceof CreeperEntity) {
-            CreeperEntity creeperentity = (CreeperEntity)entity;
+            CreeperEntity creeperentity = (CreeperEntity) entity;
             if (creeperentity.ableToCauseSkullDrop()) {
                 creeperentity.incrementDroppedSkulls();
                 this.entityDropItem(Items.WITHER_SKELETON_SKULL);

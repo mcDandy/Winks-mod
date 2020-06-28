@@ -19,6 +19,6 @@ public class AccessibleTransformationsStorage implements Capability.IStorage<IAc
         if (!(instance instanceof FairyEnergy))
             throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
 
-        instance.setRawData(((IntNBT)nbt).getInt());
+        instance.setRawData(((IntNBT) nbt).getInt());
     }
 }

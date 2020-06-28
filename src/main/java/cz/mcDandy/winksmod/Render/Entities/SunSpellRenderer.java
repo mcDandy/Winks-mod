@@ -25,5 +25,4 @@ public class SunSpellRenderer extends SpriteRenderer<SunSpell> {
     }
 
 
-
 }

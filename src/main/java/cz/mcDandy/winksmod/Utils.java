@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 public class Utils {
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.TYPE)
-	public @interface NoAutomaticBlockItem {
-	}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.TYPE)
+    public @interface NoAutomaticBlockItem {
+    }
 }

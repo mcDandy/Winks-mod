@@ -1,6 +1,7 @@
 package cz.mcDandy.winksmod.Render.Entities;
 
-import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,6 +15,7 @@ public class PrisonerRenderer extends SkeletonRenderer {
         super(manager);
         this.addLayer(new PrisonerClothingLayerRenderer<>(this));
     }
+
     public ResourceLocation getEntityTexture(AbstractSkeletonEntity entity) {
         return textureLoc;
     }

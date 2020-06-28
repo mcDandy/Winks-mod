@@ -1,7 +1,6 @@
 package cz.mcDandy.winksmod.Capabilities;
 
 import net.minecraft.nbt.DoubleNBT;
-import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -18,8 +17,7 @@ public class FairyEnergyCapability implements ICapabilitySerializable<DoubleNBT>
     public static final Capability<IFairyEnergy> FAIRY_ENERGY_CAPABILITY = null;
     private LazyOptional<IFairyEnergy> instance = LazyOptional.of(() -> FAIRY_ENERGY_CAPABILITY.getDefaultInstance());
 
-    public static void register()
-    {
+    public static void register() {
         CapabilityManager.INSTANCE.register(IFairyEnergy.class, new FairyEnergyStorage(), FairyEnergy::new);
     }
 

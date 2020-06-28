@@ -23,11 +23,11 @@ public class Size {
     private final Block FRAME_BLOCK;
     private final Block PORTAL_BLOCK;
 
-    public Size(IWorld worldIn, BlockPos pos, Direction.Axis facing, Block FrameBlock,Block PortalBlock) {
+    public Size(IWorld worldIn, BlockPos pos, Direction.Axis facing, Block FrameBlock, Block PortalBlock) {
         world = worldIn;
         axis = facing;
-        FRAME_BLOCK=FrameBlock;
-        PORTAL_BLOCK=PortalBlock;
+        FRAME_BLOCK = FrameBlock;
+        PORTAL_BLOCK = PortalBlock;
         if (facing == Direction.Axis.X) {
             leftDir = Direction.EAST;
             rightDir = Direction.WEST;
@@ -157,13 +157,14 @@ public class Size {
     public boolean canCreatePortal() {
         return this.isValid() && this.isLargeEnough();
     }
-    public static BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos pos,Block frameBlock, Block portalBlock) {
+
+    public static BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos pos, Block frameBlock, Block portalBlock) {
         Direction.Axis axis = Direction.Axis.Z;
-        Size size = new Size(worldIn, pos, Direction.Axis.X,frameBlock,portalBlock);
+        Size size = new Size(worldIn, pos, Direction.Axis.X, frameBlock, portalBlock);
         LoadingCache<BlockPos, CachedBlockInfo> cache = BlockPattern.createLoadingCache(worldIn, true);
         if (!size.isValid()) {
             axis = Direction.Axis.X;
-            size = new Size(worldIn, pos, Direction.Axis.Z,frameBlock,portalBlock);
+            size = new Size(worldIn, pos, Direction.Axis.Z, frameBlock, portalBlock);
         }
 
         if (!size.isValid()) {
@@ -173,11 +174,11 @@ public class Size {
             Direction direction = size.rightDir.rotateYCCW();
             BlockPos blockpos = size.bottomLeft.up(size.getHeight() - 1);
 
-            for(Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
+            for (Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
                 BlockPattern.PatternHelper helper = new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDir ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(axisDir, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
 
-                for(int i = 0; i < size.getWidth(); ++i) {
-                    for(int j = 0; j < size.getHeight(); ++j) {
+                for (int i = 0; i < size.getWidth(); ++i) {
+                    for (int j = 0; j < size.getHeight(); ++j) {
                         CachedBlockInfo cacheInfo = helper.translateOffset(i, j, 1);
                         if (!cacheInfo.getBlockState().isAir()) {
                             ++axes[axisDir.ordinal()];
@@ -188,7 +189,7 @@ public class Size {
 
             Direction.AxisDirection axisDirPos = Direction.AxisDirection.POSITIVE;
 
-            for(Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
+            for (Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
                 if (axes[axisDir.ordinal()] < axes[axisDirPos.ordinal()]) {
                     axisDirPos = axisDir;
                 }

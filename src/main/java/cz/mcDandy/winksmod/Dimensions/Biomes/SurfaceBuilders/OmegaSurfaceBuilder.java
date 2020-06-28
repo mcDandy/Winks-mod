@@ -1,9 +1,6 @@
 package cz.mcDandy.winksmod.Dimensions.Biomes.SurfaceBuilders;
 
 
-import java.util.Random;
-import java.util.function.Function;
-
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,6 +11,9 @@ import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.OctavesNoiseGenerator;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+
+import java.util.Random;
+import java.util.function.Function;
 
 public class OmegaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
     private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
@@ -33,15 +33,15 @@ public class OmegaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
         int j = x & 15;
         int k = z & 15;
         double d0 = 0.03125D;
-        boolean flag = this.octavesNoiseGenerator.func_205563_a((double)x * 0.03125D, (double)z * 0.03125D, 0.0D) + random.nextDouble() * 0.2D > 0.0D;
-        boolean flag1 = this.octavesNoiseGenerator.func_205563_a((double)x * 0.03125D, 109.0D, (double)z * 0.03125D) + random.nextDouble() * 0.2D > 0.0D;
-        int l = (int)(noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
+        boolean flag = this.octavesNoiseGenerator.func_205563_a((double) x * 0.03125D, (double) z * 0.03125D, 0.0D) + random.nextDouble() * 0.2D > 0.0D;
+        boolean flag1 = this.octavesNoiseGenerator.func_205563_a((double) x * 0.03125D, 109.0D, (double) z * 0.03125D) + random.nextDouble() * 0.2D > 0.0D;
+        int l = (int) (noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
         BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
         int i1 = -1;
         BlockState blockstate = PACKED_ICE;
         BlockState blockstate1 = PACKED_ICE;
 
-        for(int j1 = 127; j1 >= 0; --j1) {
+        for (int j1 = 127; j1 >= 0; --j1) {
             blockpos$mutable.setPos(j, j1, k);
             BlockState blockstate2 = chunkIn.getBlockState(blockpos$mutable);
             if (blockstate2.getBlock() != null && !blockstate2.isAir()) {
@@ -88,7 +88,7 @@ public class OmegaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
 
     public void setSeed(long seed) {
         if (this.seed != seed || this.octavesNoiseGenerator == null) {
-            this.octavesNoiseGenerator = new OctavesNoiseGenerator(new SharedSeedRandom(seed), 4,0);
+            this.octavesNoiseGenerator = new OctavesNoiseGenerator(new SharedSeedRandom(seed), 4, 0);
         }
 
         this.seed = seed;

@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class PrisonerClothingLayerRenderer<T extends MobEntity & IRangedAttackMob, M extends EntityModel<T>> extends LayerRenderer<T, M> {
-    private static final ResourceLocation STRAY_CLOTHES_TEXTURES = new ResourceLocation(Main.MODID,"textures/entity/prisoner_overlay.png");
+    private static final ResourceLocation STRAY_CLOTHES_TEXTURES = new ResourceLocation(Main.MODID, "textures/entity/prisoner_overlay.png");
     private final SkeletonModel<T> layerModel = new SkeletonModel<>(0.25F, true);
 
     public PrisonerClothingLayerRenderer(IEntityRenderer<T, M> renderer) {

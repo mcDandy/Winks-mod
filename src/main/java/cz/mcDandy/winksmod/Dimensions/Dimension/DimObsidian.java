@@ -19,62 +19,62 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 
 public class DimObsidian extends Dimension {
-	private static final Vec3d fogColor = new Vec3d(0.1, 0.1, 0.1);
+    private static final Vec3d fogColor = new Vec3d(0.1, 0.1, 0.1);
 
-	public DimObsidian(World worldIn, DimensionType typeIn) {
-		super(worldIn, typeIn, 0.1F);
-		this.doesWaterVaporize = false;
-		this.nether = false;
-	}
+    public DimObsidian(World worldIn, DimensionType typeIn) {
+        super(worldIn, typeIn, 0.1F);
+        this.doesWaterVaporize = false;
+        this.nether = false;
+    }
 
-	@OnlyIn(Dist.CLIENT)
-	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
-		return fogColor;
-	}
+    @OnlyIn(Dist.CLIENT)
+    public Vec3d getFogColor(float celestialAngle, float partialTicks) {
+        return fogColor;
+    }
 
-	public ChunkGenerator<?> createChunkGenerator() {
-		NetherGenSettings nethergensettings = ChunkGeneratorType.CAVES.createSettings();
-		nethergensettings.setDefaultBlock(Blocks.OBSIDIAN.getDefaultState());
-		nethergensettings.setDefaultFluid(Blocks.WATER.getDefaultState());
-		return ChunkGeneratorType.CAVES.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings(this.world.getWorldInfo()).setBiome(ModBiomes.OBSIDIAN_BIOME)), nethergensettings);
-	}
+    public ChunkGenerator<?> createChunkGenerator() {
+        NetherGenSettings nethergensettings = ChunkGeneratorType.CAVES.createSettings();
+        nethergensettings.setDefaultBlock(Blocks.OBSIDIAN.getDefaultState());
+        nethergensettings.setDefaultFluid(Blocks.WATER.getDefaultState());
+        return ChunkGeneratorType.CAVES.create(this.world, BiomeProviderType.FIXED.create(BiomeProviderType.FIXED.createSettings(this.world.getWorldInfo()).setBiome(ModBiomes.OBSIDIAN_BIOME)), nethergensettings);
+    }
 
-	public boolean isSurfaceWorld() {
-		return false;
-	}
+    public boolean isSurfaceWorld() {
+        return false;
+    }
 
-	@Nullable
-	public BlockPos findSpawn(ChunkPos chunkPosIn, boolean checkValid) {
-		return null;
-	}
+    @Nullable
+    public BlockPos findSpawn(ChunkPos chunkPosIn, boolean checkValid) {
+        return null;
+    }
 
-	@Nullable
-	public BlockPos findSpawn(int posX, int posZ, boolean checkValid) {
-		return null;
-	}
+    @Nullable
+    public BlockPos findSpawn(int posX, int posZ, boolean checkValid) {
+        return null;
+    }
 
-	public float calculateCelestialAngle(long worldTime, float partialTicks) {
-		return 0.5F;
-	}
+    public float calculateCelestialAngle(long worldTime, float partialTicks) {
+        return 0.5F;
+    }
 
-	public boolean canRespawnHere() {
-		return false;
-	}
+    public boolean canRespawnHere() {
+        return false;
+    }
 
-	@OnlyIn(Dist.CLIENT)
-	public boolean doesXZShowFog(int x, int z) {
-		return true;
-	}
+    @OnlyIn(Dist.CLIENT)
+    public boolean doesXZShowFog(int x, int z) {
+        return true;
+    }
 
-	public WorldBorder createWorldBorder() {
-		return new WorldBorder() {
-			public double getCenterX() {
-				return super.getCenterX() / 8.0D;
-			}
+    public WorldBorder createWorldBorder() {
+        return new WorldBorder() {
+            public double getCenterX() {
+                return super.getCenterX() / 8.0D;
+            }
 
-			public double getCenterZ() {
-				return super.getCenterZ() / 8.0D;
-			}
-		};
-	}
+            public double getCenterZ() {
+                return super.getCenterZ() / 8.0D;
+            }
+        };
+    }
 }

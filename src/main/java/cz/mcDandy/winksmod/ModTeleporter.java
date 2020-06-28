@@ -36,16 +36,15 @@ public class ModTeleporter implements ITeleporter {
     private final EnumProperty<Direction.Axis> AXIS;
 
 
-    
     public ModTeleporter(ServerWorld worldIn, Block FrameBlock, Block PortalBlock, EnumProperty<Direction.Axis> axis) {
         this.world = worldIn;
         this.random = new Random(worldIn.getSeed());
-        FRAME_BLOCK=FrameBlock;
-        PORTAL_BLOCK=PortalBlock;
-        AXIS=axis;
+        FRAME_BLOCK = FrameBlock;
+        PORTAL_BLOCK = PortalBlock;
+        AXIS = axis;
     }
 
-    public boolean placeInPortal( Entity entity, float yaw) {
+    public boolean placeInPortal(Entity entity, float yaw) {
         Vec3d vec3d = entity.getLastPortalVec();
         Direction direction = entity.getTeleportDirection();
         BlockPattern.PortalInfo pattern = this.placeInExistingPortal(new BlockPos(entity.getPosX(), entity.getPosY(), entity.getPosZ()), entity.getMotion(), direction, vec3d.x, vec3d.y, entity instanceof PlayerEntity);
@@ -62,7 +61,7 @@ public class ModTeleporter implements ITeleporter {
     }
 
     @Nullable
-    public BlockPattern.PortalInfo placeInExistingPortal( BlockPos pos, Vec3d motion, Direction direction, double x, double y, boolean isPlayer) {
+    public BlockPattern.PortalInfo placeInExistingPortal(BlockPos pos, Vec3d motion, Direction direction, double x, double y, boolean isPlayer) {
         boolean isFrame = true;
         BlockPos blockpos = null;
         ColumnPos columnpos = new ColumnPos(pos);
@@ -77,13 +76,13 @@ public class ModTeleporter implements ITeleporter {
             } else {
                 double d0 = Double.MAX_VALUE;
 
-                for(int eX = -128; eX <= 128; ++eX) {
+                for (int eX = -128; eX <= 128; ++eX) {
                     BlockPos blockpos2;
-                    for(int eZ = -128; eZ <= 128; ++eZ) {
-                        for(BlockPos blockpos1 = pos.add(eX, world.getActualHeight() - 1 - pos.getY(), eZ); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
+                    for (int eZ = -128; eZ <= 128; ++eZ) {
+                        for (BlockPos blockpos1 = pos.add(eX, world.getActualHeight() - 1 - pos.getY(), eZ); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
                             blockpos2 = blockpos1.down();
                             if (world.getBlockState(blockpos1).getBlock() == PORTAL_BLOCK) {
-                                for(blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == PORTAL_BLOCK; blockpos2 = blockpos2.down()) {
+                                for (blockpos2 = blockpos1.down(); world.getBlockState(blockpos2).getBlock() == PORTAL_BLOCK; blockpos2 = blockpos2.down()) {
                                     blockpos1 = blockpos2;
                                 }
 
@@ -108,7 +107,7 @@ public class ModTeleporter implements ITeleporter {
                     world.getChunkProvider().registerTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, new BlockPos(columnpos.x, blockpos.getY(), columnpos.z));
                 }
 
-                BlockPattern.PatternHelper helper = createPatternHelper(world, blockpos,Blocks.BLUE_ICE ,ModBlocks.PORTAL_OMEGA_BLOCK);
+                BlockPattern.PatternHelper helper = createPatternHelper(world, blockpos, Blocks.BLUE_ICE, ModBlocks.PORTAL_OMEGA_BLOCK);
                 return helper.getPortalInfo(direction, blockpos, y, motion, x);
             }
         }
@@ -158,7 +157,7 @@ public class ModTeleporter implements ITeleporter {
                                         int sPosY = startY + portalHeight;
                                         int sPosZ = startZ + (k4 - 1) * i4 - j4 * l3;
                                         mutable.setPos(sPosX, sPosY, sPosZ);
-                                       Main.LOGGER.debug(world.getBlockState(mutable));
+                                        Main.LOGGER.debug(world.getBlockState(mutable));
                                         if (portalHeight < 0 && !world.getBlockState(mutable).getMaterial().isSolid() || portalHeight >= 0 && !world.isAirBlock(mutable)) {
                                             continue searchpos;
                                         }
