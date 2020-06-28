@@ -16,7 +16,7 @@ public class AccessibleTransformationsStorage implements Capability.IStorage<IAc
 
     @Override
     public void readNBT(Capability<IAccessibleTransformations> capability, IAccessibleTransformations instance, Direction side, INBT nbt) {
-        if (!(instance instanceof FairyEnergy))
+        if (!(instance instanceof AccessibleTransformations))
             throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
 
         instance.setRawData(((IntNBT) nbt).getInt());
