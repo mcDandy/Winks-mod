@@ -2,6 +2,8 @@ package cz.mcDandy.winksmod;
 
 import com.google.common.base.Preconditions;
 import cz.mcDandy.winksmod.Blocks.ModBlocks;
+import cz.mcDandy.winksmod.Capabilities.AccessibleTransformationsCapability;
+import cz.mcDandy.winksmod.Capabilities.FairyEnergyCapability;
 import cz.mcDandy.winksmod.Dimensions.Biomes.ModBiomes;
 import cz.mcDandy.winksmod.Entities.ModEntities;
 import cz.mcDandy.winksmod.Items.ModItems;
@@ -20,6 +22,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -90,6 +93,12 @@ public class Event {
     @SubscribeEvent
     public static void onBiomeRegistry(RegistryEvent.Register<Biome> event) {
         event.getRegistry().registerAll(ModBiomes.BIOMES);
+    }
+    @SubscribeEvent
+    public static void onFmlSetup(FMLCommonSetupEvent event)
+    {
+        FairyEnergyCapability.register();
+        AccessibleTransformationsCapability.register();
     }
 
     @SubscribeEvent

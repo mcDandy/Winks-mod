@@ -30,8 +30,6 @@ public class EventForge {
         if (event.getObject() instanceof PlayerEntity) {
             event.addCapability(new ResourceLocation(Main.MODID, "fairy_energy"), new FairyEnergyCapability());
             event.addCapability(new ResourceLocation(Main.MODID, "accessible_transformations"), new AccessibleTransformationsCapability());
-            FairyEnergyCapability.register();
-            AccessibleTransformationsCapability.register();
         }
     }
 
@@ -48,10 +46,10 @@ public class EventForge {
     }
 
     @SubscribeEvent
-    public void OnPlayerTick(TickEvent.PlayerTickEvent event) {
+    public static void OnPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.player instanceof ServerPlayerEntity) {
             event.player.getCapability(FairyEnergyCapability.FAIRY_ENERGY_CAPABILITY).ifPresent(fe -> {
-                fe.addOrSubtractAmount(0.01);
+                fe.addOrSubtractAmount(0.001);
             });
         }
     }
