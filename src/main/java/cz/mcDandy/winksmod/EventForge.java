@@ -47,7 +47,7 @@ public class EventForge {
 
     @SubscribeEvent
     public static void OnPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.player instanceof ServerPlayerEntity) {
+        if (event.player != null) {
             event.player.getCapability(FairyEnergyCapability.FAIRY_ENERGY_CAPABILITY).ifPresent(fe -> {
                 fe.addOrSubtractAmount(0.001);
             });
