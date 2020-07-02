@@ -54,9 +54,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
     versionRange="[1.15.2]"
     ordering="NONE"
     side="BOTH"
-[[dependencies.winksmod]]
-    modId="obfuscate"
-    mandatory=true
-    versionRange="[0.4.3,)"
-    ordering="AFTER"
-    side="BOTH"
+#[[dependencies.winksmod]]
+#    modId="obfuscate"
+#    mandatory=true
+#    versionRange="[0.4.3,)"
+#    ordering="AFTER"
+#    side="BOTH"

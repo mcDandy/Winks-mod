@@ -111,7 +111,7 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    compile fg.deobf('curse.maven:obfuscate:2946425') // 0.4.3
+
 }
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'

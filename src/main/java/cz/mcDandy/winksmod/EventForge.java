@@ -1,6 +1,5 @@
 package cz.mcDandy.winksmod;
 
-import com.mrcrayfish.obfuscate.client.event.PlayerModelEvent;
 import cz.mcDandy.winksmod.Capabilities.AccessibleTransformationsCapability;
 import cz.mcDandy.winksmod.Capabilities.FairyEnergyCapability;
 import cz.mcDandy.winksmod.Capabilities.IAccessibleTransformations;
@@ -26,12 +25,8 @@ public class EventForge {
     }
 
     @SubscribeEvent
-    public static void onPlayerModelEvent(PlayerModelEvent.Render.Pre event) {
-        event.getModelPlayer().bipedBody.addBox(0, 1.6f, 0.5f, 1, 2, 0.1f);
-    }
-
-    @SubscribeEvent
     public static void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event) {
+
         if (event.getObject() instanceof PlayerEntity) {
             event.addCapability(new ResourceLocation(Main.MODID, "fairy_energy"), new FairyEnergyCapability());
             event.addCapability(new ResourceLocation(Main.MODID, "accessible_transformations"), new AccessibleTransformationsCapability());
