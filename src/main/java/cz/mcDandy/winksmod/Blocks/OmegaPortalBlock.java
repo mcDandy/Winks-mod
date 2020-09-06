@@ -1,19 +1,18 @@
 package cz.mcDandy.winksmod.Blocks;
 
+import com.google.common.cache.LoadingCache;
 import cz.mcDandy.winksmod.Dimensions.ModDimensions;
-import cz.mcDandy.winksmod.ModTeleporter;
-import cz.mcDandy.winksmod.Size;
+import cz.mcDandy.winksmod.Teleporters.OmegaTeleporter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.NetherPortalBlock;
+import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -25,6 +24,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class OmegaPortalBlock extends Block {
@@ -54,7 +54,7 @@ public class OmegaPortalBlock extends Block {
         Direction.Axis directionAxis = facing.getAxis();
         Direction.Axis directionAxis1 = stateIn.get(AXIS);
         boolean flag = directionAxis1 != directionAxis && directionAxis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new Size(worldIn, currentPos, directionAxis1, Blocks.BLUE_ICE, ModBlocks.PORTAL_OMEGA_BLOCK)).canCreatePortal() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return !flag && facingState.getBlock() != this && !(new Size(worldIn, currentPos, directionAxis1)).canCreatePortal() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class OmegaPortalBlock extends Block {
                     if (!entity.isPassenger()) {
                         entity.timeUntilPortal = entity.getPortalCooldown();
                         DimensionType type = worldIn.dimension.getType() == DimensionType.byName(ModDimensions.OMEGA_RL) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.OMEGA_RL);
-                        entity.changeDimension(type, new ModTeleporter((ServerWorld) entity.world, Blocks.BLUE_ICE, ModBlocks.PORTAL_OMEGA_BLOCK, AXIS));
+                        entity.changeDimension(type, new OmegaTeleporter((ServerWorld) entity.world));
                     }
                 }
             }
@@ -104,8 +104,187 @@ public class OmegaPortalBlock extends Block {
         }
     }
 
-    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AXIS);
+    }
+
+    public static BlockPattern.PatternHelper createPatternHelper(IWorld p_181089_0_, BlockPos worldIn) {
+        Direction.Axis direction$axis = Direction.Axis.Z;
+        OmegaPortalBlock.Size omegaportalblock$size = new OmegaPortalBlock.Size(p_181089_0_, worldIn, Direction.Axis.X);
+        LoadingCache<BlockPos, CachedBlockInfo> loadingcache = BlockPattern.createLoadingCache(p_181089_0_, true);
+        if (!omegaportalblock$size.isValid()) {
+            direction$axis = Direction.Axis.X;
+            omegaportalblock$size = new OmegaPortalBlock.Size(p_181089_0_, worldIn, Direction.Axis.Z);
+        }
+
+        if (!omegaportalblock$size.isValid()) {
+            return new BlockPattern.PatternHelper(worldIn, Direction.NORTH, Direction.UP, loadingcache, 1, 1, 1);
+        } else {
+            int[] aint = new int[Direction.AxisDirection.values().length];
+            Direction direction = omegaportalblock$size.rightDir.rotateYCCW();
+            BlockPos blockpos = omegaportalblock$size.bottomLeft.up(omegaportalblock$size.getHeight() - 1);
+
+            for(Direction.AxisDirection direction$axisdirection : Direction.AxisDirection.values()) {
+                BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection ? blockpos : blockpos.offset(omegaportalblock$size.rightDir, omegaportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection, direction$axis), Direction.UP, loadingcache, omegaportalblock$size.getWidth(), omegaportalblock$size.getHeight(), 1);
+
+                for(int i = 0; i < omegaportalblock$size.getWidth(); ++i) {
+                    for(int j = 0; j < omegaportalblock$size.getHeight(); ++j) {
+                        CachedBlockInfo cachedblockinfo = blockpattern$patternhelper.translateOffset(i, j, 1);
+                        if (!cachedblockinfo.getBlockState().isAir()) {
+                            ++aint[direction$axisdirection.ordinal()];
+                        }
+                    }
+                }
+            }
+
+            Direction.AxisDirection direction$axisdirection1 = Direction.AxisDirection.POSITIVE;
+
+            for(Direction.AxisDirection direction$axisdirection2 : Direction.AxisDirection.values()) {
+                if (aint[direction$axisdirection2.ordinal()] < aint[direction$axisdirection1.ordinal()]) {
+                    direction$axisdirection1 = direction$axisdirection2;
+                }
+            }
+
+            return new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection1 ? blockpos : blockpos.offset(omegaportalblock$size.rightDir, omegaportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection1, direction$axis), Direction.UP, loadingcache, omegaportalblock$size.getWidth(), omegaportalblock$size.getHeight(), 1);
+        }
+    }
+
+    public static class Size {
+        private final IWorld world;
+        private final Direction.Axis axis;
+        private final Direction rightDir;
+        private final Direction leftDir;
+        private int portalBlockCount;
+        @Nullable
+        private BlockPos bottomLeft;
+        private int height;
+        private int width;
+
+        public Size(IWorld worldIn, BlockPos pos, Direction.Axis axisIn) {
+            this.world = worldIn;
+            this.axis = axisIn;
+            if (axisIn == Direction.Axis.X) {
+                this.leftDir = Direction.EAST;
+                this.rightDir = Direction.WEST;
+            } else {
+                this.leftDir = Direction.NORTH;
+                this.rightDir = Direction.SOUTH;
+            }
+
+            for(BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && this.func_196900_a(worldIn.getBlockState(pos.down())); pos = pos.down()) {
+                ;
+            }
+
+            int i = this.getDistanceUntilEdge(pos, this.leftDir) - 1;
+            if (i >= 0) {
+                this.bottomLeft = pos.offset(this.leftDir, i);
+                this.width = this.getDistanceUntilEdge(this.bottomLeft, this.rightDir);
+                if (this.width < 2 || this.width > 21) {
+                    this.bottomLeft = null;
+                    this.width = 0;
+                }
+            }
+
+            if (this.bottomLeft != null) {
+                this.height = this.calculatePortalHeight();
+            }
+
+        }
+
+        protected int getDistanceUntilEdge(BlockPos pos, Direction directionIn) {
+            int i;
+            for(i = 0; i < 22; ++i) {
+                BlockPos blockpos = pos.offset(directionIn, i);
+                if (!this.func_196900_a(this.world.getBlockState(blockpos)) || !this.world.getBlockState(blockpos.down()).isPortalFrame(this.world, blockpos.down())) {
+                    break;
+                }
+            }
+
+            BlockPos framePos = pos.offset(directionIn, i);
+            return this.world.getBlockState(framePos).isPortalFrame(this.world, framePos) ? i : 0;
+        }
+
+        public int getHeight() {
+            return this.height;
+        }
+
+        public int getWidth() {
+            return this.width;
+        }
+
+        protected int calculatePortalHeight() {
+            label56:
+            for(this.height = 0; this.height < 21; ++this.height) {
+                for(int i = 0; i < this.width; ++i) {
+                    BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
+                    BlockState blockstate = this.world.getBlockState(blockpos);
+                    if (!this.func_196900_a(blockstate)) {
+                        break label56;
+                    }
+
+                    Block block = blockstate.getBlock();
+                    if (block == ModBlocks.PORTAL_OMEGA_BLOCK) {
+                        ++this.portalBlockCount;
+                    }
+
+                    if (i == 0) {
+                        BlockPos framePos = blockpos.offset(this.leftDir);
+                        if (!this.world.getBlockState(framePos).isPortalFrame(this.world, framePos)) {
+                            break label56;
+                        }
+                    } else if (i == this.width - 1) {
+                        BlockPos framePos = blockpos.offset(this.rightDir);
+                        if (!this.world.getBlockState(framePos).isPortalFrame(this.world, framePos)) {
+                            break label56;
+                        }
+                    }
+                }
+            }
+
+            for(int j = 0; j < this.width; ++j) {
+                BlockPos framePos = this.bottomLeft.offset(this.rightDir, j).up(this.height);
+                if (!this.world.getBlockState(framePos).isPortalFrame(this.world, framePos)) {
+                    this.height = 0;
+                    break;
+                }
+            }
+
+            if (this.height <= 21 && this.height >= 3) {
+                return this.height;
+            } else {
+                this.bottomLeft = null;
+                this.width = 0;
+                this.height = 0;
+                return 0;
+            }
+        }
+
+        protected boolean func_196900_a(BlockState pos) {
+            Block block = pos.getBlock();
+            return pos.isAir() || block == Blocks.FIRE || block == ModBlocks.PORTAL_OMEGA_BLOCK;
+        }
+
+        public boolean isValid() {
+            return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
+        }
+
+        public void placePortalBlocks() {
+            for(int i = 0; i < this.width; ++i) {
+                BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
+
+                for(int j = 0; j < this.height; ++j) {
+                    this.world.setBlockState(blockpos.up(j), ModBlocks.PORTAL_OMEGA_BLOCK.getDefaultState().with(OmegaPortalBlock.AXIS, this.axis), 18);
+                }
+            }
+
+        }
+
+        private boolean func_196899_f() {
+            return this.portalBlockCount >= this.width * this.height;
+        }
+
+        public boolean canCreatePortal() {
+            return this.isValid() && this.func_196899_f();
+        }
     }
 }

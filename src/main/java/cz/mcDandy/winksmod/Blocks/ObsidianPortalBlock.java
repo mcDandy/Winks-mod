@@ -1,7 +1,7 @@
 package cz.mcDandy.winksmod.Blocks;
 
 import cz.mcDandy.winksmod.Dimensions.ModDimensions;
-import cz.mcDandy.winksmod.ModTeleporter;
+import cz.mcDandy.winksmod.Teleporters.OmegaTeleporter;
 import cz.mcDandy.winksmod.Size;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -71,7 +71,7 @@ public class ObsidianPortalBlock extends Block {
                     if (!entity.isPassenger()) {
                         entity.timeUntilPortal = entity.getPortalCooldown();
                         DimensionType type = worldIn.dimension.getType() == DimensionType.byName(ModDimensions.OBSIDIAN_RL) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.OBSIDIAN_RL);
-                        entity.changeDimension(type, new ModTeleporter((ServerWorld) entity.world, ModBlocks.DARK_OBSIDIAN, ModBlocks.PORTAL_OBSIDIAN_BLOCK, AXIS));
+                        entity.changeDimension(type, new OmegaTeleporter((ServerWorld) entity.world));
                     }
                 }
             }
