@@ -6,7 +6,6 @@ import cz.mcDandy.winksmod.Teleporters.OmegaTeleporter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.NetherPortalBlock;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.state.EnumProperty;
@@ -195,13 +194,13 @@ public class OmegaPortalBlock extends Block {
             int i;
             for(i = 0; i < 22; ++i) {
                 BlockPos blockpos = pos.offset(directionIn, i);
-                if (!this.func_196900_a(this.world.getBlockState(blockpos)) || !this.world.getBlockState(blockpos.down()).isPortalFrame(this.world, blockpos.down())) {
+                if (!this.func_196900_a(this.world.getBlockState(blockpos)) || this.world.getBlockState(blockpos.down())!=Blocks.BLUE_ICE.getDefaultState()) {
                     break;
                 }
             }
 
             BlockPos framePos = pos.offset(directionIn, i);
-            return this.world.getBlockState(framePos).isPortalFrame(this.world, framePos) ? i : 0;
+            return this.world.getBlockState(framePos)==Blocks.BLUE_ICE.getDefaultState() ? i : 0;
         }
 
         public int getHeight() {
@@ -234,7 +233,7 @@ public class OmegaPortalBlock extends Block {
                         }
                     } else if (i == this.width - 1) {
                         BlockPos framePos = blockpos.offset(this.rightDir);
-                        if (!this.world.getBlockState(framePos).isPortalFrame(this.world, framePos)) {
+                        if (this.world.getBlockState(framePos)!=Blocks.BLUE_ICE.getDefaultState()) {
                             break label56;
                         }
                     }
@@ -243,7 +242,7 @@ public class OmegaPortalBlock extends Block {
 
             for(int j = 0; j < this.width; ++j) {
                 BlockPos framePos = this.bottomLeft.offset(this.rightDir, j).up(this.height);
-                if (!this.world.getBlockState(framePos).isPortalFrame(this.world, framePos)) {
+                if (this.world.getBlockState(framePos)!=Blocks.BLUE_ICE.getDefaultState()) {
                     this.height = 0;
                     break;
                 }
@@ -279,12 +278,12 @@ public class OmegaPortalBlock extends Block {
 
         }
 
-        private boolean func_196899_f() {
+        private boolean isPortalRectangular() {
             return this.portalBlockCount >= this.width * this.height;
         }
 
         public boolean canCreatePortal() {
-            return this.isValid() && this.func_196899_f();
+            return this.isValid() && this.isPortalRectangular();
         }
     }
 }
