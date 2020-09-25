@@ -1,6 +1,8 @@
 package cz.mcDandy.winksmod;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 import cz.mcDandy.winksmod.Blocks.ModBlocks;
 import cz.mcDandy.winksmod.Capabilities.AccessibleTransformationsCapability;
 import cz.mcDandy.winksmod.Capabilities.FairyEnergyCapability;
@@ -11,23 +13,30 @@ import cz.mcDandy.winksmod.Render.Entities.PrisonerRenderer;
 import cz.mcDandy.winksmod.Render.Entities.SunSpellRenderer;
 import cz.mcDandy.winksmod.Utils.NoAutomaticBlockItem;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.village.PointOfInterest;
+import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Set;
 
 @EventBusSubscriber(modid = Main.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class Event {
@@ -111,6 +120,21 @@ public class Event {
     public static void setupModels(ModelRegistryEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUN_SPELL, new SunSpellRenderer.Factory());
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.PRISONER, PrisonerRenderer::new);
+    }
+    @SubscribeEvent
+    public static void CreatePOI(RegistryEvent.Register<PointOfInterestType> event) {
+        Method method = ObfuscationReflectionHelper.findMethod(PointOfInterestType.class, "func_226359_a_", String.class, Set.class, int.class,
+                int.class);
+        method.setAccessible(true);
+        try {PointOfInterestCustom.OMEGA_PORTAL = (PointOfInterestType) method.invoke(null, "dimomega_portal",
+                Sets.newHashSet(ImmutableSet.copyOf(ModBlocks.PORTAL_OMEGA_BLOCK.getStateContainer().getValidStates())), 0, 1);
+            event.getRegistry().register(PointOfInterestCustom.OMEGA_PORTAL);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Nonnull

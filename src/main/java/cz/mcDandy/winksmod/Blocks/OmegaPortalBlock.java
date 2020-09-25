@@ -6,6 +6,7 @@ import cz.mcDandy.winksmod.Teleporters.OmegaTeleporter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.NetherPortalBlock;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.state.EnumProperty;
@@ -13,6 +14,8 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -30,6 +33,9 @@ public class OmegaPortalBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
     protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+    private Vec3d lastPortalVec;
+    private Direction teleportDirection;
+    private BlockPos lastPortalPos;
 
     public OmegaPortalBlock(Properties properties) {
         super(properties);
@@ -62,8 +68,20 @@ public class OmegaPortalBlock extends Block {
             if (entity.timeUntilPortal > 0) {
                 entity.timeUntilPortal = entity.getPortalCooldown();
             } else {
-                if (!entity.world.isRemote && !pos.equals(entity)) {
-                    entity.setPortal(new BlockPos(pos));
+                if (!entity.world.isRemote && !pos.equals(lastPortalPos)) {
+                    if (entity.timeUntilPortal > 0) {
+                        entity.timeUntilPortal = entity.getPortalCooldown();
+                    } else {
+                        if (!entity.world.isRemote && !pos.equals(this.lastPortalPos))
+                        {
+                            this.lastPortalPos = new BlockPos(pos);
+                            BlockPattern.PatternHelper blockpattern$patternhelper = createPatternHelper(entity.world, this.lastPortalPos);
+                            double d0 = blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
+                            double d1 = Math.abs(MathHelper.pct((blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? entity.getPosZ() : entity.getPosX()) - (double)(blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), d0, d0 - (double)blockpattern$patternhelper.getWidth()));
+                            double d2 = MathHelper.pct(entity.getPosY() - 1.0D, (double)blockpattern$patternhelper.getFrontTopLeft().getY(), (double)(blockpattern$patternhelper.getFrontTopLeft().getY() - blockpattern$patternhelper.getHeight()));
+                            this.lastPortalVec = new Vec3d(d1, d2, 0.0D);
+                            this.teleportDirection = blockpattern$patternhelper.getForwards();
+                        }
                 }
 
                 if (entity.world instanceof ServerWorld) {
@@ -72,6 +90,7 @@ public class OmegaPortalBlock extends Block {
                         DimensionType type = worldIn.dimension.getType() == DimensionType.byName(ModDimensions.OMEGA_RL) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.OMEGA_RL);
                         entity.changeDimension(type, new OmegaTeleporter((ServerWorld) entity.world));
                     }
+                }
                 }
             }
         }

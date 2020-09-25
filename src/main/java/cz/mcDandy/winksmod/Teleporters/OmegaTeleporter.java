@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 
 import cz.mcDandy.winksmod.Blocks.ModBlocks;
 import cz.mcDandy.winksmod.Blocks.OmegaPortalBlock;
+import cz.mcDandy.winksmod.PointOfInterestCustom;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockPattern;
@@ -55,7 +56,7 @@ public class OmegaTeleporter implements net.minecraftforge.common.util.ITeleport
         PointOfInterestManager pointofinterestmanager = this.world.getPointOfInterestManager();
         pointofinterestmanager.ensureLoadedAndValid(this.world, p_222272_1_, 128);
         List<PointOfInterest> list = pointofinterestmanager.getInSquare((p_226705_0_) -> {
-            return p_226705_0_ == PointOfInterestType.NETHER_PORTAL;
+            return p_226705_0_ == PointOfInterestCustom.OMEGA_PORTAL;
         }, p_222272_1_, 128, PointOfInterestManager.Status.ANY).collect(Collectors.toList());
         Optional<PointOfInterest> optional = list.stream().min(Comparator.<PointOfInterest>comparingDouble((p_226706_1_) -> {
             return p_226706_1_.getPos().distanceSq(p_222272_1_);
@@ -201,7 +202,7 @@ public class OmegaTeleporter implements net.minecraftforge.common.util.ITeleport
                         int l10 = k6 + (i8 - 1) * i3 - j7 * l6;
                         boolean flag = i9 < 0;
                         blockpos$mutable.setPos(l9, j10, l10);
-                        this.world.setBlockState(blockpos$mutable, flag ? Blocks.OBSIDIAN.getDefaultState() : Blocks.AIR.getDefaultState());
+                        this.world.setBlockState(blockpos$mutable, flag ? Blocks.BLUE_ICE.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -211,7 +212,7 @@ public class OmegaTeleporter implements net.minecraftforge.common.util.ITeleport
             for(int j8 = -1; j8 < 4; ++j8) {
                 if (k7 == -1 || k7 == 2 || j8 == -1 || j8 == 3) {
                     blockpos$mutable.setPos(i6 + k7 * l6, k2 + j8, k6 + k7 * i3);
-                    this.world.setBlockState(blockpos$mutable, Blocks.OBSIDIAN.getDefaultState(), 3);
+                    this.world.setBlockState(blockpos$mutable, Blocks.BLUE_ICE.getDefaultState(), 3);
                 }
             }
         }
