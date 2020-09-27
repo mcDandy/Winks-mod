@@ -22,7 +22,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.village.PointOfInterest;
 import net.minecraft.village.PointOfInterestManager;
-import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 
