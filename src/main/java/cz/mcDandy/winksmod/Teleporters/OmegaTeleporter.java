@@ -92,7 +92,7 @@ public class OmegaTeleporter implements net.minecraftforge.common.util.ITeleport
             }
         }
     }
-    
+
     public void makePortal(ServerWorld world, Entity entity) {
         Random random = new Random(world.getSeed());
         double d0 = -1.0D;
