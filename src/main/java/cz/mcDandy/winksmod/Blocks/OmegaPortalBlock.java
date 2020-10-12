@@ -21,10 +21,13 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.BiomeDictionary;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -33,9 +36,6 @@ public class OmegaPortalBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     protected static final VoxelShape X_AABB = Block.makeCuboidShape(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
     protected static final VoxelShape Z_AABB = Block.makeCuboidShape(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
-    private Vec3d lastPortalVec;
-    private Direction teleportDirection;
-    private BlockPos lastPortalPos;
 
     public OmegaPortalBlock(Properties properties) {
         super(properties);
@@ -68,34 +68,46 @@ public class OmegaPortalBlock extends Block {
             if (entity.timeUntilPortal > 0) {
                 entity.timeUntilPortal = entity.getPortalCooldown();
             } else {
-                if (!entity.world.isRemote && !pos.equals(lastPortalPos)) {
-                    if (entity.timeUntilPortal > 0) {
-                        entity.timeUntilPortal = entity.getPortalCooldown();
-                    } else {
-                        if (!entity.world.isRemote && !pos.equals(this.lastPortalPos))
-                        {
-                            this.lastPortalPos = new BlockPos(pos);
-                            BlockPattern.PatternHelper blockpattern$patternhelper = createPatternHelper(entity.world, this.lastPortalPos);
-                            double d0 = blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
-                            double d1 = Math.abs(MathHelper.pct((blockpattern$patternhelper.getForwards().getAxis() == Direction.Axis.X ? entity.getPosZ() : entity.getPosX()) - (double)(blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), d0, d0 - (double)blockpattern$patternhelper.getWidth()));
-                            double d2 = MathHelper.pct(entity.getPosY() - 1.0D, (double)blockpattern$patternhelper.getFrontTopLeft().getY(), (double)(blockpattern$patternhelper.getFrontTopLeft().getY() - blockpattern$patternhelper.getHeight()));
-                            this.lastPortalVec = new Vec3d(d1, d2, 0.0D);
-                            this.teleportDirection = blockpattern$patternhelper.getForwards();
-                        }
+                if (!entity.world.isRemote && !pos.equals(entity.lastPortalPos)) {
+                    entity.lastPortalPos = new BlockPos(pos);
+                    BlockPattern.PatternHelper helper = createPatternHelper(entity.world, entity.lastPortalPos);
+                    double axis = helper.getForwards().getAxis() == Direction.Axis.X ? (double)helper.getFrontTopLeft().getZ() : (double)helper.getFrontTopLeft().getX();
+                    double x = Math.abs(MathHelper.pct((helper.getForwards().getAxis() == Direction.Axis.X ? entity.getPosZ() : entity.getPosX()) - (double)(helper.getForwards().rotateY().getAxisDirection() == Direction.AxisDirection.NEGATIVE ? 1 : 0), axis, axis - (double)helper.getWidth()));
+                    double y = MathHelper.pct(entity.getPosY() - 1.0D, (double)helper.getFrontTopLeft().getY(), (double)(helper.getFrontTopLeft().getY() - helper.getHeight()));
+                    entity.lastPortalVec = new Vec3d(x, y, 0.0D);
+                    entity.teleportDirection = helper.getForwards();
                 }
 
                 if (entity.world instanceof ServerWorld) {
-                    if (!entity.isPassenger()) {
+                    if (entity.world.getServer().getAllowNether() && !entity.isPassenger()) {
                         entity.timeUntilPortal = entity.getPortalCooldown();
                         DimensionType type = worldIn.dimension.getType() == DimensionType.byName(ModDimensions.OMEGA_RL) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.OMEGA_RL);
-                        entity.changeDimension(type, new OmegaTeleporter((ServerWorld) entity.world));
+                        entity.changeDimension(type, new OmegaTeleporter());
                     }
-                }
                 }
             }
         }
     }
 
+    public boolean tryToCreatePortal(World worldIn, BlockPos pos) {
+        OmegaPortalBlock.Size omegaPortalSize = this.isPortal(worldIn, pos);
+        if (omegaPortalSize != null && this.canCreatePortalByWorld(worldIn, pos)) {
+            omegaPortalSize.placePortalBlocks();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    @Nullable
+    public OmegaPortalBlock.Size isPortal(IWorld world, BlockPos pos) {
+        OmegaPortalBlock.Size gaiaPortalSizeX = new OmegaPortalBlock.Size(world, pos, Direction.Axis.X);
+        if (gaiaPortalSizeX.isValid() && gaiaPortalSizeX.portalBlockCount == 0) {
+            return gaiaPortalSizeX;
+        } else {
+            OmegaPortalBlock.Size omegaPortalSizeZ = new OmegaPortalBlock.Size(world, pos, Direction.Axis.Z);
+            return omegaPortalSizeZ.isValid() && omegaPortalSizeZ.portalBlockCount == 0 ? omegaPortalSizeZ : null;
+        }
+    }
     @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
@@ -103,7 +115,15 @@ public class OmegaPortalBlock extends Block {
             worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
     }
+    private boolean canCreatePortalByWorld(World world, BlockPos pos) {
+        Biome biome = world.getBiome(pos);
 
+        if (world.dimension.getType() == DimensionType.OVERWORLD) {
+          return true;
+        } else {
+            return world.dimension.getType() == DimensionType.byName(ModDimensions.OMEGA_RL);
+        }
+    }
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
         switch (rot) {
@@ -121,49 +141,48 @@ public class OmegaPortalBlock extends Block {
                 return state;
         }
     }
-
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AXIS);
     }
-
-    public static BlockPattern.PatternHelper createPatternHelper(IWorld p_181089_0_, BlockPos worldIn) {
-        Direction.Axis direction$axis = Direction.Axis.Z;
-        OmegaPortalBlock.Size omegaportalblock$size = new OmegaPortalBlock.Size(p_181089_0_, worldIn, Direction.Axis.X);
-        LoadingCache<BlockPos, CachedBlockInfo> loadingcache = BlockPattern.createLoadingCache(p_181089_0_, true);
-        if (!omegaportalblock$size.isValid()) {
-            direction$axis = Direction.Axis.X;
-            omegaportalblock$size = new OmegaPortalBlock.Size(p_181089_0_, worldIn, Direction.Axis.Z);
+    public static BlockPattern.PatternHelper createPatternHelper(IWorld worldIn, BlockPos pos) {
+        Direction.Axis axis = Direction.Axis.Z;
+        OmegaPortalBlock.Size size = new OmegaPortalBlock.Size(worldIn, pos, Direction.Axis.X);
+        LoadingCache<BlockPos, CachedBlockInfo> cache = BlockPattern.createLoadingCache(worldIn, true);
+        if (!size.isValid()) {
+            axis = Direction.Axis.X;
+            size = new OmegaPortalBlock.Size(worldIn, pos, Direction.Axis.Z);
         }
 
-        if (!omegaportalblock$size.isValid()) {
-            return new BlockPattern.PatternHelper(worldIn, Direction.NORTH, Direction.UP, loadingcache, 1, 1, 1);
+        if (!size.isValid()) {
+            return new BlockPattern.PatternHelper(pos, Direction.NORTH, Direction.UP, cache, 1, 1, 1);
         } else {
-            int[] aint = new int[Direction.AxisDirection.values().length];
-            Direction direction = omegaportalblock$size.rightDir.rotateYCCW();
-            BlockPos blockpos = omegaportalblock$size.bottomLeft.up(omegaportalblock$size.getHeight() - 1);
+            int[] axes = new int[Direction.AxisDirection.values().length];
+            Direction direction = size.rightDir.rotateYCCW();
+            BlockPos blockpos = size.bottomLeft.up(size.getHeight() - 1);
 
-            for(Direction.AxisDirection direction$axisdirection : Direction.AxisDirection.values()) {
-                BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection ? blockpos : blockpos.offset(omegaportalblock$size.rightDir, omegaportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection, direction$axis), Direction.UP, loadingcache, omegaportalblock$size.getWidth(), omegaportalblock$size.getHeight(), 1);
+            for(Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
+                BlockPattern.PatternHelper helper = new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDir ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(axisDir, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
 
-                for(int i = 0; i < omegaportalblock$size.getWidth(); ++i) {
-                    for(int j = 0; j < omegaportalblock$size.getHeight(); ++j) {
-                        CachedBlockInfo cachedblockinfo = blockpattern$patternhelper.translateOffset(i, j, 1);
-                        if (!cachedblockinfo.getBlockState().isAir()) {
-                            ++aint[direction$axisdirection.ordinal()];
+                for(int i = 0; i < size.getWidth(); ++i) {
+                    for(int j = 0; j < size.getHeight(); ++j) {
+                        CachedBlockInfo cacheInfo = helper.translateOffset(i, j, 1);
+                        if (!cacheInfo.getBlockState().isAir()) {
+                            ++axes[axisDir.ordinal()];
                         }
                     }
                 }
             }
 
-            Direction.AxisDirection direction$axisdirection1 = Direction.AxisDirection.POSITIVE;
+            Direction.AxisDirection axisDirPos = Direction.AxisDirection.POSITIVE;
 
-            for(Direction.AxisDirection direction$axisdirection2 : Direction.AxisDirection.values()) {
-                if (aint[direction$axisdirection2.ordinal()] < aint[direction$axisdirection1.ordinal()]) {
-                    direction$axisdirection1 = direction$axisdirection2;
+            for(Direction.AxisDirection axisDir : Direction.AxisDirection.values()) {
+                if (axes[axisDir.ordinal()] < axes[axisDirPos.ordinal()]) {
+                    axisDirPos = axisDir;
                 }
             }
 
-            return new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection1 ? blockpos : blockpos.offset(omegaportalblock$size.rightDir, omegaportalblock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection1, direction$axis), Direction.UP, loadingcache, omegaportalblock$size.getWidth(), omegaportalblock$size.getHeight(), 1);
+            return new BlockPattern.PatternHelper(direction.getAxisDirection() == axisDirPos ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(axisDirPos, axis), Direction.UP, cache, size.getWidth(), size.getHeight(), 1);
         }
     }
 

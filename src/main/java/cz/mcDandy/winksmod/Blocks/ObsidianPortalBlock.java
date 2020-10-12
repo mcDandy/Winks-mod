@@ -71,7 +71,7 @@ public class ObsidianPortalBlock extends Block {
                     if (!entity.isPassenger()) {
                         entity.timeUntilPortal = entity.getPortalCooldown();
                         DimensionType type = worldIn.dimension.getType() == DimensionType.byName(ModDimensions.OBSIDIAN_RL) ? DimensionType.OVERWORLD : DimensionType.byName(ModDimensions.OBSIDIAN_RL);
-                        entity.changeDimension(type, new OmegaTeleporter((ServerWorld) entity.world));
+                        entity.changeDimension(type, new OmegaTeleporter());
                     }
                 }
             }
