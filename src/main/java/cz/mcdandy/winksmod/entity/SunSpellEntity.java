@@ -1,7 +1,10 @@
 package cz.mcdandy.winksmod.entity;
 
+import cz.mcdandy.winksmod.block.ModBlocks;
+import cz.mcdandy.winksmod.block.SunLightBlockEntity;
 import cz.mcdandy.winksmod.item.ModItems;
 import java.util.List;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -62,6 +65,10 @@ public class SunSpellEntity extends AbstractHurtingProjectile implements ItemSup
                 }
             }
 
+            if (result instanceof BlockHitResult blockHit) {
+                onHitBlock(blockHit);
+            }
+
             discard();
         }
     }
@@ -73,6 +80,11 @@ public class SunSpellEntity extends AbstractHurtingProjectile implements ItemSup
 
     @Override
     protected void onHitBlock(BlockHitResult result) {
+        BlockPos pos = result.getBlockPos().relative(result.getDirection());
+
+        if (level().getBlockState(pos).canBeReplaced()) {
+            level().setBlockAndUpdate(pos, ModBlocks.SUN_LIGHT.get().defaultBlockState());
+        }
     }
 
     @Override

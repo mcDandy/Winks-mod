@@ -52,6 +52,18 @@ public final class ModBlocks {
         () -> BlockBehaviour.Properties.of().noCollision().strength(3.0F, 3.0F)
     );
 
+    public static final DeferredBlock<SunLightBlock> SUN_LIGHT = BLOCKS.registerBlock(
+        "sun_light",
+        SunLightBlock::new,
+        () -> BlockBehaviour.Properties.of()
+            .noCollision()
+            .replaceable()
+            .noOcclusion()
+            .noLootTable()
+            .strength(-1.0F, 3600000.8F)
+            .lightLevel(state -> state.getValue(SunLightBlock.LEVEL))
+    );
+
     private ModBlocks() {
     }
 }

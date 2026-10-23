@@ -1,6 +1,7 @@
 package cz.mcdandy.winksmod;
 
 import cz.mcdandy.winksmod.attachment.ModAttachments;
+import cz.mcdandy.winksmod.block.ModBlockEntities;
 import cz.mcdandy.winksmod.block.ModBlocks;
 import cz.mcdandy.winksmod.creative.ModCreativeTabs;
 import cz.mcdandy.winksmod.entity.ModEntities;
@@ -25,6 +26,7 @@ public class WinksMod {
 
     public WinksMod(IEventBus modEventBus) {
         ModBlocks.BLOCKS.register(modEventBus);
+        ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
