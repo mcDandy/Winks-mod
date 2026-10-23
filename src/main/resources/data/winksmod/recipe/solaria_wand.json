@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "solaria_wand",
+  "pattern": [
+    "D",
+    "I",
+    "I"
+  ],
+  "key": {
+    "D": "winksmod:magic_diamond",
+    "I": "winksmod:iron_rod"
+  },
+  "result": {
+    "id": "winksmod:solaria_wand"
+  }
+}
