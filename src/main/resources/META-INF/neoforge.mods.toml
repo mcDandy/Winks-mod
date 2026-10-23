@@ -1,0 +1,28 @@
+# Mod descriptor. The language loader is the default (javafml), so modLoader and
+# loaderVersion are intentionally omitted - both are deprecated since NeoForge 20.x.
+# license is mandatory for FML 12; LGPL-2.1-only matches LICENSE.txt, change it if you prefer.
+license = "LGPL-2.1-only"
+
+[[mods]]
+modId = "winksmod"
+# Keep in sync with mod_version in gradle.properties
+version = "2.0.0"
+displayName = "Winks Mod"
+authors = "mcDandy"
+description = '''
+Fairy powder, the solaria wand and two cave dimensions to explore: omega (packed ice) and obsidian.
+'''
+
+[[dependencies.winksmod]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[26.3,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.winksmod]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "[26.3]"
+    ordering = "NONE"
+    side = "BOTH"

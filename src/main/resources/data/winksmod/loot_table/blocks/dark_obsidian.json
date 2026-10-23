@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "fp_block",
+      "name": "dark_obsidian",
       "rolls": 1,
       "entries": [
         {
@@ -16,5 +16,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "winksmod:blocks/dark_obsidian"
 }

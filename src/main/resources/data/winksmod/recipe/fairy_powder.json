@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "fairy_powder",
+  "ingredients": [
+    "minecraft:redstone",
+    "minecraft:glowstone_dust",
+    "minecraft:purple_dye",
+    "minecraft:ender_eye"
+  ],
+  "result": {
+    "id": "winksmod:fairy_powder",
+    "count": 16
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:sequence",
+  "sequence": [
+    "minecraft:bedrock_floor",
+    "minecraft:bedrock_roof",
+    {
+      "type": "minecraft:block",
+      "result_state": "minecraft:obsidian"
+    }
+  ]
+}

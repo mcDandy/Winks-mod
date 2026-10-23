@@ -1,17 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "iron_rod",
   "pattern": [
     "  i",
     " i ",
     "i  "
   ],
   "key": {
-    "i": {
-      "item": "minecraft:iron_ingot"
-    }
+    "i": "minecraft:iron_ingot"
   },
   "result": {
-    "item": "winksmod:iron_rod",
-    "count": 1
+    "id": "winksmod:iron_rod"
   }
 }

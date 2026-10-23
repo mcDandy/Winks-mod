@@ -1,0 +1,11 @@
+{
+  "type": "winksmod:omega",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "winksmod:omega",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "winksmod:omega"
+    }
+  }
+}

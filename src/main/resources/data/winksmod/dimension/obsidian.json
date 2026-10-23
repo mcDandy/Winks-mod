@@ -1,0 +1,11 @@
+{
+  "type": "winksmod:obsidian",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "winksmod:obsidian",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "winksmod:obsidian"
+    }
+  }
+}

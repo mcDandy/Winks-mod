@@ -1,0 +1,24 @@
+{
+  "ambient_light": 0.1,
+  "attributes": {
+    "minecraft:gameplay/bed_rule": {
+      "can_set_spawn": "never",
+      "can_sleep": "never",
+      "destroy_on_use": true
+    },
+    "minecraft:gameplay/can_start_raid": false,
+    "minecraft:visual/fog_color": "#1a1a1a"
+  },
+  "cardinal_light": "default",
+  "coordinate_scale": 0.1,
+  "has_ceiling": false,
+  "has_ender_dragon_fight": false,
+  "has_fixed_time": true,
+  "has_skylight": false,
+  "height": 192,
+  "infiniburn": "#minecraft:infiniburn_overworld",
+  "logical_height": 192,
+  "min_y": -64,
+  "monster_spawn_block_light_limit": 15,
+  "monster_spawn_light_level": 7
+}

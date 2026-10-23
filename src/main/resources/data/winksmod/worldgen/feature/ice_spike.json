@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:spike",
+  "state": "minecraft:ice",
+  "can_place_on": {
+    "type": "minecraft:matching_blocks",
+    "blocks": "minecraft:packed_ice"
+  },
+  "can_replace": {
+    "type": "minecraft:matching_blocks",
+    "blocks": "minecraft:air"
+  }
+}

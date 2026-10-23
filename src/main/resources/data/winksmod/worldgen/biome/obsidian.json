@@ -1,0 +1,26 @@
+{
+  "carvers": [
+    "minecraft:cave"
+  ],
+  "downfall": 0.0,
+  "effects": {
+    "water_color": "#050533"
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "winksmod:dark_obsidian_ore"
+    ],
+    [],
+    [],
+    []
+  ],
+  "has_precipitation": false,
+  "temperature": -2.0
+}
