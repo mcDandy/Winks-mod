@@ -32,6 +32,8 @@ public final class ModItems {
     /** The item the sun spell is rendered as. */
     public static final DeferredItem<Item> SOLAR_CORE = ITEMS.registerSimpleItem("solar_core");
 
+    public static final DeferredItem<Item> MAGIC_DIAMOND = ITEMS.registerSimpleItem("magic_diamond");
+
     public static final DeferredItem<BlockItem> FP_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(ModBlocks.FP_BLOCK);
     public static final DeferredItem<BlockItem> DARK_OBSIDIAN_ITEM = ITEMS.registerSimpleBlockItem(ModBlocks.DARK_OBSIDIAN);
 

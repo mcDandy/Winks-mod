@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "magic_diamond",
+  "pattern": [
+    " F ",
+    "FDF",
+    " F "
+  ],
+  "key": {
+    "F": "winksmod:fairy_powder",
+    "D": "minecraft:diamond"
+  },
+  "result": {
+    "id": "winksmod:magic_diamond"
+  }
+}
