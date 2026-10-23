@@ -6,5 +6,6 @@
   "item.winksmod.solaria_wand": "Solaria Wand",
   "item.winksmod.iron_rod": "Iron Rod",
   "item.winksmod.solar_core": "Solar Core",
-  "entity.winksmod.prisoner": "Prisoner"
+  "entity.winksmod.prisoner": "Prisoner",
+  "entity.winksmod.sun_spell": "Sun Spell"
 }
