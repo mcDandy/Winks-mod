@@ -7,7 +7,6 @@ import cz.mcdandy.winksmod.attachment.ModAttachments;
 import cz.mcdandy.winksmod.attachment.Transformation;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -31,12 +30,10 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 @EventBusSubscriber(modid = WinksMod.MODID)
 public final class FairyFlightHandler {
     /** Vanilla's default entity gravity. Our glide math applies it ourselves so nothing else can touch it. */
-    private static final double GRAVITY = 0.08D;
 
     /** Powered flight uses elytra steering plus a reduced rocket-like forward thrust. */
-    private static final double POWERED_ACCELERATION = 0.035D;
+    private static final double POWERED_ACCELERATION = 0.2D;
     private static final double MAX_POWERED_SPEED = 0.8D;
-    private static final double POWERED_GRAVITY_FACTOR = 0.04D;
     private static final double SNEAK_FACTOR = 0.2D;
     private static final double SPRINT_FACTOR = 1.8D;
     private static final int HOLD_TICKS = 3;
@@ -75,7 +72,7 @@ public final class FairyFlightHandler {
         Transformation current = player.getData(transformationType);
         FlightMotion motion = player.getData(ModAttachments.FLIGHT_MOTION.get());
 
-        if (!current.isFairy()) {
+        if (!current.isFairy() || !current.isTransformed()) {
             motion.reset();
             motion.setWasOnGround(player.onGround());
             return;
@@ -99,7 +96,7 @@ public final class FairyFlightHandler {
         if (!mode.isFlying()) {
             if (tapped && !player.onGround() && !motion.wasOnGround() && player.getDeltaMovement().y <= 0.0D) {
                 motion.setVelocity(player.getDeltaMovement().scale(0.25D));
-                setFlight(player, transformationType, current, FlightMode.GLIDE);
+                setFlight(player, transformationType, current, FlightMode.POWERED);
             }
 
             motion.setWasOnGround(player.onGround());
@@ -111,7 +108,7 @@ public final class FairyFlightHandler {
         boolean hoverJumpToggle = released && previousJumpHeldTicks < HOLD_TICKS;
         if (shortJumpTap || hoverJumpToggle) {
             setFlight(player, transformationType, current,
-                    mode == FlightMode.HOVER ? FlightMode.GLIDE : FlightMode.HOVER);
+                    mode == FlightMode.HOVER ? FlightMode.POWERED : FlightMode.HOVER);
         }
 
         // Touching down always ends the flight, whatever mode the fairy was in.
@@ -166,36 +163,9 @@ public final class FairyFlightHandler {
      */
     private static Vec3 poweredFlightStep(Player player, Vec3 movement) {
         Vec3 lookAngle = player.getLookAngle();
-        float leanAngle = player.getXRot() * (float) (Math.PI / 180.0);
-        double lookHorizontal = Math.sqrt(lookAngle.x * lookAngle.x + lookAngle.z * lookAngle.z);
-        double movementHorizontal = movement.horizontalDistance();
-        double lift = Mth.square(Math.cos(leanAngle));
-
-        // Keep vanilla elytra lift and pitch steering, then add the fairy's forward thrust on top.
-        Vec3 next = movement.add(0.0D, GRAVITY * (-1.0D + lift * 0.75D), 0.0D);
-        if (next.y < 0.0D && lookHorizontal > 0.0D) {
-            double convert = next.y * -0.1D * lift;
-            next = next.add(lookAngle.x * convert / lookHorizontal, convert, lookAngle.z * convert / lookHorizontal);
-        }
-        if (leanAngle < 0.0F && lookHorizontal > 0.0D) {
-            double convert = movementHorizontal * -Mth.sin(leanAngle) * 0.04D;
-            next = next.add(-lookAngle.x * convert / lookHorizontal, convert * 3.2D, -lookAngle.z * convert / lookHorizontal);
-        }
-        if (lookHorizontal > 0.0D) {
-            next = next.add(
-                    (lookAngle.x / lookHorizontal * movementHorizontal - next.x) * 0.1D,
-                    0.0D,
-                    (lookAngle.z / lookHorizontal * movementHorizontal - next.z) * 0.1D
-            );
-        }
-
         double factor = player.isShiftKeyDown() ? SNEAK_FACTOR : sprintKeyDown(player) ? SPRINT_FACTOR : 1.0D;
-        next = next.add(lookAngle.scale(POWERED_ACCELERATION * factor));
-        double maxSpeed = MAX_POWERED_SPEED * factor;
-        if (next.length() > maxSpeed) {
-            next = next.normalize().scale(maxSpeed);
-        }
-        return next.multiply(0.98D, 0.98D, 0.98D).add(0.0D, -GRAVITY * POWERED_GRAVITY_FACTOR, 0.0D);
+        Vec3 target = lookAngle.scale(MAX_POWERED_SPEED * factor);
+        return movement.scale(1.0D - POWERED_ACCELERATION).add(target.scale(POWERED_ACCELERATION));
     }
 
     private static Vec3 hoverStep(Player player, boolean ascending) {

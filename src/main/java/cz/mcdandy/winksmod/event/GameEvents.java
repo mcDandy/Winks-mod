@@ -3,7 +3,6 @@ package cz.mcdandy.winksmod.event;
 import cz.mcdandy.winksmod.WinksMod;
 import cz.mcdandy.winksmod.attachment.FairyEnergy;
 import cz.mcdandy.winksmod.attachment.ModAttachments;
-import cz.mcdandy.winksmod.attachment.Transformation;
 import cz.mcdandy.winksmod.command.WinksCommands;
 import cz.mcdandy.winksmod.worldgen.ModDimensions;
 import net.minecraft.server.level.ServerLevel;
@@ -43,7 +42,7 @@ public final class GameEvents {
             return;
         }
 
-        if (player.getData(ModAttachments.TRANSFORMATION.get()).type() != Transformation.FAIRY) {
+        if (!player.getData(ModAttachments.TRANSFORMATION.get()).isFairy()) {
             return;
         }
 

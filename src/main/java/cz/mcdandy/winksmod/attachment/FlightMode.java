@@ -15,7 +15,7 @@ public enum FlightMode {
     NONE(0),
 
     /** Elytra style gliding: speed and lift come from where the player looks. */
-    GLIDE(1),
+    POWERED(1),
 
     /** Hanging still in the air; nothing pulls the player down while hovering. */
     HOVER(2);
