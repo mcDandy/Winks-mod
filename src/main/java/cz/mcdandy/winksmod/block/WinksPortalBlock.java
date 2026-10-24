@@ -52,8 +52,7 @@ public class WinksPortalBlock extends Block implements Portal {
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
-    /** How far away a destination portal may be searched for, in blocks. */
-    private static final int SEARCH_RADIUS = 128;
+    private static final int SEARCH_RADIUS = 16;
     private static final Map<Direction.Axis, VoxelShape> SHAPES = Shapes.rotateHorizontalAxis(Block.column(4.0, 16.0, 0.0, 16.0));
 
     private final Block frameBlock;
@@ -163,7 +162,9 @@ public class WinksPortalBlock extends Block implements Portal {
         );
         Vec3 offset = entity.getRelativePortalPosition(sourceAxis, sourceRect);
 
-        return createTransition(destination, exitPortal, sourceAxis, offset, entity, TeleportTransition.PLAY_PORTAL_SOUND);
+        return createTransition(
+            destination, exitPortal, sourceAxis, offset, entity, TeleportTransition.PLAY_PORTAL_SOUND.then(TeleportTransition.PLACE_PORTAL_TICKET)
+        );
     }
 
     private static TeleportTransition createTransition(
@@ -205,7 +206,7 @@ public class WinksPortalBlock extends Block implements Portal {
     /** Nausea while travelling, like the old portals did. */
     @Override
     public Portal.Transition getLocalTransition() {
-        return Portal.Transition.CONFUSION;
+        return Transition.CONFUSION;
     }
 
     @Override

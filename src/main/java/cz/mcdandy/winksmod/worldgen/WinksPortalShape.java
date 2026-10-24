@@ -130,45 +130,52 @@ public final class WinksPortalShape {
     ) {
         int height = 0;
 
-        while (height < MAX_HEIGHT) {
-            boolean validRow = true;
-
-            for (int x = 0; x < width; x++) {
-                BlockPos column = bottomLeft.relative(rightDir, x).above(height);
-                BlockState state = level.getBlockState(column);
-
-                if (!isEmpty(state, portal)) {
-                    validRow = false;
-                    break;
-                }
-
-                if (state.is(portal)) {
-                    portalBlockCount[0]++;
-                }
-
-                Direction wall = x == 0 ? leftDir : x == width - 1 ? rightDir : null;
-
-                if (wall != null && !level.getBlockState(column.relative(wall)).is(frame)) {
-                    validRow = false;
-                    break;
-                }
-            }
-
-            if (!validRow) {
-                break;
-            }
-
-            // The row above the opening has to be framed as well.
-            for (int x = 0; x < width; x++) {
-                if (!level.getBlockState(bottomLeft.relative(rightDir, x).above(height + 1)).is(frame)) {
-                    return height;
-                }
-            }
-
+        while (height < MAX_HEIGHT && isOpenRow(level, bottomLeft, leftDir, rightDir, width, frame, portal, height, portalBlockCount)) {
             height++;
         }
 
-        return height;
+        return hasTopFrame(level, bottomLeft, rightDir, width, frame, height) ? height : 0;
+    }
+
+    private static boolean isOpenRow(
+        LevelReader level,
+        BlockPos bottomLeft,
+        Direction leftDir,
+        Direction rightDir,
+        int width,
+        Block frame,
+        Block portal,
+        int row,
+        int[] portalBlockCount
+    ) {
+        if (!level.getBlockState(bottomLeft.relative(leftDir).above(row)).is(frame)
+                || !level.getBlockState(bottomLeft.relative(rightDir, width).above(row)).is(frame)) {
+            return false;
+        }
+
+        for (int x = 0; x < width; x++) {
+            BlockState state = level.getBlockState(bottomLeft.relative(rightDir, x).above(row));
+
+            if (!isEmpty(state, portal)) {
+                return false;
+            }
+
+            if (state.is(portal)) {
+                portalBlockCount[0]++;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean hasTopFrame(LevelReader level, BlockPos bottomLeft, Direction rightDir, int width, Block frame, int height) {
+        for (int x = 0; x < width; x++) {
+            if (!level.getBlockState(bottomLeft.relative(rightDir, x).above(height)).is(frame)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static boolean isEmpty(BlockState state, Block portal) {
@@ -225,6 +232,10 @@ public final class WinksPortalShape {
 
         for (int x = origin.getX() - radius; x <= origin.getX() + radius; x++) {
             for (int z = origin.getZ() - radius; z <= origin.getZ() + radius; z++) {
+                if (!level.hasChunkAt(cursor.set(x, origin.getY(), z))) {
+                    continue;
+                }
+
                 for (int y = level.getMaxY() - 1; y >= level.getMinY(); y--) {
                     if (!level.getBlockState(cursor.set(x, y, z)).is(portal)) {
                         continue;
@@ -300,7 +311,7 @@ public final class WinksPortalShape {
                 for (int y = level.getMaxY() - 5; y >= level.getMinY(); y--) {
                     cursor.set(x, y, z);
 
-                    if (!level.isLoaded(cursor) || !level.isEmptyBlock(cursor) || level.getBlockState(cursor.below()).isAir()) {
+                    if (!level.isEmptyBlock(cursor) || level.getBlockState(cursor.below()).isAir()) {
                         continue;
                     }
 
