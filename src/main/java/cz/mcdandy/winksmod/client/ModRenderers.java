@@ -47,14 +47,11 @@ public final class ModRenderers {
     private static final float FOLDED_X_ROT = (float) (Math.PI / 12.0);
     private static final float FOLDED_Z_ROT = (float) (-Math.PI / 12.0);
 
-    /** Wings in flight: spread out and tilted, the pose vanilla gives a gliding elytra. */
+    /** Wings in flight: fully deployed and tilted for powered flight or hovering. */
     private static final float OPEN_X_ROT = (float) (Math.PI / 9.0);
     private static final float OPEN_Z_ROT = (float) (-Math.PI / 2.0);
     private static final float HOVER_FLAP_ANGLE = 0.18F;
     private static final float HOVER_FLAP_PERIOD = 5.0F;
-
-    /** How quickly the wings catch up with their target pose per frame. */
-    private static final float POSE_LERP = 0.3F;
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -103,9 +100,10 @@ public final class ModRenderers {
         Transformation transformation = avatar.getData(ModAttachments.TRANSFORMATION.get());
         renderState.setRenderData(TRANSFORMATION, transformation);
 
-        boolean poweredFlight = transformation.isFairy() && transformation.flight() == FlightMode.GLIDE;
-        boolean open = transformation.isFairy() && transformation.flight().isFlying();
-        boolean hovering = transformation.isFairy() && transformation.flight() == FlightMode.HOVER;
+        boolean transformedFairy = transformation.isFairy() && transformation.isTransformed();
+        boolean poweredFlight = transformedFairy && transformation.flight() == FlightMode.POWERED;
+        boolean open = transformedFairy && transformation.flight().isFlying();
+        boolean hovering = transformedFairy && transformation.flight() == FlightMode.HOVER;
         // The custom flight does not set vanilla's fall-flying entity flag, so provide the equivalent render state.
         // This makes the avatar use the horizontal powered-flight pose instead of the normal walking pose.
         renderState.isFallFlying = poweredFlight;
@@ -117,9 +115,9 @@ public final class ModRenderers {
         float targetX = open ? OPEN_X_ROT + flap : FOLDED_X_ROT;
         float targetZ = open ? OPEN_Z_ROT : FOLDED_Z_ROT;
 
-        renderState.elytraRotX += (targetX - renderState.elytraRotX) * POSE_LERP;
-        renderState.elytraRotY += (0.0F - renderState.elytraRotY) * POSE_LERP;
-        renderState.elytraRotZ += (targetZ - renderState.elytraRotZ) * POSE_LERP;
+        renderState.elytraRotX = targetX;
+        renderState.elytraRotY = 0.0F;
+        renderState.elytraRotZ = targetZ;
     }
 
     private ModRenderers() {

@@ -2,6 +2,7 @@ package cz.mcdandy.winksmod.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import cz.mcdandy.winksmod.attachment.ModAttachments;
+import cz.mcdandy.winksmod.attachment.Species;
 import cz.mcdandy.winksmod.attachment.Transformation;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -23,14 +24,14 @@ public final class WinksCommands {
         dispatcher.register(Commands.literal("winksmod")
                 .then(Commands.literal("setSpecies")
                         .requires(Commands.hasPermission(PERMISSION))
-                        .then(Commands.literal("human").executes(event -> setSpecies(event.getSource(), Transformation.HUMAN)))
-                        .then(Commands.literal("fairy").executes(event -> setSpecies(event.getSource(), Transformation.FAIRY))))
+                        .then(Commands.literal("human").executes(event -> setSpecies(event.getSource(), Species.HUMAN)))
+                        .then(Commands.literal("fairy").executes(event -> setSpecies(event.getSource(), Species.FAIRY))))
                 .then(Commands.literal("transform")
                         .requires(Commands.hasPermission(PERMISSION))
                         .executes(event -> toggleTransformation(event.getSource()))));
     }
 
-    private static int setSpecies(CommandSourceStack source, int type) {
+    private static int setSpecies(CommandSourceStack source, Species species) {
         ServerPlayer player = source.getPlayer();
 
         if (player == null) {
@@ -39,7 +40,7 @@ public final class WinksCommands {
         }
 
         AttachmentType<Transformation> attachment = ModAttachments.TRANSFORMATION.get();
-        Transformation next = player.getData(attachment).withType(type);
+        Transformation next = player.getData(attachment).withSpecies(species);
         player.setData(attachment, next);
 
         if (!next.isFairy()) {
@@ -50,8 +51,8 @@ public final class WinksCommands {
             player.setData(ModAttachments.FAIRY_ENERGY.get(), energy);
         }
 
-        Component species = Component.translatable("form.winksmod." + (type == Transformation.FAIRY ? "fairy" : "human"));
-        source.sendSuccess(() -> Component.translatable("command.winksmod.set_species.success", species), true);
+        Component speciesName = Component.translatable("form.winksmod." + (species == Species.FAIRY ? "fairy" : "human"));
+        source.sendSuccess(() -> Component.translatable("command.winksmod.set_species.success", speciesName), true);
         return 1;
     }
 

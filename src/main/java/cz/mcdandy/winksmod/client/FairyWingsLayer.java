@@ -31,7 +31,8 @@ public class FairyWingsLayer extends RenderLayer<AvatarRenderState, PlayerModel>
 
     @Override
     public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int lightCoords, AvatarRenderState state, float yRot, float xRot) {
-        if (!state.getRenderDataOrDefault(ModRenderers.TRANSFORMATION, Transformation.DEFAULT).isFairy()) {
+        Transformation transformation = state.getRenderDataOrDefault(ModRenderers.TRANSFORMATION, Transformation.DEFAULT);
+        if (!transformation.isFairy() || !transformation.isTransformed()) {
             return;
         }
 
