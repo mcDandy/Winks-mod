@@ -52,6 +52,11 @@ public class WinksPortalBlock extends Block implements Portal {
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
+    /**
+     * How far away a destination portal may be searched for, in blocks. Kept small on purpose: {@link
+     * cz.mcdandy.winksmod.worldgen.WinksPortalShape#findClosest} only reads chunks that are already loaded, and a
+     * portal you can travel back to stays loaded because every trip leaves a portal ticket behind.
+     */
     private static final int SEARCH_RADIUS = 16;
     private static final Map<Direction.Axis, VoxelShape> SHAPES = Shapes.rotateHorizontalAxis(Block.column(4.0, 16.0, 0.0, 16.0));
 
@@ -162,6 +167,7 @@ public class WinksPortalBlock extends Block implements Portal {
         );
         Vec3 offset = entity.getRelativePortalPosition(sourceAxis, sourceRect);
 
+        // The ticket keeps the portal just arrived at force loaded, so the way back still finds it.
         return createTransition(
             destination, exitPortal, sourceAxis, offset, entity, TeleportTransition.PLAY_PORTAL_SOUND.then(TeleportTransition.PLACE_PORTAL_TICKET)
         );

@@ -3,6 +3,8 @@ package cz.mcdandy.winksmod.event;
 import cz.mcdandy.winksmod.WinksMod;
 import cz.mcdandy.winksmod.attachment.FairyEnergy;
 import cz.mcdandy.winksmod.attachment.ModAttachments;
+import cz.mcdandy.winksmod.attachment.Transformation;
+import cz.mcdandy.winksmod.command.WinksCommands;
 import cz.mcdandy.winksmod.worldgen.ModDimensions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.attachment.AttachmentType;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
@@ -40,6 +43,10 @@ public final class GameEvents {
             return;
         }
 
+        if (player.getData(ModAttachments.TRANSFORMATION.get()).type() != Transformation.FAIRY) {
+            return;
+        }
+
         AttachmentType<FairyEnergy> type = ModAttachments.FAIRY_ENERGY.get();
         FairyEnergy energy = player.getData(type);
         double before = Math.floor(energy.amount());
@@ -64,6 +71,12 @@ public final class GameEvents {
 
         int ceiling = entity.getTicksRequiredToFreeze() + FREEZE_HEADROOM;
         entity.setTicksFrozen(Math.min(ceiling, entity.getTicksFrozen() + FREEZE_PER_TICK));
+    }
+
+    /** Commands live on the game bus; {@link WinksCommands} holds the actual tree. */
+    @SubscribeEvent
+    public static void onRegisterCommands(RegisterCommandsEvent event) {
+        WinksCommands.register(event.getDispatcher());
     }
 
     private GameEvents() {

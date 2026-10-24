@@ -134,9 +134,11 @@ public final class WinksPortalShape {
             height++;
         }
 
+        // Whatever stopped the count has to be the framed top of the opening, otherwise this is not a portal at all.
         return hasTopFrame(level, bottomLeft, rightDir, width, frame, height) ? height : 0;
     }
 
+    /** Is {@code row} free (air or portal) across the whole opening and walled in with the frame on both sides? */
     private static boolean isOpenRow(
         LevelReader level,
         BlockPos bottomLeft,
@@ -168,6 +170,7 @@ public final class WinksPortalShape {
         return true;
     }
 
+    /** The row right above the opening has to be framed all the way across. */
     private static boolean hasTopFrame(LevelReader level, BlockPos bottomLeft, Direction rightDir, int width, Block frame, int height) {
         for (int x = 0; x < width; x++) {
             if (!level.getBlockState(bottomLeft.relative(rightDir, x).above(height)).is(frame)) {
@@ -224,6 +227,10 @@ public final class WinksPortalShape {
 
     /**
      * Scans a square of {@code radius} blocks for the closest column of portal blocks and returns its bottom.
+     *
+     * <p>Only chunks that are already loaded are read — walking an unloaded column would generate it, and scanning a
+     * whole search square that way is what used to stall the server. A portal worth finding is force-loaded anyway:
+     * every teleport through one places a portal ticket on its chunk.
      */
     public static Optional<BlockPos> findClosest(ServerLevel level, BlockPos origin, int radius, Block portal) {
         BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
@@ -311,6 +318,8 @@ public final class WinksPortalShape {
                 for (int y = level.getMaxY() - 5; y >= level.getMinY(); y--) {
                     cursor.set(x, y, z);
 
+                    // Reading here generates the chunk, exactly like vanilla's portal forcer does when it builds a
+                    // destination portal. Only the few columns around the arrival point are ever touched.
                     if (!level.isEmptyBlock(cursor) || level.getBlockState(cursor.below()).isAir()) {
                         continue;
                     }

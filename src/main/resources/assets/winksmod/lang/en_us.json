@@ -8,5 +8,13 @@
   "item.winksmod.solar_core": "Solar Core",
   "item.winksmod.magic_diamond": "Magic Diamond",
   "entity.winksmod.prisoner": "Prisoner",
-  "entity.winksmod.sun_spell": "Sun Spell"
+  "entity.winksmod.sun_spell": "Sun Spell",
+  "form.winksmod.human": "human",
+  "form.winksmod.fairy": "fairy",
+  "command.winksmod.set_species.no_player": "Only a player can change their own species.",
+  "command.winksmod.set_species.success": "Species set to %s",
+  "command.winksmod.transform.no_player": "Only a player can transform themselves.",
+  "command.winksmod.transform.not_fairy": "Only fairy species can transform.",
+  "command.winksmod.transform.enabled": "Transformed into a fairy.",
+  "command.winksmod.transform.disabled": "Returned to normal fairy form."
 }

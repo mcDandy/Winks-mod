@@ -2,6 +2,7 @@ package cz.mcdandy.winksmod.item;
 
 import cz.mcdandy.winksmod.attachment.FairyEnergy;
 import cz.mcdandy.winksmod.attachment.ModAttachments;
+import cz.mcdandy.winksmod.attachment.Transformation;
 import cz.mcdandy.winksmod.entity.SunSpellEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -45,6 +46,10 @@ public class SolariaWandItem extends Item {
     @Override
     public boolean releaseUsing(ItemStack stack, Level level, LivingEntity entity, int remainingTime) {
         if (!(level instanceof ServerLevel serverLevel) || !(entity instanceof Player player)) {
+            return false;
+        }
+
+        if (player.getData(ModAttachments.TRANSFORMATION.get()).type() != Transformation.FAIRY) {
             return false;
         }
 

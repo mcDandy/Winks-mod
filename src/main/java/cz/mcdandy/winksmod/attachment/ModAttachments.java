@@ -34,6 +34,24 @@ public final class ModAttachments {
                             .build()
             );
 
+    /**
+     * The form the player is wearing right now and how that form flies. Synced (so everyone sees the wings), saved
+     * (a fairy stays a fairy over a relog) but <b>not</b> {@code copyOnDeath} — dying always returns them to human.
+     */
+    public static final Supplier<AttachmentType<Transformation>> TRANSFORMATION = ATTACHMENT_TYPES.register(
+            "transformation",
+            () -> AttachmentType.<Transformation>builder(() -> Transformation.DEFAULT)
+                    .serialize(Transformation.CODEC)
+                    .sync(Transformation.STREAM_CODEC)
+                    .build()
+    );
+
+    /** Local integration state for the custom flight physics; neither saved nor synced, every side keeps its own. */
+    public static final Supplier<AttachmentType<FlightMotion>> FLIGHT_MOTION = ATTACHMENT_TYPES.register(
+            "flight_motion",
+            () -> AttachmentType.<FlightMotion>builder(FlightMotion::new).build()
+    );
+
     private ModAttachments() {
     }
 }
