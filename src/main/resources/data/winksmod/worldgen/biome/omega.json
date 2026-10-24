@@ -32,14 +32,15 @@
     [],
     [],
     [],
-    [],
-    [],
+    [
+      "winksmod:ice_spike"
+    ],
     [],
     [
       "winksmod:ice_ore",
-      "winksmod:blue_ice_blobs",
-      "winksmod:ice_spike"
+      "winksmod:blue_ice_blobs"
     ],
+    [],
     [],
     [],
     []
