@@ -107,13 +107,14 @@ public final class FairyFlightHandler {
         boolean shortJumpTap = tapped && mode != FlightMode.HOVER;
         boolean hoverJumpToggle = released && previousJumpHeldTicks < HOLD_TICKS;
         if (shortJumpTap || hoverJumpToggle) {
-            setFlight(player, transformationType, current,
-                    mode == FlightMode.HOVER ? FlightMode.POWERED : FlightMode.HOVER);
+            mode = mode == FlightMode.HOVER ? FlightMode.POWERED : FlightMode.HOVER;
+            setFlight(player, transformationType, current, mode);
         }
 
         // Touching down always ends the flight, whatever mode the fairy was in.
         if (player.onGround()) {
             setFlight(player, transformationType, current, FlightMode.NONE);
+            motion.reset();
             motion.setWasOnGround(true);
             return;
         }
